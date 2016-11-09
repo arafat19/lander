@@ -1,7 +1,7 @@
 <!-- sidebar menu -->
 <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
     <div class="menu_section">
-        <h3>BLRI General Menu</h3>
+        <h3>SDIL Lander General Menu</h3>
         <ul class="nav side-menu">
             <li><a href="<?php echo base_url(); ?>admin/district/create"><i class="fa fa-database"></i> Add District</a></li>
             <li><a href="<?php echo base_url(); ?>admin/sub/district/create"><i class="fa fa-database"></i> Add Sub District</a></li>

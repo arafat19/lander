@@ -1,7 +1,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="blri-header-bar  centered">
+        <div class="sdil-lander-header-bar  centered">
             <div class="header content clearfix">
                 <div class="logo logo-w" aria-label="Blri"></div>
             </div>

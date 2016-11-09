@@ -2,10 +2,12 @@
 <div class="container">
     <form name='userForm' id='userForm' enctype="multipart/form-data" class="form-horizontal"
           role="form" method="post">
-        <h2 class="text-center">BLRI Admin Registration</h2>
+        <h2 class="text-center">SDIL Lander Admin Registration</h2>
         <hr class="soften" />
         <div class="form-group">
             <div class="col-md-10">
+                <input type="hidden" value="1" name="enabled" id="enabled"/>
+                <input type="hidden" value="1" name="password_expired" id="password_expired"/>
                 <fieldset>
                     <?php if (validation_errors()) { ?>
                         <div class="form-group">
@@ -22,6 +24,7 @@
                     if ($this->session->flashdata('admin_regis_comp_message')) { ?>
                         <div class="col-md-12">
                             <div class="alert alert-success" role="alert">
+                                <i class="fa fa-check"></i>
                                 <a href="#" class="close" data-dismiss="alert"
                                    aria-label="close">&times;</a>
                                 <?php echo $this->session->flashdata('admin_regis_comp_message'); ?>
@@ -34,6 +37,7 @@
 
                         <div class="col-md-7">
                             <input type="text" class="form-control" name="name" id="name"
+                                   value="<?php echo $this->input->post('name'); ?>"
                                    placeholder="Full Name" required autofocus/>
                         </div>
                     </div>
@@ -42,6 +46,7 @@
 
                         <div class="col-md-7">
                             <input class="form-control" placeholder="Email" name="email" type="email"
+                                   value="<?php echo $this->input->post('email'); ?>"
                                    pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
                                    required="required"/>
                         </div>
@@ -79,21 +84,14 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="col-md-3 control-label label-required" for="nid">National ID Number:</label>
-
-                        <div class="col-md-7">
-                            <input type="text" class="form-control" id="nid" name="nid"
-                                   placeholder="Write your NID"/>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="col-md-3 control-label label-required" for="cell_number">Cell
                             Number:</label>
 
                         <div class="col-md-7">
                             <input type="tel" class="form-control" id="cell_number" name="cell_number"
-                                   pattern="[0][1-9]{4}[-][0-9]{6}"
-                                   placeholder="Mobile Number (Format: 01XXX-XXXXXX)"/>
+                                   value="<?php echo $this->input->post('cell_number'); ?>"
+                                   pattern="[0][1-9]{4}[0-9]{6}"
+                                   placeholder="Mobile Number (Format: 01XXXXXXXXX)"/>
                         </div>
                     </div>
                 </fieldset>

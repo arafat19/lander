@@ -2,7 +2,7 @@
 <div class="footer">
     <footer>
         <div class="pull-right">
-            পরিকল্পনা ও বাস্তবায়নে:<?php echo ' ' . $footer_title;; ?>
+            Planning & Implemented By:<?php echo ' ' . $footer_title;; ?>
         </div>
         <div class="clearfix"></div>
     </footer>

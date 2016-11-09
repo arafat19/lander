@@ -86,7 +86,7 @@
     margin-bottom: 10px;
     background-size: 96px;
     background-repeat: no-repeat;
-    background-image: url(https://ssl.gstatic.com/accounts/ui/avatar_2x.png);
+    background-image: url(../images/avatar.png);
     -webkit-transition: opacity 0.075s;
     -moz-transition: opacity 0.075s;
     -ms-transition: opacity 0.075s;
@@ -114,7 +114,7 @@
     background-position: center center;
 }
 
-.blri-header-bar {
+.sdil-lander-header-bar {
     height: 110px;
     border-bottom: 1px solid #e5e5e5;
     overflow: hidden;
@@ -122,19 +122,19 @@
 .content {
     padding: 0 44px;
 }
-.blri-header-bar.centered .header .logo {
+.sdil-lander-header-bar.centered .header .logo {
     margin: 25px auto 20px;
     float: none;
 }
 
 .header .logo-w {
-    background-image: url(../images/blri_gov_logo.jpg);
-    background-size: 68px 70px;
+    background-image: url(../images/logo.png);
+    background-size: 150px 70px;
 }
 .header .logo {
     background-repeat: no-repeat;
-    height: 72px;
-    width: 68px;
+    height: 69px;
+    width: 150px;
 }
 
 hr.soften {

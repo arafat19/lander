@@ -10,7 +10,7 @@
                 <li class="">
                     <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown"
                        aria-expanded="false">
-                        <img src="<?php echo base_url();?>images/avatar.png" alt="<?php echo $blri_admin_name; ?>"><?php echo $blri_admin_name; ?>
+                        <img src="<?php echo base_url();?>images/avatar.png" alt="<?php echo $full_name; ?>"><?php echo $full_name; ?>
                         <span class=" fa fa-angle-down"></span>
                     </a>
                     <ul class="dropdown-menu dropdown-usermenu pull-right">

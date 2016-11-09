@@ -14,12 +14,12 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="<?php echo base_url();?>images/avatar.png" alt="<?php echo $blri_admin_name; ?>" class="img-circle profile_img">
+                        <img src="<?php echo base_url();?>images/avatar.png" alt="<?php echo $full_name; ?>" class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
 
-                        <h2><?php echo $blri_admin_name; ?></h2>
+                        <h2><?php echo $full_name; ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
