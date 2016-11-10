@@ -75,6 +75,28 @@ class app_user_model extends CI_Model
         }
     }
 
+    public function unique_lander_country_code($country_code)
+    {
+        $this->db->where('lander_country_code', $country_code);
+        $query = $this->db->get(App_user_model::$table_sdil_lander_country);
+        if ($query->num_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function unique_lander_country_name($country_name)
+    {
+        $this->db->where('lander_country_name', $country_name);
+        $query = $this->db->get(App_user_model::$table_sdil_lander_country);
+        if ($query->num_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
     public function exist_admin_email($email)
     {
         $this->db->where('admin_email', $email);
@@ -104,7 +126,17 @@ class app_user_model extends CI_Model
         );
 
         $this->db->where('admin_id', $admin_id);
-        $this->db->update(App_user_model::$table_sdil_lander_admin, $data);
+        $is_updated = $this->db->update(App_user_model::$table_sdil_lander_admin, $data);
+        if($is_updated){
+            $particular_user = $this->get_user_by_id($admin_id);
+            $updated_data = array(
+                'admin_id' => $admin_id,
+                'admin_email' => $particular_user['admin_email'],
+                'full_name' => $particular_user['full_name'],
+                'logged_in' => TRUE,
+            );
+            $this->session->set_userdata($updated_data);
+        }
     }
 
     public function admin_password_update($sd_lander_admin_id, $sd_lander_admin_email)
@@ -114,7 +146,15 @@ class app_user_model extends CI_Model
         );
         $this->db->where('admin_id', $sd_lander_admin_id);
         $this->db->where('admin_email', $sd_lander_admin_email);
-        $this->db->update(App_user_model::$table_sdil_lander_admin, $data);
+        $is_updated = $this->db->update(App_user_model::$table_sdil_lander_admin, $data);
+        return $is_updated;
+    }
+
+    public function update_country($data, $country_id)
+    {
+        $this->db->where('lander_country_id', $country_id);
+        $is_updated = $this->db->update(App_user_model::$table_sdil_lander_country, $data);
+        return $is_updated;
     }
 
 
@@ -123,6 +163,14 @@ class app_user_model extends CI_Model
         $this->db->select('*');
         $this->db->where('admin_id', $admin_id);
         $result = $this->db->get(App_user_model::$table_sdil_lander_admin);
+
+        return $result->row_array();
+    }
+    public function get_single_country_by_id($country_id)
+    {
+        $this->db->select('*');
+        $this->db->where('lander_country_id', $country_id);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_country);
 
         return $result->row_array();
     }
@@ -142,4 +190,11 @@ class app_user_model extends CI_Model
         $is_created = $this->db->insert(App_user_model::$table_sdil_lander_country, $data);
         return $is_created;
     }
+
+    public function delete_country($country_id)
+    {
+        $this->db->where('lander_country_id', $country_id);
+        $this->db->delete(App_user_model::$table_sdil_lander_country);
+    }
+
 }

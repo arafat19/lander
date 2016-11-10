@@ -72,8 +72,8 @@ class Admin extends CI_Controller
         } else {
             $this->load->library('Form_validation');
             // field name, error message, validation rules
-            $this->form_validation->set_rules('country_name', 'Country name', 'trim|required|min_length[2]');
-            $this->form_validation->set_rules('country_code', 'Country code', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('country_name', 'Country name', 'trim|required|min_length[2]|callback_unique_country_name');
+            $this->form_validation->set_rules('country_code', 'Country code', 'trim|required|min_length[2]|callback_unique_country_code');
             $this->form_validation->set_rules('is_active', 'Is Active');
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'SDIL Lander Country List - SDIL Lander';
@@ -106,6 +106,108 @@ class Admin extends CI_Controller
                 redirect(base_url() . 'admin/country/create', 'refresh');
             }
         }
+    }
+
+    public function admin_update_lander_country($country_id)
+    {
+        $country_id_dec = base64_decode($country_id);
+        $single_country = $this->app_user_model->get_single_country_by_id($country_id_dec);
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('country_name', 'Country name', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('country_code', 'Country code', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('is_active', 'Is Active');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'Update Country - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Update Country';
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['footer_title'] = Admin::$footer_title;
+
+
+                $data['single_country'] = $single_country;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_update_country_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $country_name = $this->input->post('country_name');
+                $country_code = $this->input->post('country_code');
+                $is_active = $this->input->post('is_active') ? 1 : 0;
+                $data = array(
+                    'lander_country_name' => $country_name,
+                    'lander_country_code' => $country_code,
+                    'is_active' => $is_active
+                );
+                $is_updated = FALSE;
+                $check_country_name_is_unique = TRUE;
+                $check_country_code_is_unique = TRUE;
+                if ($country_name == $single_country['lander_country_name'] && $country_code == $single_country['lander_country_code']) {
+                    $is_updated = $this->app_user_model->update_country($data, $country_id_dec);
+                } else {
+                    // Country name and code unique check during update
+                    if ($country_name != $single_country['lander_country_name'] && $country_code != $single_country['lander_country_code']) {
+                        $check_country_name_is_unique = $this->app_user_model->unique_lander_country_name($country_name);
+                        if ($check_country_name_is_unique) {
+                            $this->session->set_flashdata('admin_country_name_not_unique_message', "Given Country name is already exist");
+                        }
+                        $check_country_code_is_unique = $this->app_user_model->unique_lander_country_code($country_code);
+                        if ($check_country_code_is_unique) {
+                            $this->session->set_flashdata('admin_country_code_not_unique_message', "Given Country code is already exist");
+                        }
+                        if ($check_country_name_is_unique || $check_country_code_is_unique) {
+                            redirect(base_url() . 'admin/country/update/' . $country_id, 'refresh');
+                        }
+                    } else if ($country_name != $single_country['lander_country_name'] && $country_code == $single_country['lander_country_code']) {
+                        $check_country_name_is_unique = $this->app_user_model->unique_lander_country_name($country_name);
+                        if ($check_country_name_is_unique) {
+                            $this->session->set_flashdata('admin_country_name_not_unique_message', "Given Country name is already exist");
+                            $check_country_name_is_unique = FALSE;
+                            $check_country_code_is_unique = FALSE;
+                            redirect(base_url() . 'admin/country/update/' . $country_id, 'refresh');
+                        }
+                    } else if ($country_name == $single_country['lander_country_name'] && $country_code != $single_country['lander_country_code']) {
+                        $check_country_code_is_unique = $this->app_user_model->unique_lander_country_code($country_code);
+                        if ($check_country_code_is_unique) {
+                            $this->session->set_flashdata('admin_country_code_not_unique_message', "Given Country code is already exist");
+                            $check_country_code_is_unique = FALSE;
+                            $check_country_name_is_unique = FALSE;
+                            redirect(base_url() . 'admin/country/update/' . $country_id, 'refresh');
+                        }
+                    }
+                    if (!$check_country_name_is_unique || !$check_country_code_is_unique) {
+                        $is_updated = $this->app_user_model->update_country($data, $country_id_dec);
+                    }
+                }
+
+
+                if ($is_updated) {
+                    $this->session->set_flashdata('admin_update_country_message', "Selected Country is Updated successfully.");
+                } else {
+                    $this->session->set_flashdata('admin_update_country_error_message', "Selected Country is not Updated successfully. Please try again.");
+                }
+
+                redirect(base_url() . 'admin/country/create', 'refresh');
+            }
+        }
+    }
+
+    public function admin_delete_lander_country($country_id)
+    {
+        $country_id_dec = base64_decode($country_id);
+        $single_country = $this->app_user_model->get_single_country_by_id($country_id_dec);
+        $is_active = $single_country["is_active"];
+        if ($is_active) {
+            $this->session->set_flashdata('cant_delete_message', 'Active Country can not be deleted.');
+        } else {
+            $this->app_user_model->delete_country($country_id_dec);
+            $this->session->set_flashdata('country_delete_message', 'Selected Country is successfully deleted');
+        }
+
+        redirect(base_url() . 'admin/country/create');
     }
 
     /*
@@ -208,8 +310,10 @@ class Admin extends CI_Controller
                 $this->load->view('admin/admin_password_update_view', $data);
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
             } else {
-                $this->app_user_model->admin_password_update($sd_lander_admin_id, $sd_lander_admin_email);
-                $this->session->set_flashdata('admin_password_update_message', "Your Password is updated successfully.");
+                $is_updated = $this->app_user_model->admin_password_update($sd_lander_admin_id, $sd_lander_admin_email);
+                if ($is_updated) {
+                    $this->session->set_flashdata('admin_password_update_message', "Your Password is updated successfully.");
+                }
                 redirect(base_url() . 'admin/password/update', 'refresh');
             }
         }
@@ -237,6 +341,29 @@ class Admin extends CI_Controller
             return FALSE;
         }
     }
+
+    function unique_country_code($str)
+    {
+        $this->load->model('app_user_model');
+        if (!$this->app_user_model->unique_lander_country_code($str)) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('unique_country_code', "%s {$str} already exist!");
+            return FALSE;
+        }
+    }
+
+    function unique_country_name($str)
+    {
+        $this->load->model('app_user_model');
+        if (!$this->app_user_model->unique_lander_country_name($str)) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('unique_country_name', "%s {$str} already exist!");
+            return FALSE;
+        }
+    }
+
 
     function exist_email($str)
     {

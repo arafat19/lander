@@ -14,13 +14,13 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $blri_admin_name; ?>"
+                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $full_name; ?>"
                              class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
 
-                        <h2><?php echo $blri_admin_name; ?></h2>
+                        <h2><?php echo $full_name; ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -80,12 +80,20 @@
                                         <strong><?php echo validation_errors(); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('course_date_selection_error')) { ?>
+                                if ($this->session->flashdata('admin_country_name_not_unique_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('course_date_selection_error'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_country_name_not_unique_message'); ?></strong>
+                                    </div>
+                                <?php }
+                                if ($this->session->flashdata('admin_country_code_not_unique_message')) { ?>
+                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong><?php echo $this->session->flashdata('admin_country_code_not_unique_message'); ?></strong>
                                     </div>
                                 <?php } ?>
 
@@ -94,51 +102,39 @@
                                       method="POST">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="course_name">Course
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_name">Country
                                             Name<span class="required">*</span>
                                         </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" name="course_name"
-                                                   id="course_name" value="<?php echo $single_course['course_name']; ?>"
-                                                   placeholder="Course Name" required autofocus/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="course_description">Course
-                                            Description
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <textarea id="course_description" class="form-control"
-                                                      name="course_description" maxlength="250"><?php echo $single_course['course_description']; ?></textarea>
-                                        </div>
-                                    </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="course_start_date">Course Start Date <span
-                                                class="required">*</span>
-                                        </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="course_start_date" name="course_start_date"
-                                                   placeholder="Click to select Course Start Date"
-                                                   value="<?php echo $single_course['course_start_date']; ?>"
-                                                   class="date-picker form-control col-md-7 col-xs-12"
-                                                   required="required" type="text">
+                                            <input type="text" class="form-control" name="country_name"
+                                                   id="country_name"
+                                                   value="<?php echo $single_country['lander_country_name']; ?>"
+                                                   placeholder="Country Name" required/>
                                         </div>
                                     </div>
-
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="course_end_date">Course
-                                            End Date <span
-                                                class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_code">Country
+                                            Code<span class="required">*</span>
                                         </label>
+
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="course_end_date" name="course_end_date"
-                                                   value="<?php echo $single_course['course_end_date']; ?>"
-                                                   placeholder="Click to select Course End Date"
-                                                   class="date-picker form-control col-md-7 col-xs-12"
-                                                   required="required" type="text">
+                                            <input type="text" class="form-control" name="country_code"
+                                                   id="country_code"
+                                                   value="<?php echo $single_country['lander_country_code']; ?>"
+                                                   placeholder="Country Code" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        </div>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="is_active"
+                                                           name="is_active" value="1"  <?php echo $single_country['is_active'] == 1 ? 'checked' : ''; ?>/> Is Active
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -146,7 +142,7 @@
                                     <div class="form-group">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                             <button type="submit" class="btn btn-success">Update</button>
-                                            <button type="reset" class="btn btn-primary">Cancel</button>
+                                            <a href="<?php echo base_url()?>admin/country/create" class="btn btn-primary">Cancel</a>
                                         </div>
                                     </div>
                                 </form>

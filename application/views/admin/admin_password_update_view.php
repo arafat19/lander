@@ -104,7 +104,17 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="password" class="form-control" id="password" name="password" minlength="6"
                                                    pattern="^.*(?=.{6,})(((?=.*[a-z])(?=.*[A-Z])(?=.*[\d]))|((?=.*[a-z])(?=.*[A-Z])(?=.*[\W]))|((?=.*[a-z])(?=.*[\d])(?=.*[\W]))|((?=.*[A-Z])(?=.*[\d])(?=.*[\W]))).*$"
-                                                   placeholder="Letters,Numbers & Special Characters" required/>
+                                                   placeholder="Letters,Numbers & Special Characters"  oninput="checkSamePassword(this)" required/>
+                                            <script language='javascript' type='text/javascript'>
+                                                function checkSamePassword(input) {
+                                                    if (input.value == document.getElementById('current_password').value) {
+                                                        input.setCustomValidity('New Password Must be Different form Current Password.');
+                                                    } else {
+                                                        // input is valid -- reset the error message
+                                                        input.setCustomValidity('');
+                                                    }
+                                                }
+                                            </script>
                                         </div>
                                     </div>
                                     <div class="form-group">

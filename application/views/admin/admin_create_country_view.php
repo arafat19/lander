@@ -1,7 +1,7 @@
 <body class="nav-md">
 <script language="javascript">
     function checkMe() {
-        if (confirm("Are you sure you want to delete the selected Course?")) {
+        if (confirm("Are you sure you want to delete the selected Country?")) {
             return true;
         } else {
             return false;
@@ -105,28 +105,36 @@
                                         <strong><?php echo $this->session->flashdata('admin_create_country_error_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_course_message')) { ?>
+                                if ($this->session->flashdata('admin_update_country_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_course_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_update_country_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_course_error_message')) { ?>
+                                if ($this->session->flashdata('admin_update_country_error_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_course_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_update_country_error_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_delete_course_error_message')) { ?>
+                                if ($this->session->flashdata('country_delete_message')) { ?>
+                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong><?php echo $this->session->flashdata('country_delete_message'); ?></strong>
+                                    </div>
+                                <?php }
+                                if ($this->session->flashdata('cant_delete_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_delete_course_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('cant_delete_message'); ?></strong>
                                     </div>
                                 <?php } ?>
 
