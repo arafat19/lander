@@ -23,13 +23,13 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $blri_admin_name; ?>"
+                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $full_name; ?>"
                              class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
 
-                        <h2><?php echo $blri_admin_name; ?></h2>
+                        <h2><?php echo $full_name; ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -89,20 +89,20 @@
                                         <strong><?php echo validation_errors(); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_create_course_message')) { ?>
+                                if ($this->session->flashdata('admin_create_country_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_course_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_create_country_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_create_course_error_message')) { ?>
+                                if ($this->session->flashdata('admin_create_country_error_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_course_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_create_country_error_message'); ?></strong>
                                     </div>
                                 <?php }
                                 if ($this->session->flashdata('admin_update_course_message')) { ?>
@@ -121,22 +121,6 @@
                                         <strong><?php echo $this->session->flashdata('admin_update_course_error_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('course_date_selection_error')) { ?>
-                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('course_date_selection_error'); ?></strong>
-                                    </div>
-                                <?php }
-                                if ($this->session->flashdata('admin_delete_course_message')) { ?>
-                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('admin_delete_course_message'); ?></strong>
-                                    </div>
-                                <?php }
                                 if ($this->session->flashdata('admin_delete_course_error_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -144,58 +128,50 @@
                                         </button>
                                         <strong><?php echo $this->session->flashdata('admin_delete_course_error_message'); ?></strong>
                                     </div>
-                                <?php }?>
+                                <?php } ?>
 
                                 <br/>
+
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
                                       method="POST">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="course_name">Course
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_name">Country
                                             Name<span class="required">*</span>
                                         </label>
+
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" name="course_name"
-                                                   id="course_name"
-                                                   placeholder="Course Name" required autofocus/>
+                                            <input type="text" class="form-control" name="country_name"
+                                                   id="country_name"
+                                                   value="<?php echo $this->input->post('country_name'); ?>"
+                                                   placeholder="Country Name" required autofocus/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="course_description">Course
-                                            Description
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_code">Country
+                                            Code<span class="required">*</span>
                                         </label>
+
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <textarea id="course_description" class="form-control"
-                                                      name="course_description" maxlength="250"></textarea>
+                                            <input type="text" class="form-control" name="country_code"
+                                                   id="country_code"
+                                                   value="<?php echo $this->input->post('country_code'); ?>"
+                                                   placeholder="Country Code" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        </div>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="is_active"
+                                                           name="is_active" value="1"/> Is Active
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="course_start_date">Course Start Date <span
-                                                class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="course_start_date" name="course_start_date"
-                                                   placeholder="Click to select Course Start Date"
-                                                   class="date-picker form-control col-md-7 col-xs-12"
-                                                   required="required" type="text">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="course_end_date">Course
-                                            End Date <span
-                                                class="required">*</span>
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="course_end_date" name="course_end_date"
-                                                   placeholder="Click to select Course End Date"
-                                                   class="date-picker form-control col-md-7 col-xs-12"
-                                                   required="required" type="text">
-                                        </div>
-                                    </div>
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
@@ -229,43 +205,31 @@
                                     <thead>
                                     <tr>
                                         <th>Serial</th>
-                                        <th>Course Name</th>
-                                        <th>Course Start Date</th>
-                                        <th>Course End Date</th>
-                                        <th>Course Duration</th>
+                                        <th>Country Name</th>
+                                        <th>Country Code</th>
+                                        <th>Is Active</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
 
                                     <?php $i = 1; ?>
-                                    <?php if (isset($all_courses) && $all_courses->num_rows() > 0): ?>
+                                    <?php if (isset($all_countries) && $all_countries->num_rows() > 0): ?>
                                     <tbody>
-                                    <?php foreach ($all_courses->result() as $row): ?>
+                                    <?php foreach ($all_countries->result() as $row): ?>
 
 
                                         <tr>
                                             <td><?php echo $i++; ?></td>
-                                            <td><?php echo $row->course_name; ?></td>
-                                            <td><?php echo $row->course_start_date; ?></td>
-                                            <td><?php echo $row->course_end_date; ?></td>
-                                            <td><?php
-                                                $c_start_time = $row->course_start_date;
-                                                $c_end_time = $row->course_end_date;
-                                                $c_start = strtotime($c_start_time);
-                                                $c_end = strtotime($c_end_time);
-                                                $new_c_start = date('Y-m-d',$c_start);
-                                                $new_c_end = date('Y-m-d',$c_end);
-                                                $differenceFormat = '%a Day(s)';
-                                                $interval = date_diff(date_create($new_c_start), date_create($c_end_time));
-                                                echo $interval->format($differenceFormat);
-                                                ?></td>
+                                            <td><?php echo $row->lander_country_name; ?></td>
+                                            <td><?php echo $row->lander_country_code; ?></td>
+                                            <td><?php echo $row->is_active ? 'Yes' : 'No'; ?></td>
                                             <td align="center"><a class="btn btn-success" title="Edit"
-                                                   href="<?php echo base_url(); ?>admin/course/update/<?php echo base64_encode($row->course_id); ?>"
-                                                   role="button"><span
+                                                                  href="<?php echo base_url(); ?>admin/country/update/<?php echo base64_encode($row->lander_country_id); ?>"
+                                                                  role="button"><span
                                                         class="glyphicon glyphicon-edit"></span></a>
 
                                                 <a class="btn btn-danger"
-                                                   href="<?php echo base_url(); ?>admin/course/delete/<?php echo base64_encode($row->course_id); ?>"
+                                                   href="<?php echo base_url(); ?>admin/country/delete/<?php echo base64_encode($row->lander_country_id); ?>"
                                                    onclick="return checkMe()" title="Delete"
                                                    role="button"><span class="glyphicon glyphicon-trash"></span></a>
                                             </td>

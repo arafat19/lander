@@ -5,7 +5,7 @@ class app_user_model extends CI_Model
 {
 
     public static $table_sdil_lander_admin = 'sdil_lander_admin';
-    public static $table_blri_district = 'blri_district';
+    public static $table_sdil_lander_country = 'sdil_lander_country';
     public static $table_blri_sub_district = 'blri_sub_district';
     public static $table_blri_course = 'blri_course';
     public static $table_blri_instructor = 'blri_instructor';
@@ -85,36 +85,61 @@ class app_user_model extends CI_Model
             return TRUE;
         }
     }
-
-    public function update_admin_info($user_id)
+    public function exist_admin_password($c_password)
     {
-        $data = array(
-            'blri_admin_name' => $this->input->post('name'),
-            'blri_admin_phone_number' => $this->input->post('cell_number'),
-            'blri_admin_NID' => $this->input->post('nid')
-        );
-
-        $this->db->where('blri_admin_id', $user_id);
-        $this->db->update('blri_admin', $data);
+        $this->db->where('admin_password', md5($c_password));
+        $query = $this->db->get(App_user_model::$table_sdil_lander_admin);
+        if ($query->num_rows() > 0) {
+            return FALSE;
+        } else {
+            return TRUE;
+        }
     }
 
-    public function admin_password_update($user_id, $blri_admin_username)
+    public function update_admin_info($admin_id)
     {
         $data = array(
-            'blri_admin_password' => md5($this->input->post('password'))
+            'full_name' => $this->input->post('name'),
+            'cell_number' => $this->input->post('cell_number')
         );
-        $this->db->where('blri_admin_id', $user_id);
-        $this->db->where('blri_admin_username', $blri_admin_username);
-        $this->db->update('blri_admin', $data);
+
+        $this->db->where('admin_id', $admin_id);
+        $this->db->update(App_user_model::$table_sdil_lander_admin, $data);
+    }
+
+    public function admin_password_update($sd_lander_admin_id, $sd_lander_admin_email)
+    {
+        $data = array(
+            'admin_password' => md5($this->input->post('password'))
+        );
+        $this->db->where('admin_id', $sd_lander_admin_id);
+        $this->db->where('admin_email', $sd_lander_admin_email);
+        $this->db->update(App_user_model::$table_sdil_lander_admin, $data);
     }
 
 
-    public function get_user_by_id($user_id)
+    public function get_user_by_id($admin_id)
     {
         $this->db->select('*');
-        $this->db->where('blri_admin_id', $user_id);
-        $result = $this->db->get('blri_admin');
+        $this->db->where('admin_id', $admin_id);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_admin);
 
         return $result->row_array();
+    }
+
+    function get_all_countries()
+    {
+        $result = $this->db->get(App_user_model::$table_sdil_lander_country);
+        if ($result->num_rows() > 0) {
+            return $result;
+        } else {
+            return NULL;
+        }
+    }
+
+    public function create_country($data)
+    {
+        $is_created = $this->db->insert(App_user_model::$table_sdil_lander_country, $data);
+        return $is_created;
     }
 }

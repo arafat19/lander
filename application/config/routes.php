@@ -55,8 +55,9 @@ $route['admin/register'] = "admin/admin_registration";
 $route['admin/profile/update'] = "admin/update_admin_user";
 $route['admin/password/update'] = "admin/update_admin_password";
 
-$route['admin/district/create'] = "admin/admin_create_district";
-$route['admin/district/update/(:any)'] = "admin/admin_update_district/$1";
+$route['admin/country/create'] = "admin/admin_create_lander_country";
+$route['admin/country/update/(:any)'] = "admin/admin_update_lander_country/$1";
+$route['admin/country/delete/(:any)'] = "admin/admin_delete_lander_country/$1";
 
 $route['admin/sub/district/create'] = "admin/admin_create_sub_district";
 $route['admin/sub/district/update/(:any)'] = "admin/admin_update_sub_district/$1";

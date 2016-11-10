@@ -14,13 +14,13 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $blri_admin_name; ?>"
+                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $full_name; ?>"
                              class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
 
-                        <h2><?php echo $blri_admin_name; ?>e</h2>
+                        <h2><?php echo $full_name; ?>e</h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -94,42 +94,33 @@
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">Full Name<span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" name="name" id="name" value="<?php echo $particular_user['blri_admin_name']; ?>"
+                                            <input type="text" class="form-control" name="name" id="name" value="<?php echo $particular_user['full_name']; ?>"
                                                    placeholder="Full Name" required autofocus/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
-                                        </label>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input class="form-control"  name="email" type="email" value="<?php echo $particular_user['blri_admin_username']; ?>"
+                                            <input class="form-control"  name="email" type="email" value="<?php echo $particular_user['admin_email']; ?>"
                                                    pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$" disabled="disabled"
                                                    required="required"/>
                                         </div>
                                     </div>
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="nid">National ID Number
-                                        </label>
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" id="nid" name="nid" <?php echo $particular_user['blri_admin_NID']; ?>
-                                                   placeholder="Write your NID"/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="cell_number">Cell
                                             Number</label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="tel" class="form-control" id="cell_number" name="cell_number"
-                                                   pattern="[0][1-9]{4}[-][0-9]{6}" <?php echo $particular_user['blri_admin_phone_number']; ?>
-                                                   placeholder="Mobile Number (Format: 01XXX-XXXXXX)"/>
+                                                   pattern="[0][1-9]{4}[0-9]{6}" <?php echo $particular_user['cell_number']; ?>
+                                                   placeholder="Mobile Number (Format: 01XXXXXXXXX)"/>
                                         </div>
                                     </div>
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                             <button type="submit" class="btn btn-success">Update</button>
-                                            <button type="reset" class="btn btn-primary">Cancel</button>
+                                            <a href="<?php echo base_url();?>admin" class="btn btn-primary">Cancel</a>
                                         </div>
                                     </div>
                                 </form>

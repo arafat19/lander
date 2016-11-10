@@ -16,6 +16,7 @@ class Admin extends CI_Controller
     public static $wrong_login_message = 'Wrong Email or Password';
     public static $login_title = 'Sign in to continue to SDIL Lander';
     public static $footer_title = 'Shwapnoduar IT Ltd.';
+    public static $navbar_title = 'SDIL Lander Admin Panel';
 
     function __construct()
     {
@@ -58,10 +59,65 @@ class Admin extends CI_Controller
         }
     }
 
+    /*
+     * *************************************************************************
+     * Lander Country Create, Read (List), Update & Delete Implementation Start
+     * *************************************************************************
+     */
+
+    public function admin_create_lander_country()
+    {
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('country_name', 'Country name', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('country_code', 'Country code', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('is_active', 'Is Active');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'SDIL Lander Country List - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Create Country';
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['data_list_title'] = 'All Countries List';
+                $data['footer_title'] = Admin::$footer_title;
+
+                $all_countries = $this->app_user_model->get_all_countries(); // Reading and showing the countries list from DB
+                $data['all_countries'] = $all_countries;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_create_country_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $is_active = $this->input->post('is_active') ? 1 : 0;
+                $data = array(
+                    'lander_country_name' => $this->input->post('country_name'),
+                    'lander_country_code' => $this->input->post('country_code'),
+                    'is_active' => $is_active
+                );
+                $is_created = $this->app_user_model->create_country($data);
+                if ($is_created) {
+                    $this->session->set_flashdata('admin_create_country_message', "Country is created successfully.");
+                } else {
+                    $this->session->set_flashdata('admin_create_country_error_message', "Country is not created successfully. Please try again.");
+                }
+
+                redirect(base_url() . 'admin/country/create', 'refresh');
+            }
+        }
+    }
+
+    /*
+     * *************************************************************************
+     * Lander Country Create, Read (List), Update & Delete Implementation Finish
+     * *************************************************************************
+     */
+
     public function welcome_admin_dashboard()
     {
         $data['title'] = 'Welcome SDIL Lander Admin Panel';
-        $data['navbar_title'] = 'SDIL Lander Admin Panel';
+        $data['navbar_title'] = Admin::$navbar_title;
         $data['full_name'] = $this->session->userdata('full_name');
         $data['active'] = 'dashboard';
         $data['footer_title'] = Admin::$footer_title;
@@ -101,18 +157,18 @@ class Admin extends CI_Controller
         } else {
 
             $this->load->library('Form_validation');
+
             // field name, error message, validation rules
             $this->form_validation->set_rules('name', 'Full Name', 'trim|required|min_length[4]');
-            $this->form_validation->set_rules('nid', 'Your NID', 'trim');
-            $this->form_validation->set_rules('cell_number', 'Your Mobile Number', 'trim');
+            $this->form_validation->set_rules('cell_number', 'Your Mobile Number', 'trim|min_length[11]');
 
             $particular_user = $this->app_user_model->get_user_by_id($sd_lander_admin_id);
 
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'Update SDIL Lander Admin Profile';
                 $data['page_title'] = 'Update Your Profile';
-                $data['navbar_title'] = 'SDIL Lander Admin Panel';
-                $data['blri_admin_name'] = $this->session->userdata('blri_admin_name');
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['full_name'] = $this->session->userdata('full_name');
                 $data['particular_user'] = $particular_user;
                 $data['footer_title'] = Admin::$footer_title;
 
@@ -130,14 +186,14 @@ class Admin extends CI_Controller
     public function update_admin_password()
     {
         $sd_lander_admin_id = $this->session->userdata('admin_id');
-        $blri_admin_username = $this->session->userdata('admin_email');
+        $sd_lander_admin_email = $this->session->userdata('admin_email');
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
 
             $this->load->library('Form_validation');
             // field name, error message, validation rules
-            $this->form_validation->set_rules('email', 'Sorry! Your Email address', 'trim|required|valid_email|callback_exist_email');
+            $this->form_validation->set_rules('current_password', 'Current Password', 'trim|required|min_length[6]|max_length[32]|callback_exist_password');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[32]');
             $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required');
 
@@ -145,14 +201,14 @@ class Admin extends CI_Controller
                 $data['title'] = 'Update SDIL Lander Admin Password';
                 $data['footer_title'] = Admin::$footer_title;
                 $data['page_title'] = 'Update Your Password';
-                $data['navbar_title'] = 'SDIL Lander Admin Panel';
-                $data['blri_admin_name'] = $this->session->userdata('blri_admin_name');
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['full_name'] = $this->session->userdata('full_name');
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
                 $this->load->view('admin/admin_password_update_view', $data);
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
             } else {
-                $this->app_user_model->admin_password_update($sd_lander_admin_id, $blri_admin_username);
+                $this->app_user_model->admin_password_update($sd_lander_admin_id, $sd_lander_admin_email);
                 $this->session->set_flashdata('admin_password_update_message', "Your Password is updated successfully.");
                 redirect(base_url() . 'admin/password/update', 'refresh');
             }
@@ -189,6 +245,17 @@ class Admin extends CI_Controller
             return TRUE;
         } else {
             $this->form_validation->set_message('exist_email', "%s {$str} doesn't exist");
+            return FALSE;
+        }
+    }
+
+    function exist_password($str)
+    {
+        $this->load->model('app_user_model');
+        if (!$this->app_user_model->exist_admin_password($str)) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('exist_password', "Sorry! Your current Password doesn't match");
             return FALSE;
         }
     }

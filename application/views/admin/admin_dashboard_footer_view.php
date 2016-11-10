@@ -154,10 +154,6 @@
                     dom: "Bfrtip",
                     buttons: [
                         {
-                            extend: "copy",
-                            className: "btn-sm"
-                        },
-                        {
                             extend: "pdf",
                             className: "btn-sm"
                         },
@@ -182,7 +178,7 @@
                                 $(win.document.body)
                                     .css( 'font-size', '10pt' )
                                     .append(
-                                        '<img src="<?php echo base_url();?>images/blri.png" style="position:absolute; top:300px; left:300px;opacity:0.3;" />'
+                                        '<img src="<?php echo base_url();?>images/logo.png" style="position:absolute; top:300px; left:300px;opacity:0.3;" />'
                                     );
 
                                 $(win.document.body).find( 'table' )

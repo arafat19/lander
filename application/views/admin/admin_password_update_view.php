@@ -14,13 +14,13 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $blri_admin_name; ?>"
+                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $full_name; ?>"
                              class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
 
-                        <h2><?php echo $blri_admin_name; ?>e</h2>
+                        <h2><?php echo $full_name; ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -90,12 +90,12 @@
                                 <br/>
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" method="POST">
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">Email<span class="required">*</span>
-                                        </label>
+                                        <label class="col-md-3 col-sm-3 col-xs-12 control-label" for="current_password">Current Password<span class="required">*</span></label>
+
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input class="form-control"  name="email" type="email" placeholder="Write your email"
-                                                   pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                                   required="required"/>
+                                            <input type="password" class="form-control" id="current_password" name="current_password" minlength="6"
+                                                   pattern="^.*(?=.{6,})(((?=.*[a-z])(?=.*[A-Z])(?=.*[\d]))|((?=.*[a-z])(?=.*[A-Z])(?=.*[\W]))|((?=.*[a-z])(?=.*[\d])(?=.*[\W]))|((?=.*[A-Z])(?=.*[\d])(?=.*[\W]))).*$"
+                                                   placeholder="Letters,Numbers & Special Characters" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
