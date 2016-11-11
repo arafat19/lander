@@ -61,6 +61,7 @@ $route['admin/country/delete/(:any)'] = "admin/admin_delete_lander_country/$1";
 
 $route['admin/slider/image/create'] = "admin/admin_create_lander_slider_image";
 $route['admin/slider/image/update/(:any)'] = "admin/admin_update_lander_slider_image/$1";
+$route['admin/slider/image/delete/(:any)'] = "admin/admin_delete_lander_slider_image/$1";
 
 $route['admin/course/create'] = "admin/admin_create_course";
 $route['admin/course/update/(:any)'] = "admin/admin_update_course/$1";

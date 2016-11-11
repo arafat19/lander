@@ -14,13 +14,13 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $blri_admin_name; ?>"
+                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $full_name; ?>"
                              class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
 
-                        <h2><?php echo $blri_admin_name; ?></h2>
+                        <h2><?php echo $full_name; ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -79,28 +79,60 @@
                                         </button>
                                         <strong><?php echo validation_errors(); ?></strong>
                                     </div>
-                                <?php }
-                                if ($this->session->flashdata('admin_create_district_message')) { ?>
-                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_district_message'); ?></strong>
-                                    </div>
                                 <?php } ?>
 
                                 <br/>
+
                                 <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
-                                      method="POST">
+                                      enctype="multipart/form-data"
+                                      method="post">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="update_district_name">District
-                                            Name<span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_id">Select
+                                            Country Name <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" name="update_district_name"
-                                                   id="update_district_name" value="<?php echo $single_district['district_name']; ?>"
-                                                   placeholder="District Name" required/>
+                                            <select id="country_id"
+                                                    name="country_id" class="form-control" required="required">
+                                                <option
+                                                    value="">Please Select a Country
+                                                </option>
+                                                <?php if (isset($all_countries) && $all_countries->num_rows() > 0):
+                                                    foreach ($all_countries->result() as $row): ?>
+                                                        <option
+                                                            value="<?php echo $row->lander_country_id ?>" <?php echo $single_image['lander_image_country_id'] == $row->lander_country_id ? 'selected' : ''; ?>>
+                                                            <?php echo $row->lander_country_name; ?>
+                                                        </option>
+                                                        <?php
+                                                    endforeach;
+                                                endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userfile">Upload
+                                            Image
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input id="uploadBtn" type="file" name="userFile"
+                                                   class="form-control col-md-7 col-xs-12"/>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <img height="100" width="100"
+                                                src="<?php echo base_url();?>uploaded/lander_slider_images/<?php echo $single_image['lander_image_file_name']? $single_image['lander_image_file_name']:'blank_person.png'; ?>"
+                                                alt="<?php echo $single_image['lander_image_file_name']; ?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        </div>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="is_active"
+                                                           name="is_active" value="1"  <?php echo $single_image['lander_image_is_active'] == 1 ? 'checked' : ''; ?>/> Is Active
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -108,7 +140,7 @@
                                     <div class="form-group">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
                                             <button type="submit" class="btn btn-success">Update</button>
-                                            <button type="reset" class="btn btn-primary">Cancel</button>
+                                            <a href="<?php echo base_url();?>admin/slider/image/create" class="btn btn-primary">Cancel</a>
                                         </div>
                                     </div>
                                 </form>

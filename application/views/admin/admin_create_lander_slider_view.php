@@ -1,7 +1,7 @@
 <body class="nav-md">
 <script language="javascript">
     function checkMe() {
-        if (confirm("Are you sure you want to delete the selected Instructor?")) {
+        if (confirm("Are you sure you want to delete the selected Image?")) {
             return true;
         } else {
             return false;
@@ -89,52 +89,52 @@
                                         <strong><?php echo validation_errors(); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_create_instructor_message')) { ?>
+                                if ($this->session->flashdata('slider_created_success')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_instructor_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('slider_created_success'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_create_instructor_error_message')) { ?>
+                                if ($this->session->flashdata('slider_created_error')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_instructor_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('slider_created_error'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_instructor_message')) { ?>
+                                if ($this->session->flashdata('slider_update_success')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_instructor_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('slider_update_success'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_instructor_error_message')) { ?>
+                                if ($this->session->flashdata('slider_update_error')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_instructor_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('slider_update_error'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_delete_instructor_message')) { ?>
+                                if ($this->session->flashdata('slider_image_delete_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_delete_instructor_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('slider_image_delete_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_delete_instructor_error_message')) { ?>
+                                if ($this->session->flashdata('cant_delete_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_delete_instructor_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('cant_delete_message'); ?></strong>
                                     </div>
                                 <?php }
                                 if ($this->session->flashdata('file_errors')) { ?>
@@ -143,14 +143,6 @@
                                             <span aria-hidden="true">×</span>
                                         </button>
                                         <strong><?php echo $this->session->flashdata('file_errors'); ?></strong>
-                                    </div>
-                                <?php }
-                                if ($this->session->flashdata('upload_ins_photo_success')) { ?>
-                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('upload_ins_photo_success'); ?></strong>
                                     </div>
                                 <?php } ?>
 
@@ -162,7 +154,7 @@
 
                                     <div class="form-group">
                                         <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_id">Select
-                                            Country Name  <span class="required">*</span>
+                                            Country Name <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <select id="country_id"
@@ -173,10 +165,10 @@
                                                 <?php if (isset($all_countries) && $all_countries->num_rows() > 0):
                                                     foreach ($all_countries->result() as $row): ?>
                                                         <option
-                                                            value="<?php echo $row->lander_country_id ?>">
+                                                            value="<?php echo $row->lander_country_id ?>" <?php echo $this->input->post('country_id') == $row->lander_country_id ? 'selected' : ''; ?>>
                                                             <?php echo $row->lander_country_name; ?>
                                                         </option>
-                                                    <?php
+                                                        <?php
                                                     endforeach;
                                                 endif; ?>
                                             </select>
@@ -190,6 +182,18 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input id="uploadBtn" type="file" name="userFiles[]" multiple
                                                    class="form-control col-md-7 col-xs-12" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        </div>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="is_active"
+                                                           name="is_active" value="1"/> Is Active
+                                                </label>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -225,60 +229,38 @@
                                     <thead>
                                     <tr>
                                         <th>Serial</th>
-                                        <th>Instructor Name</th>
-                                        <th>Instructor Email</th>
-                                        <th>Instructor Phone</th>
-                                        <th>Instructor Photo</th>
+                                        <th>Image</th>
+                                        <th>Created On</th>
+                                        <th>Country Name</th>
+                                        <th>Is Active</th>
                                         <th>Actions</th>
                                     </tr>
                                     </thead>
 
                                     <?php $i = 1; ?>
-                                    <?php if (isset($all_instructors) && $all_instructors->num_rows() > 0): ?>
+                                    <?php if (isset($all_slider_images) && $all_slider_images->num_rows() > 0): ?>
                                     <tbody>
-                                    <?php foreach ($all_instructors->result() as $row): ?>
+                                    <?php foreach ($all_slider_images->result() as $row): ?>
 
 
                                         <tr>
                                             <td><?php echo $i++; ?></td>
-                                            <td><?php echo $row->instructor_name; ?></td>
-                                            <td><?php echo $row->instructor_email; ?></td>
-                                            <td><?php echo $row->instructor_phone_number; ?></td>
                                             <td align="center">
-                                                <img class="img-thumb" height="45px" width="45px"
-                                                     src="<?php echo base_url(); ?>uploaded/instructors_photo/<?php echo $row->instructor_photo ? $row->instructor_photo : 'blank_person.png'; ?>"
-                                                     alt="<?php echo $row->instructor_photo; ?>"/>
-                                                <a class="btn btn-success" title="Edit"
-                                                   href="<?php echo base_url(); ?>admin/instructor/photo/update/<?php echo base64_encode($row->instructor_id); ?>"
-                                                   role="button"><span
-                                                        class="glyphicon glyphicon-edit"></span></a>
+                                                <img class="img-thumb" height="100px" width="100px"
+                                                     src="<?php echo base_url(); ?>uploaded/lander_slider_images/<?php echo $row->lander_image_file_name ? $row->lander_image_file_name : 'blank_person.png'; ?>"
+                                                     alt="<?php echo $row->lander_image_file_name; ?>"/>
                                             </td>
+                                            <td><?php echo $row->lander_image_file_created; ?></td>
+                                            <td><?php echo $row->lander_country_name; ?></td>
+                                            <td align="center"><?php echo $row->lander_image_is_active ? 'Yes' : 'No'; ?></td>
                                             <td align="center">
-                                                <?php
-                                                $course_count = $row->course_count;
-                                                if ($course_count > 0) { ?>
-                                                    <a class="btn btn-danger" title="Deassign"
-                                                       href="<?php echo base_url(); ?>admin/assign/course/to/instructor/<?php echo base64_encode($row->instructor_id); ?>"
-                                                       role="button"><span class="glyphicon glyphicon-remove"></span>
-                                                        Remove Courses</a>
-
-                                                <?php } else { ?>
-                                                    <a class="btn btn-success"
-                                                       href="<?php echo base_url(); ?>admin/assign/course/to/instructor/<?php echo base64_encode($row->instructor_id); ?>"
-                                                       title="Assign"
-                                                       role="button"><span
-                                                            class="glyphicon glyphicon-check"></span> Assign Courses</a>
-
-                                                <?php }
-                                                ?>
-
                                                 <a class="btn btn-success" title="Edit"
-                                                   href="<?php echo base_url(); ?>admin/instructor/update/<?php echo base64_encode($row->instructor_id); ?>"
+                                                   href="<?php echo base_url(); ?>admin/slider/image/update/<?php echo base64_encode($row->lander_image_id); ?>"
                                                    role="button"><span
                                                         class="glyphicon glyphicon-edit"></span></a>
 
                                                 <a class="btn btn-danger"
-                                                   href="<?php echo base_url(); ?>admin/instructor/delete/<?php echo base64_encode($row->instructor_id); ?>"
+                                                   href="<?php echo base_url(); ?>admin/slider/image/delete/<?php echo base64_encode($row->lander_image_id); ?>"
                                                    onclick="return checkMe()" title="Delete"
                                                    role="button"><span class="glyphicon glyphicon-trash"></span></a>
                                             </td>

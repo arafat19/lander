@@ -6,7 +6,7 @@ class app_user_model extends CI_Model
 
     public static $table_sdil_lander_admin = 'sdil_lander_admin';
     public static $table_sdil_lander_country = 'sdil_lander_country';
-    public static $table_blri_sub_district = 'blri_sub_district';
+    public static $table_sdil_lander_country_wise_slider_image = 'sdil_lander_country_wise_slider_image';
     public static $table_blri_course = 'blri_course';
     public static $table_blri_instructor = 'blri_instructor';
     public static $table_blri_course_instructor = 'blri_course_instructor';
@@ -64,6 +64,7 @@ class app_user_model extends CI_Model
         );
         $this->db->insert(App_user_model::$table_sdil_lander_admin, $data);
     }
+
     public function unique_admin_email($email)
     {
         $this->db->where('admin_email', $email);
@@ -107,6 +108,7 @@ class app_user_model extends CI_Model
             return TRUE;
         }
     }
+
     public function exist_admin_password($c_password)
     {
         $this->db->where('admin_password', md5($c_password));
@@ -127,7 +129,7 @@ class app_user_model extends CI_Model
 
         $this->db->where('admin_id', $admin_id);
         $is_updated = $this->db->update(App_user_model::$table_sdil_lander_admin, $data);
-        if($is_updated){
+        if ($is_updated) {
             $particular_user = $this->get_user_by_id($admin_id);
             $updated_data = array(
                 'admin_id' => $admin_id,
@@ -166,6 +168,7 @@ class app_user_model extends CI_Model
 
         return $result->row_array();
     }
+
     public function get_single_country_by_id($country_id)
     {
         $this->db->select('*');
@@ -174,10 +177,31 @@ class app_user_model extends CI_Model
 
         return $result->row_array();
     }
+  public function get_single_image_by_id($image_id)
+    {
+        $this->db->select('*');
+        $this->db->where('lander_image_id', $image_id);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_country_wise_slider_image);
+
+        return $result->row_array();
+    }
 
     function get_all_countries()
     {
         $result = $this->db->get(App_user_model::$table_sdil_lander_country);
+        if ($result->num_rows() > 0) {
+            return $result;
+        } else {
+            return NULL;
+        }
+    }
+
+    function get_all_slider_images()
+    {
+        $this->db->select('*');
+        $this->db->from(App_user_model::$table_sdil_lander_country_wise_slider_image);
+        $this->db->join(App_user_model::$table_sdil_lander_country, 'sdil_lander_country.lander_country_id = sdil_lander_country_wise_slider_image.lander_image_country_id');
+        $result = $this->db->get();
         if ($result->num_rows() > 0) {
             return $result;
         } else {
@@ -197,9 +221,23 @@ class app_user_model extends CI_Model
         $this->db->delete(App_user_model::$table_sdil_lander_country);
     }
 
-    public function create_image_slider($data){
-        $is_created = $this->db->insert(App_user_model::$table_blri_instructor, $data);
-        return $is_created;
+    public function create_image_slider($data)
+    {
+        $is_created = $this->db->insert_batch(App_user_model::$table_sdil_lander_country_wise_slider_image, $data);
+        return $is_created ? true : false;
+    }
+
+    public function update_image_slider($data, $image_id)
+    {
+        $this->db->where('lander_image_id', $image_id);
+        $is_updated = $this->db->update(App_user_model::$table_sdil_lander_country_wise_slider_image, $data);
+        return $is_updated;
+    }
+    public function delete_lander_slider_image($image_id)
+    {
+        $this->db->where('lander_image_id', $image_id);
+        $is_deleted = $this->db->delete(App_user_model::$table_sdil_lander_country_wise_slider_image);
+        return $is_deleted;
     }
 
 }

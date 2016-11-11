@@ -174,17 +174,6 @@
                             extend: 'print',
                             text: 'Print selected',
                             className: "btn-sm",
-                            customize: function ( win ) {
-                                $(win.document.body)
-                                    .css( 'font-size', '10pt' )
-                                    .append(
-                                        '<img src="<?php echo base_url();?>images/logo.png" style="position:absolute; top:300px; left:300px;opacity:0.3;" />'
-                                    );
-
-                                $(win.document.body).find( 'table' )
-                                    .addClass( 'compact' )
-                                    .css( 'font-size', 'inherit' );
-                            },
                             exportOptions: {
                                 modifier: {
                                     selected: true

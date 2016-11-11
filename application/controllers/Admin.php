@@ -217,9 +217,9 @@ class Admin extends CI_Controller
      */
 
     /*
-     * ******************************************************************************
-     * Lander Slider Image Create, Read (List), Update & Delete Implementation Start
-     * ******************************************************************************
+     * ************************************************************************************************
+     * Lander Slider Multiple Image Create (upload), Read (List), Update & Delete Implementation Start
+     * ************************************************************************************************
      */
 
     public function admin_create_lander_slider_image()
@@ -227,9 +227,10 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
-
             $all_countries = $this->app_user_model->get_all_countries(); // Reading and showing the country list from DB
 
+            $all_slider_images = $this->app_user_model->get_all_slider_images(); // Reading and showing the countries list from DB
+            $data['all_slider_images'] = $all_slider_images;
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('country_id', 'Selected Country', 'trim|required');
@@ -252,8 +253,6 @@ class Admin extends CI_Controller
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
                 return false;
             }
-
-
             if (!empty($_FILES['userFiles']['name'])) {
                 $filesCount = count($_FILES['userFiles']['name']);
                 for ($i = 0; $i < $filesCount; $i++) {
@@ -266,6 +265,7 @@ class Admin extends CI_Controller
                     $uploadPath = './uploaded/lander_slider_images/';
                     $config['upload_path'] = $uploadPath;
                     $config['allowed_types'] = 'gif|jpg|png';
+                    $config['max_size'] = '2000';
 
                     $this->load->library('upload', $config);
                     $this->upload->initialize($config);
@@ -274,8 +274,8 @@ class Admin extends CI_Controller
                         $uploadData[$i]['lander_image_file_name'] = $fileData['file_name'];
                         $uploadData[$i]['lander_image_file_created'] = date("Y-m-d H:i:s");
                         $uploadData[$i]['lander_image_file_modified'] = date("Y-m-d H:i:s");
-                        $uploadData[$i]['lander_country_id'] = $this->input->post('country_id');
-                        $uploadData[$i]['is_active'] = $this->input->post('is_active') ? 1 : 0;
+                        $uploadData[$i]['lander_image_country_id'] = $this->input->post('country_id');
+                        $uploadData[$i]['lander_image_is_active'] = $this->input->post('is_active') ? 1 : 0;
                     } else {
                         $file_errors = $this->upload->display_errors();
                         $this->session->set_flashdata('file_errors', strip_tags($file_errors));
@@ -285,9 +285,11 @@ class Admin extends CI_Controller
                 if (!empty($uploadData)) {
                     //Insert file information into the database
                     $is_created = $this->app_user_model->create_image_slider($uploadData);
-                    $statusMsg = $is_created ? 'Slider is created successfully.' : 'Slider is not created successfully. Please try again.';
-                    $this->session->set_flashdata('statusMsg', $statusMsg);
-
+                    if ($is_created) {
+                        $this->session->set_flashdata('slider_created_success', "Slider is created successfully.");
+                    } else {
+                        $this->session->set_flashdata('slider_created_error', "Slider is not created successfully. Please try again.");
+                    }
                     redirect(base_url() . 'admin/slider/image/create', 'refresh');
                 } else {
                     $data['title'] = 'Lander Images Upload - SDIL Lander';
@@ -309,10 +311,124 @@ class Admin extends CI_Controller
         }
     }
 
+    public function admin_update_lander_slider_image($image_id)
+    {
+        $image_id_dec = base64_decode($image_id);
+        $single_image = $this->app_user_model->get_single_image_by_id($image_id_dec);
+        $data['single_image'] = $single_image;
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $all_countries = $this->app_user_model->get_all_countries(); // Reading and showing the country list from DB
+
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('country_id', 'Selected Country', 'trim|required');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'Update Lander Images Upload - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Update Slider Images';
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['footer_title'] = Admin::$footer_title;
+
+                $file_errors = '';
+                $this->session->set_flashdata('file_errors', strip_tags($file_errors));
+
+
+                $data['all_countries'] = $all_countries;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_update_lander_slider_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+                return false;
+            }
+            if (empty($_FILES['userFile']['tmp_name'])) {
+                $uploadData['lander_image_country_id'] = $this->input->post('country_id');
+                $uploadData['lander_image_is_active'] = $this->input->post('is_active') ? 1 : 0;
+                $uploadData['lander_image_file_name'] = $single_image['lander_image_file_name'];
+                $uploadData['lander_image_file_created'] = $single_image['lander_image_file_created'];
+                $uploadData['lander_image_file_modified'] = date("Y-m-d H:i:s");
+                //Insert file information into the database
+                $is_updated = $this->app_user_model->update_image_slider($uploadData, $image_id_dec);
+                if ($is_updated) {
+                    $this->session->set_flashdata('slider_update_success', "Selected Image is update successfully.");
+                } else {
+                    $this->session->set_flashdata('slider_update_error', "Selected Image is not created successfully. Please try again.");
+                }
+                redirect(base_url() . 'admin/slider/image/create', 'refresh');
+
+            } else {
+                $uploadPath = './uploaded/lander_slider_images/';
+                $config['upload_path'] = $uploadPath;
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '2000';
+
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                if ($this->upload->do_upload('userFile')) {
+                    $fileData = $this->upload->data();
+                    $uploadData['lander_image_file_name'] = $fileData['file_name'];
+                    $uploadData['lander_image_file_created'] = $single_image['lander_image_file_created'];
+                    $uploadData['lander_image_file_modified'] = date("Y-m-d H:i:s");
+                    $uploadData['lander_image_country_id'] = $this->input->post('country_id');
+                    $uploadData['lander_image_is_active'] = $this->input->post('is_active') ? 1 : 0;
+                } else {
+                    $file_errors = $this->upload->display_errors();
+                    $this->session->set_flashdata('file_errors', strip_tags($file_errors));
+                }
+
+                if (!empty($uploadData)) {
+                    //Insert file information into the database
+                    $is_created = $this->app_user_model->update_image_slider($uploadData, $image_id_dec);
+                    if ($is_created) {
+                        $this->session->set_flashdata('slider_update_success', "Selected Image is update successfully.");
+                    } else {
+                        $this->session->set_flashdata('slider_update_error', "Selected Image is not created successfully. Please try again.");
+                    }
+                    redirect(base_url() . 'admin/slider/image/create', 'refresh');
+                } else {
+                    $data['title'] = 'Update Lander Images Upload - SDIL Lander';
+                    $data['full_name'] = $this->session->userdata('full_name');
+                    $data['page_title'] = 'Update Slider Images';
+                    $data['navbar_title'] = Admin::$navbar_title;
+                    $data['footer_title'] = Admin::$footer_title;
+
+
+                    $data['all_countries'] = $all_countries;
+
+                    $this->load->view('admin/admin_dashboard_header_view', $data);
+                    $this->load->view('admin/admin_update_lander_slider_view', $data);
+                    $this->load->view('admin/admin_dashboard_footer_view', $data);
+                }
+            }
+
+        }
+    }
+
+    public function admin_delete_lander_slider_image($image_id)
+    {
+        $image_id_dec = base64_decode($image_id);
+        $single_image = $this->app_user_model->get_single_image_by_id($image_id_dec);
+        $is_active = $single_image["lander_image_is_active"];
+        if ($is_active) {
+            $this->session->set_flashdata('cant_delete_message', 'Active Image can not be deleted.');
+        } else {
+            $image_name = $single_image["lander_image_file_name"];
+            $path = "./uploaded/lander_slider_images/" . $image_name;
+            $is_deleted = $this->app_user_model->delete_lander_slider_image($image_id_dec);
+            if ($is_deleted) {
+                unlink($path);
+            }
+            $this->session->set_flashdata('slider_image_delete_message', 'Selected Image is successfully deleted');
+        }
+
+        redirect(base_url() . 'admin/slider/image/create');
+    }
+
     /*
-    * ********************************************************************************
-    * Lander Slider Image Create, Read (List), Update & Delete Implementation Finish
-    * ********************************************************************************
+    * *************************************************************************************************
+    * Lander Slider Multiple Image Create (upload), Read (List), Update & Delete Implementation Finish
+    * *************************************************************************************************
     */
 
     public function welcome_admin_dashboard()
