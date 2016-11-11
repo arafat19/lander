@@ -23,13 +23,13 @@
                 <!-- menu profile quick info -->
                 <div class="profile">
                     <div class="profile_pic">
-                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $blri_admin_name; ?>"
+                        <img src="<?php echo base_url(); ?>images/avatar.png" alt="<?php echo $full_name; ?>"
                              class="img-circle profile_img">
                     </div>
                     <div class="profile_info">
                         <span>Welcome,</span>
 
-                        <h2><?php echo $blri_admin_name; ?></h2>
+                        <h2><?php echo $full_name; ?></h2>
                     </div>
                 </div>
                 <!-- /menu profile quick info -->
@@ -161,69 +161,25 @@
                                       method="post">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="instructor_name">Instructor
-                                            Name<span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_id">Select
+                                            Country Name  <span class="required">*</span>
                                         </label>
-
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" name="instructor_name"
-                                                   id="instructor_name"
-                                                   placeholder="Instructor Name" required autofocus/>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="instructor_designation">Instructor Designation<span
-                                                class="required">*</span>
-                                        </label>
-
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" name="instructor_designation"
-                                                   id="instructor_designation"
-                                                   placeholder="Instructor Designation" required/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="instructor_email">Instructor Email<span
-                                                class="required">*</span>
-                                        </label>
-
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input class="form-control col-md-7 col-xs-12"
-                                                   placeholder="Instructor E-mail" name="instructor_email" type="email"
-                                                   id="instructor_email" value=""
-                                                   pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
-                                                   required="required">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="instructor_phone_number">Instructor Phone Number<span
-                                                class="required">*</span>
-                                        </label>
-
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="tel" class="form-control col-md-7 col-xs-12"
-                                                   id="instructor_phone_number" name="instructor_phone_number"
-                                                   pattern="[0][1-9]{4}[0-9]{6}"
-                                                   placeholder="Instructor Mobile Number (Format: 01XXXXXXXXX)"/>
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                               for="instructor_organization">Instructor
-                                            Organization<span
-                                                class="required">*</span>
-                                        </label>
-
-                                        <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control col-md-7 col-xs-12"
-                                                   id="instructor_organization" name="instructor_organization"
-                                                   placeholder="Instructor Organization"/>
+                                            <select id="country_id"
+                                                    name="country_id" class="form-control" required="required">
+                                                <option
+                                                    value="">Please Select a Country
+                                                </option>
+                                                <?php if (isset($all_countries) && $all_countries->num_rows() > 0):
+                                                    foreach ($all_countries->result() as $row): ?>
+                                                        <option
+                                                            value="<?php echo $row->lander_country_id ?>">
+                                                            <?php echo $row->lander_country_name; ?>
+                                                        </option>
+                                                    <?php
+                                                    endforeach;
+                                                endif; ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -232,7 +188,7 @@
                                             <span class="required">*</span>
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input id="uploadBtn" name="userfile" type="file"
+                                            <input id="uploadBtn" type="file" name="userFiles[]" multiple
                                                    class="form-control col-md-7 col-xs-12" required/>
                                         </div>
                                     </div>

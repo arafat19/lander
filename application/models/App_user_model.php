@@ -197,4 +197,9 @@ class app_user_model extends CI_Model
         $this->db->delete(App_user_model::$table_sdil_lander_country);
     }
 
+    public function create_image_slider($data){
+        $is_created = $this->db->insert(App_user_model::$table_blri_instructor, $data);
+        return $is_created;
+    }
+
 }

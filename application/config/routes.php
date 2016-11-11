@@ -59,8 +59,8 @@ $route['admin/country/create'] = "admin/admin_create_lander_country";
 $route['admin/country/update/(:any)'] = "admin/admin_update_lander_country/$1";
 $route['admin/country/delete/(:any)'] = "admin/admin_delete_lander_country/$1";
 
-$route['admin/sub/district/create'] = "admin/admin_create_sub_district";
-$route['admin/sub/district/update/(:any)'] = "admin/admin_update_sub_district/$1";
+$route['admin/slider/image/create'] = "admin/admin_create_lander_slider_image";
+$route['admin/slider/image/update/(:any)'] = "admin/admin_update_lander_slider_image/$1";
 
 $route['admin/course/create'] = "admin/admin_create_course";
 $route['admin/course/update/(:any)'] = "admin/admin_update_course/$1";

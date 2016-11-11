@@ -4,7 +4,7 @@
         <h3>SDIL Lander General Menu</h3>
         <ul class="nav side-menu">
             <li><a href="<?php echo base_url(); ?>admin/country/create"><i class="fa fa-database"></i> Add Country</a></li>
-            <li><a href="<?php echo base_url(); ?>admin/sub/district/create"><i class="fa fa-database"></i> Add Sub District</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/slider/image/create"><i class="fa fa-file-image-o"></i> Add Slider Images</a></li>
             <li><a href="<?php echo base_url(); ?>admin/course/create"><i class="fa fa-database"></i> Add Course</a></li>
             <li><a href="<?php echo base_url(); ?>admin/instructor/create"><i class="fa fa-database"></i> Add Instructor</a></li>
             <li><a href="<?php echo base_url(); ?>admin/show/applicants"><i class="fa fa-users"></i> Applicants</a></li>
