@@ -7,7 +7,7 @@ class app_user_model extends CI_Model
     public static $table_sdil_lander_admin = 'sdil_lander_admin';
     public static $table_sdil_lander_country = 'sdil_lander_country';
     public static $table_sdil_lander_country_wise_slider_image = 'sdil_lander_country_wise_slider_image';
-    public static $table_blri_course = 'blri_course';
+    public static $table_sdil_lander_device = 'sdil_lander_device';
     public static $table_blri_instructor = 'blri_instructor';
     public static $table_blri_course_instructor = 'blri_course_instructor';
     public static $table_blri_applicant = 'blri_applicant';
@@ -97,6 +97,28 @@ class app_user_model extends CI_Model
             return FALSE;
         }
     }
+    public function unique_lander_device_name($device_name)
+    {
+        $this->db->where('lander_device_name', $device_name);
+        $query = $this->db->get(App_user_model::$table_sdil_lander_device);
+        if ($query->num_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+
+    public function unique_lander_device_code($device_code)
+    {
+        $this->db->where('lander_device_code', $device_code);
+        $query = $this->db->get(App_user_model::$table_sdil_lander_device);
+        if ($query->num_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
 
     public function exist_admin_email($email)
     {
@@ -158,6 +180,12 @@ class app_user_model extends CI_Model
         $is_updated = $this->db->update(App_user_model::$table_sdil_lander_country, $data);
         return $is_updated;
     }
+    public function update_device($data, $device_id)
+    {
+        $this->db->where('lander_device_id', $device_id);
+        $is_updated = $this->db->update(App_user_model::$table_sdil_lander_device, $data);
+        return $is_updated;
+    }
 
 
     public function get_user_by_id($admin_id)
@@ -177,7 +205,16 @@ class app_user_model extends CI_Model
 
         return $result->row_array();
     }
-  public function get_single_image_by_id($image_id)
+    public function get_single_device_by_id($device_id)
+    {
+        $this->db->select('*');
+        $this->db->where('lander_device_id', $device_id);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_device);
+
+        return $result->row_array();
+    }
+
+    public function get_single_image_by_id($image_id)
     {
         $this->db->select('*');
         $this->db->where('lander_image_id', $image_id);
@@ -189,6 +226,16 @@ class app_user_model extends CI_Model
     function get_all_countries()
     {
         $result = $this->db->get(App_user_model::$table_sdil_lander_country);
+        if ($result->num_rows() > 0) {
+            return $result;
+        } else {
+            return NULL;
+        }
+    }
+
+    function get_all_devices()
+    {
+        $result = $this->db->get(App_user_model::$table_sdil_lander_device);
         if ($result->num_rows() > 0) {
             return $result;
         } else {
@@ -209,6 +256,11 @@ class app_user_model extends CI_Model
         }
     }
 
+    public function create_device($data)
+    {
+        $is_created = $this->db->insert(App_user_model::$table_sdil_lander_device, $data);
+        return $is_created;
+    }
     public function create_country($data)
     {
         $is_created = $this->db->insert(App_user_model::$table_sdil_lander_country, $data);
@@ -219,6 +271,12 @@ class app_user_model extends CI_Model
     {
         $this->db->where('lander_country_id', $country_id);
         $this->db->delete(App_user_model::$table_sdil_lander_country);
+    }
+
+    public function delete_device($device_id)
+    {
+        $this->db->where('lander_device_id', $device_id);
+        $this->db->delete(App_user_model::$table_sdil_lander_device);
     }
 
     public function create_image_slider($data)
@@ -233,6 +291,7 @@ class app_user_model extends CI_Model
         $is_updated = $this->db->update(App_user_model::$table_sdil_lander_country_wise_slider_image, $data);
         return $is_updated;
     }
+
     public function delete_lander_slider_image($image_id)
     {
         $this->db->where('lander_image_id', $image_id);

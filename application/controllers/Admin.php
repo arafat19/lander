@@ -431,6 +431,161 @@ class Admin extends CI_Controller
     * *************************************************************************************************
     */
 
+    /*
+    * **********************************************************************************
+    * Lander Devices Create (upload), Read (List), Update & Delete Implementation Start
+    * **********************************************************************************
+    */
+    public function admin_create_device()
+    {
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('device_name', 'Device name', 'trim|required|min_length[2]|callback_unique_device_name');
+            $this->form_validation->set_rules('device_code', 'Device code', 'trim|required|min_length[2]|callback_unique_device_code');
+            $this->form_validation->set_rules('is_active', 'Is Active');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'SDIL Lander Device List - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Create Device';
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['data_list_title'] = 'All Devices List';
+                $data['footer_title'] = Admin::$footer_title;
+
+                $all_devices = $this->app_user_model->get_all_devices(); // Reading and showing the devices list from DB
+                $data['all_devices'] = $all_devices;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_create_device_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $is_active = $this->input->post('is_active') ? 1 : 0;
+                $data = array(
+                    'lander_device_name' => $this->input->post('device_name'),
+                    'lander_device_code' => strtolower($this->input->post('device_code')),
+                    'lander_device_is_active' => $is_active
+                );
+                $is_created = $this->app_user_model->create_device($data);
+                if ($is_created) {
+                    $this->session->set_flashdata('admin_create_device_message', "Device is created successfully.");
+                } else {
+                    $this->session->set_flashdata('admin_create_device_error_message', "Device is not created successfully. Please try again.");
+                }
+
+                redirect(base_url() . 'admin/device/create', 'refresh');
+            }
+        }
+    }
+
+    public function admin_update_device($device_id)
+    {
+        $device_id_dec = base64_decode($device_id);
+        $single_device = $this->app_user_model->get_single_device_by_id($device_id_dec);
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('device_name', 'Device name', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('device_code', 'Device code', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('is_active', 'Is Active');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'Update Device - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Update Device';
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['footer_title'] = Admin::$footer_title;
+
+
+                $data['single_device'] = $single_device;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_update_device_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $device_name = $this->input->post('device_name');
+                $device_code = strtolower($this->input->post('device_code'));
+                $is_active = $this->input->post('is_active') ? 1 : 0;
+                $data = array(
+                    'lander_device_name' => $device_name,
+                    'lander_device_code' => $device_code,
+                    'lander_device_is_active' => $is_active
+                );
+                $is_updated = FALSE;
+                $check_device_name_is_unique = TRUE;
+                $check_device_code_is_unique = TRUE;
+                if ($device_name == $single_device['lander_device_name'] && $device_code == $single_device['lander_device_code']) {
+                    $is_updated = $this->app_user_model->update_device($data, $device_id_dec);
+                } else {
+                    // Country name and code unique check during update
+                    if ($device_name != $single_device['lander_device_name'] && $device_code != $single_device['lander_device_code']) {
+                        $check_device_name_is_unique = $this->app_user_model->unique_lander_device_name($device_name);
+                        if ($check_device_name_is_unique) {
+                            $this->session->set_flashdata('admin_device_name_not_unique_message', "Given Device name is already exist");
+                        }
+                        $check_device_code_is_unique = $this->app_user_model->unique_lander_device_code($device_code);
+                        if ($check_device_code_is_unique) {
+                            $this->session->set_flashdata('admin_device_code_not_unique_message', "Given Device code is already exist");
+                        }
+                        if ($check_device_name_is_unique || $check_device_code_is_unique) {
+                            redirect(base_url() . 'admin/device/update/' . $device_id, 'refresh');
+                        }
+                    } else if ($device_name != $single_device['lander_device_name'] && $device_code == $single_device['lander_device_code']) {
+                        $check_device_name_is_unique = $this->app_user_model->unique_lander_device_name($device_name);
+                        if ($check_device_name_is_unique) {
+                            $this->session->set_flashdata('admin_device_name_not_unique_message', "Given Device name is already exist");
+                            $check_device_name_is_unique = FALSE;
+                            $check_device_code_is_unique = FALSE;
+                            redirect(base_url() . 'admin/device/update/' . $device_id, 'refresh');
+                        }
+                    } else if ($device_name == $single_device['lander_device_name'] && $device_code != $single_device['lander_device_code']) {
+                        $check_device_code_is_unique = $this->app_user_model->unique_lander_device_code($device_code);
+                        if ($check_device_code_is_unique) {
+                            $this->session->set_flashdata('admin_device_code_not_unique_message', "Given Device code is already exist");
+                            $check_device_code_is_unique = FALSE;
+                            $check_device_name_is_unique = FALSE;
+                            redirect(base_url() . 'admin/device/update/' . $device_id, 'refresh');
+                        }
+                    }
+                    if (!$check_device_name_is_unique || !$check_device_code_is_unique) {
+                        $is_updated = $this->app_user_model->update_device($data, $device_id_dec);
+                    }
+                }
+
+
+                if ($is_updated) {
+                    $this->session->set_flashdata('admin_update_device_message', "Selected Device is Updated successfully.");
+                } else {
+                    $this->session->set_flashdata('admin_update_device_error_message', "Selected Device is not Updated successfully. Please try again.");
+                }
+
+                redirect(base_url() . 'admin/device/create', 'refresh');
+            }
+        }
+    }
+
+    public function admin_delete_device($device_id)
+    {
+        $device_id_dec = base64_decode($device_id);
+        $single_device = $this->app_user_model->get_single_device_by_id($device_id_dec);
+        $is_active = $single_device["lander_device_is_active"];
+        if ($is_active) {
+            $this->session->set_flashdata('cant_delete_message', 'Active Device can not be deleted.');
+        } else {
+            $this->app_user_model->delete_device($device_id_dec);
+            $this->session->set_flashdata('device_delete_message', 'Selected Device is successfully deleted');
+        }
+
+        redirect(base_url() . 'admin/device/create');
+    }
+
+    /*
+   * **********************************************************************************
+   * Lander Devices Create (upload), Read (List), Update & Delete Implementation Finish
+   * **********************************************************************************
+   */
     public function welcome_admin_dashboard()
     {
         $data['title'] = 'Welcome SDIL Lander Admin Panel';
@@ -575,6 +730,28 @@ class Admin extends CI_Controller
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_country_name', "%s {$str} already exist!");
+            return FALSE;
+        }
+    }
+    function unique_device_name($str)
+    {
+        $this->load->model('app_user_model');
+        if (!$this->app_user_model->unique_lander_device_name($str)) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('unique_device_name', "%s {$str} already exist!");
+            return FALSE;
+        }
+    }
+
+
+    function unique_device_code($str)
+    {
+        $this->load->model('app_user_model');
+        if (!$this->app_user_model->unique_lander_device_code($str)) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('unique_device_code', "%s {$str} already exist!");
             return FALSE;
         }
     }

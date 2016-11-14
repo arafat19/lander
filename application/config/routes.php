@@ -63,18 +63,9 @@ $route['admin/slider/image/create'] = "admin/admin_create_lander_slider_image";
 $route['admin/slider/image/update/(:any)'] = "admin/admin_update_lander_slider_image/$1";
 $route['admin/slider/image/delete/(:any)'] = "admin/admin_delete_lander_slider_image/$1";
 
-$route['admin/course/create'] = "admin/admin_create_course";
-$route['admin/course/update/(:any)'] = "admin/admin_update_course/$1";
-$route['admin/course/delete/(:any)'] = "admin/admin_delete_course/$1";
-
-
-$route['admin/course/assign/(:any)/(:any)'] = "admin/admin_course_assign/$1/$2";
-$route['admin/course/remove/(:any)/(:any)'] = "admin/admin_course_remove/$1/$2";
-
-$route['admin/instructor/create'] = "admin/admin_create_instructor";
-$route['admin/instructor/update/(:any)'] = "admin/admin_update_instructor/$1";
-$route['admin/instructor/delete/(:any)'] = "admin/admin_delete_instructor/$1";
-
+$route['admin/device/create'] = "admin/admin_create_device";
+$route['admin/device/update/(:any)'] = "admin/admin_update_device/$1";
+$route['admin/device/delete/(:any)'] = "admin/admin_delete_device/$1";
 
 $route['admin/show/applicants'] = "admin/admin_show_applicants";
 
