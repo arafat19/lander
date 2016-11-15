@@ -1,20 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.6.4
+-- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 11, 2016 at 10:47 PM
--- Server version: 10.1.13-MariaDB
--- PHP Version: 7.0.8
+-- Host: localhost:8889
+-- Generation Time: Nov 15, 2016 at 04:48 PM
+-- Server version: 5.6.28
+-- PHP Version: 7.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `sdil_lander`
@@ -48,8 +42,7 @@ INSERT INTO `sdil_lander_admin` (`admin_id`, `full_name`, `cell_number`, `enable
 (16, 'Md. Ibrahim Arafat', '', 1, '611ee131a4b56c0e8e018a3521126682', 1, NULL, NULL, '2015-11-13 14:49:38', 'ibrahim.arafat@sebpo.com'),
 (17, 'MD IBRAHIM ARAFAT', '', 1, '611ee131a4b56c0e8e018a3521126682', 1, NULL, NULL, '2015-11-13 14:58:33', 'himalking@hotmail.com'),
 (19, 'Md Ibrahim Arafat', '', 1, '611ee131a4b56c0e8e018a3521126682', 1, NULL, NULL, '2015-11-16 12:23:34', 'sdil@gmail.com'),
-(20, 'Mr. XYZ', '', 1, '1b278b5f6912c2b251dea6a005cde3a0', 1, NULL, NULL, '2016-11-09 20:27:22', 'test@lander.com'),
-(21, 'test', '', 1, '611ee131a4b56c0e8e018a3521126682', 1, NULL, NULL, '2016-11-09 21:13:35', 'teste@lander.com');
+(20, 'Mr. XYZ', '', 1, '1b278b5f6912c2b251dea6a005cde3a0', 1, NULL, NULL, '2016-11-09 20:27:22', 'test@lander.com');
 
 -- --------------------------------------------------------
 
@@ -60,9 +53,9 @@ INSERT INTO `sdil_lander_admin` (`admin_id`, `full_name`, `cell_number`, `enable
 CREATE TABLE `sdil_lander_country` (
   `lander_country_id` bigint(20) NOT NULL,
   `lander_country_name` varchar(100) NOT NULL,
-  `lander_country_code` varchar(20) NOT NULL,
-  `is_active` tinyint(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `lander_country_code` varchar(30) NOT NULL,
+  `is_active` tinyint(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `sdil_lander_country`
@@ -92,10 +85,55 @@ CREATE TABLE `sdil_lander_country_wise_slider_image` (
 --
 
 INSERT INTO `sdil_lander_country_wise_slider_image` (`lander_image_id`, `lander_image_file_name`, `lander_image_file_created`, `lander_image_file_modified`, `lander_image_country_id`, `lander_image_is_active`) VALUES
-(1, 'Third.jpg', '2016-11-11 22:27:08', '2016-11-11 22:46:28', 1, 1),
-(2, 'First_iteam_addtion3.jpg', '2016-11-11 19:19:12', '2016-11-11 19:19:12', 2, 1),
-(3, 'logo_bestcpaoffer.jpg', '2016-11-11 19:28:16', '2016-11-11 19:28:16', 1, 0),
-(4, 'logo_large.png', '2016-11-11 19:28:16', '2016-11-11 19:28:16', 1, 0);
+(1, 'Me_a_Pagla.jpg', '2016-11-15 10:30:03', '2016-11-15 10:30:15', 1, 1),
+(2, 'murad_vae.jpg', '2016-11-15 10:30:03', '2016-11-15 10:30:03', 1, 1),
+(3, 'omar_vae.jpg', '2016-11-15 10:30:03', '2016-11-15 10:30:03', 1, 1),
+(4, 'Photo_on_12-31-15_at_4_48_PM_3.jpg', '2016-11-15 10:30:03', '2016-11-15 10:30:03', 1, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sdil_lander_device`
+--
+
+CREATE TABLE `sdil_lander_device` (
+  `lander_device_id` bigint(30) NOT NULL,
+  `lander_device_name` varchar(200) NOT NULL,
+  `lander_device_code` varchar(100) NOT NULL,
+  `lander_device_is_active` tinyint(3) NOT NULL DEFAULT '0',
+  `lander_device_is_reserved` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sdil_lander_device`
+--
+
+INSERT INTO `sdil_lander_device` (`lander_device_id`, `lander_device_name`, `lander_device_code`, `lander_device_is_active`, `lander_device_is_reserved`) VALUES
+(2, 'Mobile', 'mobile', 1, 0),
+(3, 'Tablet', 'tablet', 1, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sdil_lander_last_button_link`
+--
+
+CREATE TABLE `sdil_lander_last_button_link` (
+  `lander_last_btn_link_id` bigint(30) NOT NULL,
+  `lander_last_btn_name` varchar(50) NOT NULL,
+  `lander_last_btn_link_url` varchar(100) NOT NULL,
+  `lander_last_btn_country_id` bigint(30) NOT NULL,
+  `lander_last_btn_device_id` bigint(30) NOT NULL,
+  `lander_last_btn_is_active` tinyint(3) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `sdil_lander_last_button_link`
+--
+
+INSERT INTO `sdil_lander_last_button_link` (`lander_last_btn_link_id`, `lander_last_btn_name`, `lander_last_btn_link_url`, `lander_last_btn_country_id`, `lander_last_btn_device_id`, `lander_last_btn_is_active`) VALUES
+(1, 'Continue', 'https://www.google.com', 1, 2, 1),
+(4, 'Continue', 'https://www.google.com/', 2, 3, 1);
 
 --
 -- Indexes for dumped tables
@@ -124,6 +162,22 @@ ALTER TABLE `sdil_lander_country_wise_slider_image`
   ADD KEY `lander_country_id` (`lander_image_country_id`);
 
 --
+-- Indexes for table `sdil_lander_device`
+--
+ALTER TABLE `sdil_lander_device`
+  ADD PRIMARY KEY (`lander_device_id`),
+  ADD UNIQUE KEY `lander_device_code` (`lander_device_code`);
+
+--
+-- Indexes for table `sdil_lander_last_button_link`
+--
+ALTER TABLE `sdil_lander_last_button_link`
+  ADD PRIMARY KEY (`lander_last_btn_link_id`),
+  ADD UNIQUE KEY `lander_last_btn_link_url` (`lander_last_btn_link_url`),
+  ADD KEY `lander_last_btn_country_id` (`lander_last_btn_country_id`),
+  ADD KEY `lander_last_btn_device_id` (`lander_last_btn_device_id`);
+
+--
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -131,7 +185,7 @@ ALTER TABLE `sdil_lander_country_wise_slider_image`
 -- AUTO_INCREMENT for table `sdil_lander_admin`
 --
 ALTER TABLE `sdil_lander_admin`
-  MODIFY `admin_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `admin_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `sdil_lander_country`
 --
@@ -141,7 +195,14 @@ ALTER TABLE `sdil_lander_country`
 -- AUTO_INCREMENT for table `sdil_lander_country_wise_slider_image`
 --
 ALTER TABLE `sdil_lander_country_wise_slider_image`
-  MODIFY `lander_image_id` bigint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+  MODIFY `lander_image_id` bigint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `sdil_lander_device`
+--
+ALTER TABLE `sdil_lander_device`
+  MODIFY `lander_device_id` bigint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `sdil_lander_last_button_link`
+--
+ALTER TABLE `sdil_lander_last_button_link`
+  MODIFY `lander_last_btn_link_id` bigint(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;

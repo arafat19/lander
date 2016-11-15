@@ -6,7 +6,7 @@
             <li><a href="<?php echo base_url(); ?>admin/country/create"><i class="fa fa-globe"></i> Add Country</a></li>
             <li><a href="<?php echo base_url(); ?>admin/slider/image/create"><i class="fa fa-file-image-o"></i> Add Slider Images</a></li>
             <li><a href="<?php echo base_url(); ?>admin/device/create"><i class="fa fa-mobile-phone"></i> Add Device</a></li>
-            <li><a href="<?php echo base_url(); ?>admin/instructor/create"><i class="fa fa-database"></i> Add Instructor</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/last/button/link/create"><i class="fa fa-external-link"></i> Add Last Button Link</a></li>
             <li><a href="<?php echo base_url(); ?>admin/show/applicants"><i class="fa fa-users"></i> Applicants</a></li>
 
             <!--<li><a><i class="fa fa-users"></i> Applicants <span class="fa fa-chevron-down"></span></a>

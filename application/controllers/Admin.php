@@ -199,12 +199,17 @@ class Admin extends CI_Controller
     {
         $country_id_dec = base64_decode($country_id);
         $single_country = $this->app_user_model->get_single_country_by_id($country_id_dec);
+        $country_association_count = $this->app_user_model->get_associated_country_count($country_id_dec);
         $is_active = $single_country["is_active"];
-        if ($is_active) {
-            $this->session->set_flashdata('cant_delete_message', 'Active Country can not be deleted.');
+        if ($country_association_count > 0) {
+            $this->session->set_flashdata('cant_delete_associate_message', 'Country ' . $single_country['lander_country_name'] . ' can not be deleted. It has ' . $country_association_count . ' association.');
         } else {
-            $this->app_user_model->delete_country($country_id_dec);
-            $this->session->set_flashdata('country_delete_message', 'Selected Country is successfully deleted');
+            if ($is_active) {
+                $this->session->set_flashdata('cant_delete_message', 'Active Country can not be deleted.');
+            } else {
+                $this->app_user_model->delete_country($country_id_dec);
+                $this->session->set_flashdata('country_delete_message', 'Selected Country is successfully deleted');
+            }
         }
 
         redirect(base_url() . 'admin/country/create');
@@ -227,7 +232,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
-            $all_countries = $this->app_user_model->get_all_countries(); // Reading and showing the country list from DB
+            $all_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the country list from DB
 
             $all_slider_images = $this->app_user_model->get_all_slider_images(); // Reading and showing the countries list from DB
             $data['all_slider_images'] = $all_slider_images;
@@ -319,7 +324,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
-            $all_countries = $this->app_user_model->get_all_countries(); // Reading and showing the country list from DB
+            $all_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the country list from DB
 
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -586,6 +591,154 @@ class Admin extends CI_Controller
    * Lander Devices Create (upload), Read (List), Update & Delete Implementation Finish
    * **********************************************************************************
    */
+
+    /*
+   * **********************************************************************************
+   * Lander Last Button Link Create, Read (List), Update & Delete Implementation Start
+   * **********************************************************************************
+   */
+
+    public function admin_create_last_btn_link()
+    {
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('country_id', 'Selected Country', 'trim|required');
+            $this->form_validation->set_rules('device_id', 'Selected Device', 'trim|required');
+            $this->form_validation->set_rules('button_name', 'Button name', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('button_link_url', 'Button Link URL', 'trim|required|min_length[2]|callback_unique_url_link_button');
+            $this->form_validation->set_rules('is_active', 'Is Active');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'SDIL Lander Last Button Link List - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Create Last Button Link';
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['data_list_title'] = 'All Buttons URL List';
+                $data['footer_title'] = Admin::$footer_title;
+
+                $all_active_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the countries list from DB
+                $data['all_active_countries'] = $all_active_countries;
+
+                $all_active_devices = $this->app_user_model->get_all_active_devices(); // Reading and showing the devices list from DB
+                $data['all_active_devices'] = $all_active_devices;
+
+                $all_last_btn_links = $this->app_user_model->get_all_last_btn_link(); // Reading and showing the devices list from DB
+                $data['all_last_btn_links'] = $all_last_btn_links;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_create_last_btn_link_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $is_active = $this->input->post('is_active') ? 1 : 0;
+                $button_name = $this->input->post('button_name');
+                $button_link_url = $this->input->post('button_link_url');
+                $country_id = $this->input->post('country_id');
+                $device_id = $this->input->post('device_id');
+                $data = array(
+                    'lander_last_btn_name' => $button_name,
+                    'lander_last_btn_link_url' => $button_link_url,
+                    'lander_last_btn_country_id' => $country_id,
+                    'lander_last_btn_device_id' => $device_id,
+                    'lander_last_btn_is_active' => $is_active
+                );
+                $is_exist = $this->app_user_model->check_existence_data($device_id, $country_id);
+                if($is_exist > 0){
+                    $this->session->set_flashdata('admin_create_last_btn_link_error_message', "Sorry! You can not create last button link using same Country and Device for two times. Please try again.");
+                }else{
+                    $is_created = $this->app_user_model->create_last_btn_link($data);
+                    if ($is_created) {
+                        $this->session->set_flashdata('admin_create_last_btn_link_message', "Last Button link is created successfully.");
+                    } else {
+                        $this->session->set_flashdata('admin_create_last_btn_link_error_message', "Last Button link is not created successfully. Please try again.");
+                    }
+                }
+
+
+                redirect(base_url() . 'admin/last/button/link/create', 'refresh');
+            }
+        }
+    }
+
+    public function admin_update_last_button_link($last_btn_link_id)
+    {
+        $last_btn_link_id_dec = base64_decode($last_btn_link_id);
+        $single_link = $this->app_user_model->get_single_link_by_id($last_btn_link_id_dec);
+
+        $all_active_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the countries list from DB
+        $data['all_active_countries'] = $all_active_countries;
+
+        $all_active_devices = $this->app_user_model->get_all_active_devices(); // Reading and showing the devices list from DB
+        $data['all_active_devices'] = $all_active_devices;
+
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('button_name', 'Button name', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('button_link_url', 'Button Link URL', 'trim|required|min_length[2]');
+            $this->form_validation->set_rules('is_active', 'Is Active');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'Update Lander Last Button Link - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Update Lander Last Button Link';
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['footer_title'] = Admin::$footer_title;
+
+
+                $data['single_link'] = $single_link;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_update_last_btn_link_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $button_name = $this->input->post('button_name');
+                $button_link_url = strtolower($this->input->post('button_link_url'));
+                $is_active = $this->input->post('is_active') ? 1 : 0;
+                $data = array(
+                    'lander_last_btn_name' => $button_name,
+                    'lander_last_btn_link_url' => $button_link_url,
+                    'lander_last_btn_is_active' => $is_active
+                );
+                $is_updated = FALSE;
+                $check_last_btn_link_is_unique = TRUE;
+                if ($button_link_url == $single_link['lander_last_btn_link_url']) {
+                    $is_updated = $this->app_user_model->update_last_btn_link($data, $last_btn_link_id_dec);
+                } else {
+                    if ($button_link_url != $single_link['lander_last_btn_link_url']) {
+                        $check_last_btn_link_is_unique = $this->app_user_model->unique_lander_url_link_button($button_link_url);
+                        if ($check_last_btn_link_is_unique) {
+                            $this->session->set_flashdata('admin_last_btn_link_is_unique_not_unique_message', "Given Last Button link is already exist");
+                        }
+                        if ($check_last_btn_link_is_unique) {
+                            redirect(base_url() . 'admin/last/button/link/update/' . $last_btn_link_id, 'refresh');
+                        }
+                    }
+                    if (!$check_last_btn_link_is_unique) {
+                        $is_updated = $this->app_user_model->update_last_btn_link($data, $last_btn_link_id_dec);
+                    }
+                }
+
+
+                if ($is_updated) {
+                    $this->session->set_flashdata('admin_update_last_btn_link_message', "Selected Last Button link is Updated successfully.");
+                } else {
+                    $this->session->set_flashdata('admin_update_last_btn_link_error_message', "Selected Last Button link is not Updated successfully. Please try again.");
+                }
+
+                redirect(base_url() . 'admin/last/button/link/create', 'refresh');
+            }
+        }
+    }
+
+    /*
+     * **********************************************************************************
+     * Lander Last Button Link Create, Read (List), Update & Delete Implementation Finish
+     * **********************************************************************************
+     */
+
     public function welcome_admin_dashboard()
     {
         $data['title'] = 'Welcome SDIL Lander Admin Panel';
@@ -723,6 +876,17 @@ class Admin extends CI_Controller
         }
     }
 
+    function unique_url_link_button($str)
+    {
+        $this->load->model('app_user_model');
+        if (!$this->app_user_model->unique_lander_url_link_button($str)) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('unique_url_link_button', "%s {$str} already exist!");
+            return FALSE;
+        }
+    }
+
     function unique_country_name($str)
     {
         $this->load->model('app_user_model');
@@ -733,6 +897,7 @@ class Admin extends CI_Controller
             return FALSE;
         }
     }
+
     function unique_device_name($str)
     {
         $this->load->model('app_user_model');

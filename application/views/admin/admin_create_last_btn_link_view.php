@@ -89,36 +89,36 @@
                                         <strong><?php echo validation_errors(); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_create_country_message')) { ?>
+                                if ($this->session->flashdata('admin_create_last_btn_link_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_country_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_create_last_btn_link_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_create_country_error_message')) { ?>
+                                if ($this->session->flashdata('admin_create_last_btn_link_error_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_country_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_create_last_btn_link_error_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_country_message')) { ?>
+                                if ($this->session->flashdata('admin_update_last_btn_link_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_country_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_update_last_btn_link_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_country_error_message')) { ?>
+                                if ($this->session->flashdata('admin_update_last_btn_link_error_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_country_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_update_last_btn_link_error_message'); ?></strong>
                                     </div>
                                 <?php }
                                 if ($this->session->flashdata('country_delete_message')) { ?>
@@ -152,27 +152,70 @@
                                       method="POST">
 
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_name">Country
-                                            Name<span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_id">Select
+                                            Country Name <span class="required">*</span>
                                         </label>
-
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" name="country_name"
-                                                   id="country_name"
-                                                   value="<?php echo $this->input->post('country_name'); ?>"
-                                                   placeholder="Country Name" required autofocus/>
+                                            <select id="country_id"
+                                                    name="country_id" class="form-control" required="required">
+                                                <option
+                                                    value="">Please Select a Country
+                                                </option>
+                                                <?php if (isset($all_active_countries) && $all_active_countries->num_rows() > 0):
+                                                    foreach ($all_active_countries->result() as $row): ?>
+                                                        <option
+                                                            value="<?php echo $row->lander_country_id ?>" <?php echo $this->input->post('country_id') == $row->lander_country_id ? 'selected' : ''; ?>>
+                                                            <?php echo $row->lander_country_name; ?>
+                                                        </option>
+                                                    <?php
+                                                    endforeach;
+                                                endif; ?>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="device_id">Select
+                                            Device Name <span class="required">*</span>
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <select id="device_id"
+                                                    name="device_id" class="form-control" required="required">
+                                                <option
+                                                    value="">Please Select a Device
+                                                </option>
+                                                <?php if (isset($all_active_devices) && $all_active_devices->num_rows() > 0):
+                                                    foreach ($all_active_devices->result() as $row): ?>
+                                                        <option
+                                                            value="<?php echo $row->lander_device_id ?>" <?php echo $this->input->post('device_id') == $row->lander_device_id ? 'selected' : ''; ?>>
+                                                            <?php echo $row->lander_device_name; ?>
+                                                        </option>
+                                                    <?php
+                                                    endforeach;
+                                                endif; ?>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_code">Country
-                                            Code<span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="button_name">Last Button Name<span class="required">*</span>
                                         </label>
 
                                         <div class="col-md-6 col-sm-6 col-xs-12">
-                                            <input type="text" class="form-control" name="country_code"
-                                                   id="country_code"
-                                                   value="<?php echo $this->input->post('country_code'); ?>"
-                                                   placeholder="Country Code" required/>
+                                            <input type="text" class="form-control" name="button_name"
+                                                   id="button_name"
+                                                   value="<?php echo $this->input->post('button_name'); ?>"
+                                                   placeholder="Button Name" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="button_link_url">Last Button Link URL<span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="url" class="form-control" name="button_link_url"
+                                                   id="button_link_url"
+                                                   value="<?php echo $this->input->post('button_link_url'); ?>"
+                                                   placeholder="Button Link URL" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -221,31 +264,35 @@
                                     <thead>
                                     <tr>
                                         <th>Serial</th>
+                                        <th>Button Name</th>
+                                        <th>Button URL</th>
                                         <th>Country Name</th>
-                                        <th>Country Code</th>
+                                        <th>Device Name</th>
                                         <th>Is Active</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
 
                                     <?php $i = 1; ?>
-                                    <?php if (isset($all_countries) && $all_countries->num_rows() > 0): ?>
+                                    <?php if (isset($all_last_btn_links) && $all_last_btn_links->num_rows() > 0): ?>
                                     <tbody>
-                                    <?php foreach ($all_countries->result() as $row): ?>
+                                    <?php foreach ($all_last_btn_links->result() as $row): ?>
 
 
                                         <tr>
                                             <td><?php echo $i++; ?></td>
+                                            <td><button type="submit" class="btn btn-success"><?php echo $row->lander_last_btn_name; ?></button></td>
+                                            <td><?php echo $row->lander_last_btn_link_url; ?></td>
                                             <td><?php echo $row->lander_country_name; ?></td>
-                                            <td><?php echo $row->lander_country_code; ?></td>
-                                            <td><?php echo $row->is_active ? 'Yes' : 'No'; ?></td>
+                                            <td><?php echo $row->lander_device_name; ?></td>
+                                            <td><?php echo $row->lander_last_btn_is_active ? 'Yes' : 'No'; ?></td>
                                             <td align="center"><a class="btn btn-success" title="Edit"
-                                                                  href="<?php echo base_url(); ?>admin/country/update/<?php echo base64_encode($row->lander_country_id); ?>"
+                                                                  href="<?php echo base_url(); ?>admin/last/button/link/update/<?php echo base64_encode($row->lander_last_btn_link_id); ?>"
                                                                   role="button"><span
                                                         class="glyphicon glyphicon-edit"></span></a>
 
                                                 <a class="btn btn-danger"
-                                                   href="<?php echo base_url(); ?>admin/country/delete/<?php echo base64_encode($row->lander_country_id); ?>"
+                                                   href="<?php echo base_url(); ?>admin/last/button/link/delete/<?php echo base64_encode($row->lander_last_btn_link_id); ?>"
                                                    onclick="return checkMe()" title="Delete"
                                                    role="button"><span class="glyphicon glyphicon-trash"></span></a>
                                             </td>
