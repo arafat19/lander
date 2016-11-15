@@ -575,14 +575,18 @@ class Admin extends CI_Controller
     {
         $device_id_dec = base64_decode($device_id);
         $single_device = $this->app_user_model->get_single_device_by_id($device_id_dec);
-        $is_active = $single_device["lander_device_is_active"];
-        if ($is_active) {
-            $this->session->set_flashdata('cant_delete_message', 'Active Device can not be deleted.');
+        $device_association_count = $this->app_user_model->get_associated_device_count($device_id_dec);
+        if ($device_association_count > 0) {
+            $this->session->set_flashdata('cant_delete_associate_message', 'Device ' . $single_device['lander_device_name'] . ' can not be deleted. It has ' . $device_association_count . ' association.');
         } else {
-            $this->app_user_model->delete_device($device_id_dec);
-            $this->session->set_flashdata('device_delete_message', 'Selected Device is successfully deleted');
+            $is_active = $single_device["lander_device_is_active"];
+            if ($is_active) {
+                $this->session->set_flashdata('cant_delete_message', 'Active Device can not be deleted.');
+            } else {
+                $this->app_user_model->delete_device($device_id_dec);
+                $this->session->set_flashdata('device_delete_message', 'Selected Device is successfully deleted');
+            }
         }
-
         redirect(base_url() . 'admin/device/create');
     }
 
@@ -644,9 +648,9 @@ class Admin extends CI_Controller
                     'lander_last_btn_is_active' => $is_active
                 );
                 $is_exist = $this->app_user_model->check_existence_data($device_id, $country_id);
-                if($is_exist > 0){
+                if ($is_exist > 0) {
                     $this->session->set_flashdata('admin_create_last_btn_link_error_message', "Sorry! You can not create last button link using same Country and Device for two times. Please try again.");
-                }else{
+                } else {
                     $is_created = $this->app_user_model->create_last_btn_link($data);
                     if ($is_created) {
                         $this->session->set_flashdata('admin_create_last_btn_link_message', "Last Button link is created successfully.");
@@ -654,8 +658,6 @@ class Admin extends CI_Controller
                         $this->session->set_flashdata('admin_create_last_btn_link_error_message', "Last Button link is not created successfully. Please try again.");
                     }
                 }
-
-
                 redirect(base_url() . 'admin/last/button/link/create', 'refresh');
             }
         }
@@ -731,6 +733,22 @@ class Admin extends CI_Controller
                 redirect(base_url() . 'admin/last/button/link/create', 'refresh');
             }
         }
+    }
+
+    public function admin_delete_last_button_link($last_btn_link_id)
+    {
+        $last_btn_link_id_dec = base64_decode($last_btn_link_id);
+        $single_link = $this->app_user_model->get_single_link_by_id($last_btn_link_id_dec);
+
+        $is_active = $single_link["lander_last_btn_is_active"];
+        if ($is_active) {
+            $this->session->set_flashdata('cant_delete_message', 'Active Button Link can not be deleted.');
+        } else {
+            $this->app_user_model->delete_last_button_link($last_btn_link_id_dec);
+            $this->session->set_flashdata('last_link_delete_message', 'Selected Button Link is successfully deleted');
+        }
+
+        redirect(base_url() . 'admin/last/button/link/create');
     }
 
     /*

@@ -1,7 +1,7 @@
 <body class="nav-md">
 <script language="javascript">
     function checkMe() {
-        if (confirm("Are you sure you want to delete the selected Country?")) {
+        if (confirm("Are you sure you want to delete the selected Button link?")) {
             return true;
         } else {
             return false;
@@ -121,12 +121,12 @@
                                         <strong><?php echo $this->session->flashdata('admin_update_last_btn_link_error_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('country_delete_message')) { ?>
+                                if ($this->session->flashdata('last_link_delete_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('country_delete_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('last_link_delete_message'); ?></strong>
                                     </div>
                                 <?php }
                                 if ($this->session->flashdata('cant_delete_message')) { ?>
@@ -135,14 +135,6 @@
                                             <span aria-hidden="true">×</span>
                                         </button>
                                         <strong><?php echo $this->session->flashdata('cant_delete_message'); ?></strong>
-                                    </div>
-                                <?php }
-                                if ($this->session->flashdata('cant_delete_associate_message')) { ?>
-                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('cant_delete_associate_message'); ?></strong>
                                     </div>
                                 <?php } ?>
 

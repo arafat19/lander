@@ -136,6 +136,14 @@
                                         </button>
                                         <strong><?php echo $this->session->flashdata('cant_delete_message'); ?></strong>
                                     </div>
+                                <?php }
+                                if ($this->session->flashdata('cant_delete_associate_message')) { ?>
+                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong><?php echo $this->session->flashdata('cant_delete_associate_message'); ?></strong>
+                                    </div>
                                 <?php } ?>
 
                                 <br/>

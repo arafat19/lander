@@ -240,6 +240,17 @@ class app_user_model extends CI_Model
 
         return $row_count;
     }
+    public function get_associated_device_count($device_id)
+    {
+        $this->db->where('lander_last_btn_device_id', $device_id);
+        $result_device_count = $this->db->get(App_user_model::$table_sdil_lander_last_button_link);
+
+        $row_count = $result_device_count->num_rows();
+
+        return $row_count;
+    }
+
+
 
     public function check_existence_data($device_id, $country_id)
     {
@@ -395,6 +406,12 @@ class app_user_model extends CI_Model
     {
         $this->db->where('lander_image_id', $image_id);
         $is_deleted = $this->db->delete(App_user_model::$table_sdil_lander_country_wise_slider_image);
+        return $is_deleted;
+    }
+    public function delete_last_button_link($last_btn_link_id)
+    {
+        $this->db->where('lander_last_btn_link_id', $last_btn_link_id);
+        $is_deleted = $this->db->delete(App_user_model::$table_sdil_lander_last_button_link);
         return $is_deleted;
     }
 
