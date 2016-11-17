@@ -985,6 +985,20 @@ class Admin extends CI_Controller
     * *************************************************************************************
     */
 
+   public function admin_show_preview($theme_id){
+       if (($this->session->userdata('admin_email') == "")) {
+           $this->logout();
+       } else {
+           $theme_id_dec = base64_decode($theme_id);
+           $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec);
+           $data['theme_name'] = $single_theme['lander_theme_name'];
+           $data['lander_theme_css'] = $single_theme['lander_theme_css'];
+
+           $this->load->view('preview/preview_header_view', $data);
+           $this->load->view('preview/preview_body_view', $data);
+           $this->load->view('preview/preview_footer_view', $data);
+       }
+   }
     public function welcome_admin_dashboard()
     {
         $data['title'] = 'Welcome SDIL Lander Admin Panel';

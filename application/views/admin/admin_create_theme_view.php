@@ -229,6 +229,7 @@
                                         <th>Theme Name</th>
                                         <th>Theme Color</th>
                                         <th>Is Active</th>
+                                        <th>Preview</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -249,6 +250,7 @@
                                                 </div>
                                             </td>
                                             <td><?php echo $row->lander_theme_is_active ? 'Yes' : 'No'; ?></td>
+                                            <td><a href="<?php echo base_url();?>admin/show/preview/<?php echo base64_encode($row->lander_theme_id); ?>" class="btn btn-warning" target="_blank">Show Preview</a></td>
                                             <td align="center"><a class="btn btn-success" title="Edit"
                                                                   href="<?php echo base_url(); ?>admin/theme/update/<?php echo base64_encode($row->lander_theme_id); ?>"
                                                                   role="button"><span

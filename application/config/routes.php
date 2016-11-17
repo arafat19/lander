@@ -79,7 +79,7 @@ $route['admin/country/theme/create'] = "admin/admin_create_country_theme";
 $route['admin/country/theme/update/(:any)'] = "admin/admin_update_country_theme/$1";
 $route['admin/country/theme/delete/(:any)'] = "admin/admin_delete_country_theme/$1";
 
-$route['admin/show/applicants'] = "admin/admin_show_applicants";
+$route['admin/show/preview/(:any)'] = "admin/admin_show_preview/$1";
 
 $route['admin/instructor/photo/update/(:any)'] = "admin/update_instructor_photo/$1";
 
