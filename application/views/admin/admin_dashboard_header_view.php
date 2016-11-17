@@ -27,6 +27,7 @@
     <link href="<?php echo base_url(); ?>css/green.css" rel="stylesheet">
     <!-- bootstrap-progressbar -->
     <link href="<?php echo base_url();?>css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
+    <link href="<?php echo base_url();?>css/bootstrap-colorpicker.css" rel="stylesheet">
     <!-- Datatables -->
     <link href="<?php echo base_url();?>framework/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
     <link href="<?php echo base_url();?>/css/jquery.dataTables.css" rel="stylesheet">

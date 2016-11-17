@@ -71,6 +71,10 @@ $route['admin/last/button/link/create'] = "admin/admin_create_last_btn_link";
 $route['admin/last/button/link/update/(:any)'] = "admin/admin_update_last_button_link/$1";
 $route['admin/last/button/link/delete/(:any)'] = "admin/admin_delete_last_button_link/$1";
 
+$route['admin/theme/create'] = "admin/admin_create_theme";
+$route['admin/theme/update/(:any)'] = "admin/admin_update_theme/$1";
+$route['admin/theme/delete/(:any)'] = "admin/admin_delete_theme/$1";
+
 $route['admin/show/applicants'] = "admin/admin_show_applicants";
 
 $route['admin/instructor/photo/update/(:any)'] = "admin/update_instructor_photo/$1";

@@ -22,6 +22,26 @@
 <script src="<?php echo base_url(); ?>js/nprogress.js"></script>
 <!-- bootstrap-progressbar -->
 <script src="<?php echo base_url(); ?>js/bootstrap-progressbar.js"></script>
+
+<script src="<?php echo base_url(); ?>/js/bootstrap-colorpicker.js"></script>
+<!-- Bootstrap Colorpicker -->
+<script>
+    $(document).ready(function() {
+        $('.demo1').colorpicker();
+
+        $('#demo_forceformat').colorpicker({
+            format: 'rgba',
+            horizontal: true
+        });
+
+        $('#demo_forceformat3').colorpicker({
+            format: 'rgba',
+        });
+
+        $('.demo-auto').colorpicker();
+    });
+</script>
+<!-- /Bootstrap Colorpicker -->
 <!-- iCheck -->
 <script src="<?php echo base_url(); ?>js/icheck.js"></script>
 <!-- Skycons -->
@@ -396,6 +416,7 @@
     });
 </script>
 <!-- /Doughnut Chart -->
+
 
 
 </body>
