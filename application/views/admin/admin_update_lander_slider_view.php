@@ -79,6 +79,14 @@
                                         </button>
                                         <strong><?php echo validation_errors(); ?></strong>
                                     </div>
+                                <?php }
+                                if ($this->session->flashdata('file_errors')) { ?>
+                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong><?php echo $this->session->flashdata('file_errors'); ?></strong>
+                                    </div>
                                 <?php } ?>
 
                                 <br/>
