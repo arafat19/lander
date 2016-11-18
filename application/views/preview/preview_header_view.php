@@ -8,8 +8,8 @@
     <title>Theme <?php echo $theme_name; ?> - SDIL Lander</title>
     <link href="<?php echo base_url();?>css/lander_vegas.css" rel="stylesheet">
     <style type="text/css">
-       <?php eval("?> $lander_theme_css <?php"); ?>
-
+       <?php //eval("\$lander_theme_css = \"$lander_theme_css\";"); echo $lander_theme_css ;
+       eval('?>'.$lander_theme_css.'<?'); ?>
     </style>
     <link href="<?php echo base_url();?>css/lander_unsub.css" rel="stylesheet">
 </head>
