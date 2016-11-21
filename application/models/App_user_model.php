@@ -334,6 +334,14 @@ class app_user_model extends CI_Model
 
         return $result->row_array();
     }
+    public function get_single_theme_country_by_id($sdil_lander_theme_country_ID)
+    {
+        $this->db->select('*');
+        $this->db->where('sdil_lander_theme_country_ID', $sdil_lander_theme_country_ID);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
+
+        return $result->row_array();
+    }
 
     function get_all_countries()
     {
@@ -467,6 +475,12 @@ class app_user_model extends CI_Model
     {
         $is_created = $this->db->insert(App_user_model::$table_sdil_lander_theme_country, $data);
         return $is_created;
+    }
+    public function update_lander_country_theme($sdil_lander_theme_country_ID, $data)
+    {
+        $this->db->where('sdil_lander_theme_country_ID', $sdil_lander_theme_country_ID);
+        $is_updated = $this->db->update(App_user_model::$table_sdil_lander_theme_country, $data);
+        return $is_updated;
     }
 
     public function delete_country($country_id)

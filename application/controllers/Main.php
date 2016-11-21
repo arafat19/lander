@@ -1,5 +1,6 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require_once('geoplugin.class.php');
 
 class Main extends CI_Controller
 {
@@ -11,32 +12,33 @@ class Main extends CI_Controller
         $this->load->model('main_ui_model');
     }
 
-    function index($lang = '')
+    function index()
     {
-        $this->lang->load('content', $lang == '' ? 'bn' : $lang);
-        $this->lang->load('number', $lang == '' ? 'bn' : $lang);
-
-        $data['title'] = $this->lang->line('site_title');
-        $data['site_address'] = $this->lang->line('site_address');
-        $data['btn_form_download'] = $this->lang->line('btn_form_download');
-        $data['btn_online_application'] = $this->lang->line('btn_online_application');
-
-        $applicants_list = $this->main_ui_model->get_not_confirmed_applicants_list();
-
-        if (isset($applicants_list) && $applicants_list->num_rows() > 0):
-            foreach ($applicants_list->result() as $row):
-                $applicant_image_name = $row->applicant_photo;
-                $is_deleted = $this->main_ui_model->delete_not_confirmed_applicant($row->applicant_id);
-                if($is_deleted){
-                    $path = "./uploaded/applicants_photo/" . $applicant_image_name;
-                    unlink($path);
-                }
-            endforeach;
-        endif;
 
 
-        $this->load->view('main/header', $data);
-        $this->load->view('main/body', $data);
-        $this->load->view('main/footer', $data);
+        $geoplugin = new geoPlugin();
+        //locate the IP
+        $geoplugin->locate();
+
+        $country_code = $geoplugin->countryCode;
+        if($country_code == null) $country_code = 'BD';
+        $is_active = 1;
+        $is_live = 1;
+        $country_ID = $this->main_ui_model->get_country_id_by_country_code_is_active($country_code, $is_active);
+        //multiple rows
+        $single_country_image_slider = $this->main_ui_model->get_active_images_of_image_slider_by_country($country_ID['lander_country_id'], $is_active);
+
+        $theme_ID = $this->main_ui_model->get_theme_id_by_country_is_live($country_ID['lander_country_id'], $is_live);
+
+
+        $lander_theme_css = $this->main_ui_model->get_theme_css_by_theme_id_is_active($theme_ID['lander_theme_country_them_id'], $is_active);
+
+        $data['single_country_image_slider'] = $single_country_image_slider;
+        $data['lander_theme_css'] = $lander_theme_css['lander_theme_css'];
+        $data['theme_name'] = $lander_theme_css['lander_theme_name'];
+
+        $this->load->view('main/header_view', $data);
+        $this->load->view('main/body_view', $data);
+        $this->load->view('main/footer_view', $data);
     }
 }

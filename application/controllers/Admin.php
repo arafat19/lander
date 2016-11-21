@@ -939,6 +939,7 @@ class Admin extends CI_Controller
             // field name, error message, validation rules
             $this->form_validation->set_rules('theme_id', 'Selected Theme', 'trim|required');
             $this->form_validation->set_rules('country_id', 'Selected Country', 'trim|required');
+            $this->form_validation->set_rules('is_live', 'Is Live');
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'SDIL Lander Country Theme List - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
@@ -962,9 +963,11 @@ class Admin extends CI_Controller
             } else {
                 $country_id = $this->input->post('country_id');
                 $theme_id = $this->input->post('theme_id');
+                $is_live = $this->input->post('is_live') ? 1 : 0;
                 $data = array(
                     'lander_theme_country_id' => $country_id,
-                    'lander_theme_country_them_id' => $theme_id
+                    'lander_theme_country_them_id' => $theme_id,
+                    'sdil_lander_theme_country_is_live' => $is_live
                 );
                 $country_theme_association_count_all = $this->app_user_model->get_associated_country_theme_count_all($theme_id, $country_id);
                 $country_theme_association_count = $this->app_user_model->get_associated_country_theme_count($country_id);
@@ -987,10 +990,62 @@ class Admin extends CI_Controller
         }
     }
 
+    public function admin_update_country_theme($sdil_lander_theme_country_ID)
+    {
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $sdil_lander_theme_country_ID_dec = base64_decode($sdil_lander_theme_country_ID);
+            $single_theme_country = $this->app_user_model->get_single_theme_country_by_id($sdil_lander_theme_country_ID_dec);
+            $data['single_theme_country'] = $single_theme_country;
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('theme_id', 'Selected Theme', 'trim|required');
+            $this->form_validation->set_rules('country_id', 'Selected Country', 'trim|required');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'SDIL Lander Country Theme Update - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Update Country Theme';
+                $data['navbar_title'] = Admin::$navbar_title;
+                $data['footer_title'] = Admin::$footer_title;
+
+
+                $all_active_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the country list from DB
+                $data['all_active_countries'] = $all_active_countries;
+
+                $all_active_themes = $this->app_user_model->get_all_active_themes(); // Reading and showing the devices list from DB
+                $data['all_active_themes'] = $all_active_themes;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_update_country_theme_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $country_id = $this->input->post('country_id');
+                $theme_id = $this->input->post('theme_id');
+                $is_live = $this->input->post('is_live') ? 1 : 0;
+                $data = array(
+                    'lander_theme_country_id' => $country_id,
+                    'lander_theme_country_them_id' => $theme_id,
+                    'sdil_lander_theme_country_is_live' => $is_live
+                );
+
+                $is_created = $this->app_user_model->update_lander_country_theme($sdil_lander_theme_country_ID_dec, $data);
+                if ($is_created) {
+                    $this->session->set_flashdata('admin_update_country_theme_message', "Country Theme is updated successfully.");
+                } else {
+                    $this->session->set_flashdata('admin_update_theme_error_message', " Country Theme is not update successfully. Please try again.");
+                }
+
+
+                redirect(base_url() . 'admin/country/theme/create', 'refresh');
+            }
+        }
+    }
+
 
     /*
     * *************************************************************************************
-    * Lander Country Theme Create, Read (List), Update & Delete Implementation Start
+    * Lander Country Theme Create, Read (List), Update & Delete Implementation Finish
     * *************************************************************************************
     */
 

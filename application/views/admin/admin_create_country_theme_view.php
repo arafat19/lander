@@ -105,20 +105,20 @@
                                         <strong><?php echo $this->session->flashdata('admin_create_theme_error_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_last_btn_link_message')) { ?>
+                                if ($this->session->flashdata('admin_update_country_theme_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_last_btn_link_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_update_country_theme_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_last_btn_link_error_message')) { ?>
+                                if ($this->session->flashdata('admin_update_theme_error_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_last_btn_link_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_update_theme_error_message'); ?></strong>
                                     </div>
                                 <?php }
                                 if ($this->session->flashdata('last_link_delete_message')) { ?>
@@ -204,6 +204,19 @@
                                             </select>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        </div>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="is_live"
+                                                           name="is_live" value="1"/> Is Live
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
 
 
                                     <div class="ln_solid"></div>
@@ -241,6 +254,7 @@
                                         <th>Theme Name</th>
                                         <th>Theme Color</th>
                                         <th>Country Name</th>
+                                        <th>Is Live</th>
                                         <th>Action</th>
                                     </tr>
                                     </thead>
@@ -261,6 +275,7 @@
                                                 </div>
                                             </td>
                                             <td><?php echo $row->lander_country_name; ?></td>
+                                            <td><?php echo $row->sdil_lander_theme_country_is_live ? 'Yes' : 'No'; ?></td>
                                             <td align="center"><a class="btn btn-success" title="Edit"
                                                                   href="<?php echo base_url(); ?>admin/country/theme/update/<?php echo base64_encode($row->sdil_lander_theme_country_ID); ?>"
                                                                   role="button"><span
