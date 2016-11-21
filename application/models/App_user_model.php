@@ -10,7 +10,7 @@ class app_user_model extends CI_Model
     public static $table_sdil_lander_device = 'sdil_lander_device';
     public static $table_sdil_lander_last_button_link = 'sdil_lander_last_button_link';
     public static $table_sdil_lander_theme = 'sdil_lander_theme';
-    public static $table_blri_applicant = 'blri_applicant';
+    public static $table_sdil_lander_theme_country = 'sdil_lander_theme_country';
 
     public function __construct()
     {
@@ -266,10 +266,34 @@ class app_user_model extends CI_Model
         $this->db->where('lander_last_btn_country_id', $country_id);
         $result_lander_last_button_link = $this->db->get(App_user_model::$table_sdil_lander_last_button_link);
 
-        $row_count = $result_country_wise_slider_image->num_rows() + $result_lander_last_button_link->num_rows();
+        $this->db->where('lander_theme_country_id', $country_id);
+        $result_lander_theme_country = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
+
+        $row_count = $result_country_wise_slider_image->num_rows() + $result_lander_last_button_link->num_rows() + $result_lander_theme_country->num_rows();
 
         return $row_count;
     }
+
+    public function get_associated_country_theme_count_all($theme_id, $country_id)
+    {
+        $this->db->where('lander_theme_country_id', $country_id);
+        $this->db->where('lander_theme_country_them_id', $theme_id);
+        $result_lander_country_theme = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
+
+        $row_count = $result_lander_country_theme->num_rows();
+
+        return $row_count;
+    }
+    public function get_associated_country_theme_count($country_id)
+    {
+        $this->db->where('lander_theme_country_id', $country_id);
+        $result_lander_country_theme = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
+
+        $row_count = $result_lander_country_theme->num_rows();
+
+        return $row_count;
+    }
+
     public function get_associated_device_count($device_id)
     {
         $this->db->where('lander_last_btn_device_id', $device_id);
@@ -343,12 +367,36 @@ class app_user_model extends CI_Model
             return NULL;
         }
     }
+    function get_all_country_themes()
+    {
+        $this->db->select('*');
+        $this->db->from(App_user_model::$table_sdil_lander_theme_country);
+        $this->db->join(App_user_model::$table_sdil_lander_country, 'sdil_lander_country.lander_country_id = sdil_lander_theme_country.lander_theme_country_id');
+        $this->db->join(App_user_model::$table_sdil_lander_theme, 'sdil_lander_theme.lander_theme_id = sdil_lander_theme_country.lander_theme_country_them_id');
+        $result = $this->db->get();
+        if ($result->num_rows() > 0) {
+            return $result;
+        } else {
+            return NULL;
+        }
+    }
 
     function get_all_active_countries()
     {
         $this->db->select('*');
         $this->db->where('is_active', 1);
         $result = $this->db->get(App_user_model::$table_sdil_lander_country);
+        if ($result->num_rows() > 0) {
+            return $result;
+        } else {
+            return NULL;
+        }
+    }
+    function get_all_active_themes()
+    {
+        $this->db->select('*');
+        $this->db->where('lander_theme_is_active', 1);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_theme);
         if ($result->num_rows() > 0) {
             return $result;
         } else {
@@ -412,6 +460,12 @@ class app_user_model extends CI_Model
     public function create_country($data)
     {
         $is_created = $this->db->insert(App_user_model::$table_sdil_lander_country, $data);
+        return $is_created;
+    }
+
+    public function create_lander_country_theme($data)
+    {
+        $is_created = $this->db->insert(App_user_model::$table_sdil_lander_theme_country, $data);
         return $is_created;
     }
 

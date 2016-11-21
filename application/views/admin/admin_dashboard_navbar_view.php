@@ -7,7 +7,8 @@
             <li><a href="<?php echo base_url(); ?>admin/slider/image/create"><i class="fa fa-file-image-o"></i> Add Slider Images</a></li>
             <li><a href="<?php echo base_url(); ?>admin/device/create"><i class="fa fa-mobile-phone"></i> Add Device</a></li>
             <li><a href="<?php echo base_url(); ?>admin/last/button/link/create"><i class="fa fa-external-link"></i> Add Last Button Link</a></li>
-            <li><a href="<?php echo base_url(); ?>admin/theme/create"><i class="fa fa-database"></i> Add Theme</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/theme/create"><i class="fa fa-paint-brush"></i> Add Theme</a></li>
+            <li><a href="<?php echo base_url(); ?>admin/country/theme/create"><i class="fa fa-cog"></i> Add Country Theme</a></li>
 
             <!--<li><a><i class="fa fa-users"></i> Applicants <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">

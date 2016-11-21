@@ -2,20 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262a4ebb-918b-4ced-8e7b-6b73a0dd5394" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/SG1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/SG2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/checked_checkbox.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/images/unchecked_checkbox.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/preview/preview_body_view.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/preview/preview_footer_view.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/preview/preview_header_view.php" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/lander_unsub.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/css/lander_vegas.css" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/js/lander_vegas.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/routes.php" afterPath="$PROJECT_DIR$/application/config/routes.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/admin/admin_create_country_theme_view.php" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DB/sdil_lander_v4.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Admin.php" afterPath="$PROJECT_DIR$/application/controllers/Admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_create_theme_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_create_theme_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/App_user_model.php" afterPath="$PROJECT_DIR$/application/models/App_user_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_dashboard_navbar_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_dashboard_navbar_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/database.php" afterPath="$PROJECT_DIR$/application/config/database.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lander.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,93 +20,241 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="ChangesViewManager" flattened_view="true" show_ignored="false" />
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
+  </component>
+  <component name="DaemonCodeAnalyzer">
+    <disable_hints />
   </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="lander" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file leaf-file-name="Admin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="997" column="55" selection-start-line="997" selection-start-column="38" selection-end-line="997" selection-end-column="55" />
+            <state vertical-scroll-proportion="-7.980392" vertical-offset="2773" max-vertical-offset="5385">
+              <caret line="970" column="55" selection-start-line="970" selection-start-column="55" selection-end-line="970" selection-end-column="55" />
               <folding>
+                <element signature="n#__construct#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="n#index#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#731#2234#0#PHP" expanded="false" />
+                <element signature="e#842#2234#0#PHP" expanded="false" />
+                <element signature="e#1216#2223#0#PHP" expanded="false" />
+                <element signature="e#1584#2223#0#PHP" expanded="false" />
+                <element signature="e#1868#2209#0#PHP" expanded="false" />
+                <element signature="e#1955#2209#0#PHP" expanded="false" />
+                <element signature="e#2246#2498#0#PHP" expanded="false" />
+                <element signature="n#admin_create_lander_country#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#2564#4870#0#PHP" expanded="false" />
+                <element signature="e#2658#4870#0#PHP" expanded="false" />
+                <element signature="e#3140#4860#0#PHP" expanded="false" />
+                <element signature="e#4017#4860#0#PHP" expanded="false" />
+                <element signature="e#4118#4350#0#PHP" expanded="false" />
+                <element signature="e#4444#4771#0#PHP" expanded="false" />
+                <element signature="e#4600#4771#0#PHP" expanded="false" />
+                <element signature="n#admin_update_lander_country#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#5099#10441#0#PHP" expanded="false" />
+                <element signature="e#5193#10441#0#PHP" expanded="false" />
+                <element signature="e#5617#10431#0#PHP" expanded="false" />
+                <element signature="e#6295#10431#0#PHP" expanded="false" />
+                <element signature="e#6532#6722#0#PHP" expanded="false" />
+                <element signature="e#6885#9978#0#PHP" expanded="false" />
+                <element signature="e#7122#9978#0#PHP" expanded="false" />
+                <element signature="e#7221#9745#0#PHP" expanded="false" />
+                <element signature="e#7489#7690#0#PHP" expanded="false" />
+                <element signature="e#7837#8038#0#PHP" expanded="false" />
+                <element signature="e#8063#8259#0#PHP" expanded="false" />
+                <element signature="e#8287#9745#0#PHP" expanded="false" />
+                <element signature="e#8555#8991#0#PHP" expanded="false" />
+                <element signature="e#9019#9745#0#PHP" expanded="false" />
+                <element signature="e#9287#9723#0#PHP" expanded="false" />
+                <element signature="e#9766#9960#0#PHP" expanded="false" />
+                <element signature="e#9997#10342#0#PHP" expanded="false" />
+                <element signature="e#10162#10342#0#PHP" expanded="false" />
+                <element signature="e#10828#11463#0#PHP" expanded="false" />
+                <element signature="e#11085#11463#0#PHP" expanded="false" />
+                <element signature="e#11104#11453#0#PHP" expanded="false" />
+                <element signature="e#11244#11453#0#PHP" expanded="false" />
+                <element signature="e#11531#11784#0#PHP" expanded="false" />
+                <element signature="e#11790#12111#0#PHP" expanded="false" />
+                <element signature="e#12826#13737#0#PHP" expanded="false" />
+                <element signature="e#13750#16973#0#PHP" expanded="false" />
+                <element signature="e#13877#15553#0#PHP" expanded="false" />
+                <element signature="e#14725#15535#0#PHP" expanded="false" />
+                <element signature="e#15339#15535#0#PHP" expanded="false" />
+                <element signature="e#15571#16958#0#PHP" expanded="false" />
+                <element signature="e#15773#16094#0#PHP" expanded="false" />
+                <element signature="e#15930#16094#0#PHP" expanded="false" />
+                <element signature="e#16196#16958#0#PHP" expanded="false" />
+                <element signature="n#admin_update_lander_slider_image#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#17252#22204#0#PHP" expanded="false" />
+                <element signature="e#17346#22204#0#PHP" expanded="false" />
+                <element signature="e#17704#18558#0#PHP" expanded="false" />
+                <element signature="e#18571#22193#0#PHP" expanded="false" />
+                <element signature="e#19264#19582#0#PHP" expanded="false" />
+                <element signature="e#19419#19582#0#PHP" expanded="false" />
+                <element signature="e#19677#22193#0#PHP" expanded="false" />
+                <element signature="e#20034#20807#0#PHP" expanded="false" />
+                <element signature="e#20623#20807#0#PHP" expanded="false" />
+                <element signature="e#20825#22179#0#PHP" expanded="false" />
+                <element signature="e#21042#21376#0#PHP" expanded="false" />
+                <element signature="e#21205#21376#0#PHP" expanded="false" />
+                <element signature="e#21478#22179#0#PHP" expanded="false" />
+                <element signature="n#admin_delete_lander_slider_image#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#22488#23055#0#PHP" expanded="false" />
+                <element signature="e#22618#23055#0#PHP" expanded="false" />
+                <element signature="e#22866#22929#0#PHP" expanded="false" />
+                <element signature="e#23128#23448#0#PHP" expanded="false" />
+                <element signature="e#23454#23729#0#PHP" expanded="false" />
+                <element signature="n#admin_create_device#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#23786#26087#0#PHP" expanded="false" />
+                <element signature="e#23880#26087#0#PHP" expanded="false" />
+                <element signature="e#24356#26077#0#PHP" expanded="false" />
+                <element signature="e#25218#26077#0#PHP" expanded="false" />
+                <element signature="e#25319#25573#0#PHP" expanded="false" />
+                <element signature="e#25666#25989#0#PHP" expanded="false" />
+                <element signature="e#25820#25989#0#PHP" expanded="false" />
+                <element signature="n#admin_update_device#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#26302#31580#0#PHP" expanded="false" />
+                <element signature="e#26396#31580#0#PHP" expanded="false" />
+                <element signature="e#26816#31570#0#PHP" expanded="false" />
+                <element signature="e#27489#31570#0#PHP" expanded="false" />
+                <element signature="e#27734#27934#0#PHP" expanded="false" />
+                <element signature="e#28095#31122#0#PHP" expanded="false" />
+                <element signature="e#28324#31122#0#PHP" expanded="false" />
+                <element signature="e#28423#30893#0#PHP" expanded="false" />
+                <element signature="e#28682#28880#0#PHP" expanded="false" />
+                <element signature="e#29024#29222#0#PHP" expanded="false" />
+                <element signature="e#29247#29439#0#PHP" expanded="false" />
+                <element signature="e#29467#30893#0#PHP" expanded="false" />
+                <element signature="e#29726#30155#0#PHP" expanded="false" />
+                <element signature="e#30183#30893#0#PHP" expanded="false" />
+                <element signature="e#30442#30871#0#PHP" expanded="false" />
+                <element signature="e#30914#31104#0#PHP" expanded="false" />
+                <element signature="e#31141#31482#0#PHP" expanded="false" />
+                <element signature="e#31304#31482#0#PHP" expanded="false" />
+                <element signature="n#admin_delete_device#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#31899#32592#0#PHP" expanded="false" />
+                <element signature="e#32151#32592#0#PHP" expanded="false" />
+                <element signature="e#32238#32582#0#PHP" expanded="false" />
+                <element signature="e#32377#32582#0#PHP" expanded="false" />
+                <element signature="e#32658#32930#0#PHP" expanded="false" />
+                <element signature="e#32936#33207#0#PHP" expanded="false" />
+                <element signature="e#36424#36928#0#PHP" expanded="false" />
+                <element signature="e#36537#36910#0#PHP" expanded="false" />
+                <element signature="e#36716#36910#0#PHP" expanded="false" />
+                <element signature="n#admin_update_last_button_link#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#37669#41078#0#PHP" expanded="false" />
+                <element signature="e#37763#41078#0#PHP" expanded="false" />
+                <element signature="e#38191#41068#0#PHP" expanded="false" />
+                <element signature="e#38901#41068#0#PHP" expanded="false" />
+                <element signature="e#39154#39368#0#PHP" expanded="false" />
+                <element signature="e#39478#40576#0#PHP" expanded="false" />
+                <element signature="e#39673#40576#0#PHP" expanded="false" />
+                <element signature="e#39700#40364#0#PHP" expanded="false" />
+                <element signature="e#39921#40138#0#PHP" expanded="false" />
+                <element signature="e#40163#40342#0#PHP" expanded="false" />
+                <element signature="e#40385#40558#0#PHP" expanded="false" />
+                <element signature="e#40595#40970#0#PHP" expanded="false" />
+                <element signature="e#40775#40970#0#PHP" expanded="false" />
+                <element signature="n#admin_delete_last_button_link#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#41392#41746#0#PHP" expanded="false" />
+                <element signature="e#41528#41746#0#PHP" expanded="false" />
+                <element signature="e#41823#42103#0#PHP" expanded="false" />
+                <element signature="e#42109#42383#0#PHP" expanded="false" />
+                <element signature="e#43966#45036#0#PHP" expanded="false" />
+                <element signature="e#44269#44530#0#PHP" expanded="false" />
+                <element signature="e#44629#44949#0#PHP" expanded="false" />
+                <element signature="e#44781#44949#0#PHP" expanded="false" />
+                <element signature="n#admin_update_theme#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="e#45254#50829#0#PHP" expanded="false" />
+                <element signature="e#45348#50829#0#PHP" expanded="false" />
+                <element signature="e#45866#50819#0#PHP" expanded="false" />
+                <element signature="e#46534#50819#0#PHP" expanded="false" />
+                <element signature="e#46837#47098#0#PHP" expanded="false" />
+                <element signature="e#47263#50376#0#PHP" expanded="false" />
+                <element signature="e#47503#50376#0#PHP" expanded="false" />
+                <element signature="e#47602#50138#0#PHP" expanded="false" />
+                <element signature="e#47864#48059#0#PHP" expanded="false" />
+                <element signature="e#48218#48431#0#PHP" expanded="false" />
+                <element signature="e#48456#48650#0#PHP" expanded="false" />
+                <element signature="e#48678#50138#0#PHP" expanded="false" />
+                <element signature="e#48940#49368#0#PHP" expanded="false" />
+                <element signature="e#49396#50138#0#PHP" expanded="false" />
+                <element signature="e#49676#50116#0#PHP" expanded="false" />
+                <element signature="e#50159#50358#0#PHP" expanded="false" />
+                <element signature="e#50395#50732#0#PHP" expanded="false" />
+                <element signature="e#50556#50732#0#PHP" expanded="false" />
                 <element signature="n#admin_delete_theme#0;n#Admin#0;n#!!top" expanded="false" />
-                <element signature="n#admin_create_country_theme#0;n#Admin#0;n#!!top" expanded="false" />
-                <marker date="1479412142828" expanded="false" signature="4938:10447" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="12167:16989" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="17054:22210" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="22275:23122" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="23771:26093" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="26146:31586" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="31639:32652" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="33257:37041" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="37111:41084" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="55725:56218" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="56260:57526" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="57567:59173" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="59218:61025" ph="{...}" />
-                <marker date="1479412142828" expanded="false" signature="61062:61358" ph="{...}" />
+                <element signature="e#51100#51426#0#PHP" expanded="false" />
+                <element signature="e#51230#51426#0#PHP" expanded="false" />
+                <element signature="e#51493#51764#0#PHP" expanded="false" />
+                <element signature="e#51770#52052#0#PHP" expanded="false" />
+                <element signature="e#55602#55880#0#PHP" expanded="false" />
+                <element signature="e#55946#56551#0#PHP" expanded="false" />
+                <element signature="e#56040#56551#0#PHP" expanded="false" />
+                <element signature="e#57824#58399#0#PHP" expanded="false" />
+                <element signature="e#58136#58399#0#PHP" expanded="false" />
+                <element signature="e#58529#60046#0#PHP" expanded="false" />
+                <element signature="e#58623#60046#0#PHP" expanded="false" />
+                <element signature="e#59055#60036#0#PHP" expanded="false" />
+                <element signature="e#59742#60036#0#PHP" expanded="false" />
+                <element signature="e#60254#61898#0#PHP" expanded="false" />
+                <element signature="e#60348#61898#0#PHP" expanded="false" />
+                <element signature="e#60864#61888#0#PHP" expanded="false" />
+                <element signature="e#61493#61888#0#PHP" expanded="false" />
+                <element signature="e#61637#61799#0#PHP" expanded="false" />
+                <element signature="e#62002#62231#0#PHP" expanded="false" />
+                <element signature="e#62092#62231#0#PHP" expanded="false" />
+                <element signature="e#62331#62557#0#PHP" expanded="false" />
+                <element signature="e#62422#62557#0#PHP" expanded="false" />
+                <element signature="e#62664#62905#0#PHP" expanded="false" />
+                <element signature="e#62763#62905#0#PHP" expanded="false" />
+                <element signature="e#63015#63262#0#PHP" expanded="false" />
+                <element signature="e#63117#63262#0#PHP" expanded="false" />
+                <element signature="e#63369#63610#0#PHP" expanded="false" />
+                <element signature="e#63468#63610#0#PHP" expanded="false" />
+                <element signature="e#63716#63955#0#PHP" expanded="false" />
+                <element signature="e#63814#63955#0#PHP" expanded="false" />
+                <element signature="e#64060#64297#0#PHP" expanded="false" />
+                <element signature="e#64157#64297#0#PHP" expanded="false" />
+                <element signature="e#64408#64657#0#PHP" expanded="false" />
+                <element signature="e#64511#64657#0#PHP" expanded="false" />
+                <element signature="e#64764#65003#0#PHP" expanded="false" />
+                <element signature="e#64862#65003#0#PHP" expanded="false" />
+                <element signature="e#65103#65326#0#PHP" expanded="false" />
+                <element signature="e#65193#65326#0#PHP" expanded="false" />
+                <element signature="e#65428#65676#0#PHP" expanded="false" />
+                <element signature="e#65521#65676#0#PHP" expanded="false" />
+                <element signature="e#65738#65881#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="preview_body_view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/preview/preview_body_view.php">
+      <file leaf-file-name="admin_dashboard_navbar_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_navbar_view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
+            <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="1905">
+              <caret line="10" column="76" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_create_country_theme_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_country_theme_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-20.125" vertical-offset="1797" max-vertical-offset="4455">
+              <caret line="152" column="131" selection-start-line="152" selection-start-column="131" selection-end-line="152" selection-end-column="131" />
               <folding>
-                <element signature="n#style#0;n#div#5;n#div#1;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#6;n#div#1;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#7;n#div#1;n#body#0;n#!!top" expanded="true" />
-                <element signature="n#style#0;n#div#8;n#div#1;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#option#1;n#select#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+                <element signature="n#style#0;n#div#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preview_footer_view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/preview/preview_footer_view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="17">
-              <caret line="1" column="53" selection-start-line="1" selection-start-column="53" selection-end-line="1" selection-end-column="53" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preview_header_view.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/application/views/preview/preview_header_view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin_dashboard_footer_view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_footer_view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="15" column="54" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="admin_update_theme_view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_theme_view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2482">
-              <caret line="146" column="77" selection-start-line="146" selection-start-column="77" selection-end-line="146" selection-end-column="77" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -121,8 +262,37 @@
       <file leaf-file-name="admin_create_theme_view.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_theme_view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="413">
-              <caret line="252" column="100" selection-start-line="252" selection-start-column="100" selection-end-line="252" selection-end-column="100" />
+            <state vertical-scroll-proportion="-11.208333" vertical-offset="3481" max-vertical-offset="4305">
+              <caret line="250" column="49" selection-start-line="245" selection-start-column="44" selection-end-line="250" selection-end-column="49" />
+              <folding>
+                <element signature="n#style#0;n#div#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_create_device_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_device_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-48.75" vertical-offset="2100" max-vertical-offset="4215">
+              <caret line="218" column="28" selection-start-line="218" selection-start-column="28" selection-end-line="218" selection-end-column="28" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="unchecked_checkbox.png" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/images/unchecked_checkbox.png">
+          <provider selected="true" editor-type-id="images">
+            <state />
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_create_lander_slider_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_lander_slider_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="3565" max-vertical-offset="4365">
+              <caret line="256" column="87" selection-start-line="256" selection-start-column="87" selection-end-line="256" selection-end-column="87" />
               <folding />
             </state>
           </provider>
@@ -131,8 +301,8 @@
       <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/config/routes.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="81" column="18" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="18" />
+            <state vertical-scroll-proportion="-18.0" vertical-offset="723" max-vertical-offset="1560">
+              <caret line="77" column="34" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="34" />
               <folding />
             </state>
           </provider>
@@ -141,8 +311,18 @@
       <file leaf-file-name="App_user_model.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/models/App_user_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7327">
-              <caret line="431" column="66" selection-start-line="431" selection-start-column="66" selection-end-line="431" selection-end-column="66" />
+            <state vertical-scroll-proportion="-17.0" vertical-offset="3732" max-vertical-offset="7995">
+              <caret line="276" column="82" selection-start-line="276" selection-start-column="82" selection-end-line="276" selection-end-column="82" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sdil_lander_v4.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DB/sdil_lander_v4.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.99354005" vertical-offset="3341" max-vertical-offset="4200">
+              <caret line="274" column="93" selection-start-line="274" selection-start-column="93" selection-end-line="274" selection-end-column="93" />
               <folding />
             </state>
           </provider>
@@ -178,17 +358,20 @@
         <option value="$PROJECT_DIR$/application/views/admin/admin_create_device_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_create_last_btn_link_view.php" />
         <option value="$PROJECT_DIR$/css/bootstrap-colorpicker.css" />
-        <option value="$PROJECT_DIR$/application/views/admin/admin_dashboard_navbar_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_dashboard_footer_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_dashboard_header_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_update_theme_view.php" />
-        <option value="$PROJECT_DIR$/application/models/App_user_model.php" />
         <option value="$PROJECT_DIR$/application/config/routes.php" />
-        <option value="$PROJECT_DIR$/application/controllers/Admin.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_create_theme_view.php" />
         <option value="$PROJECT_DIR$/application/views/preview/preview_body_view.php" />
         <option value="$PROJECT_DIR$/application/views/preview/preview_footer_view.php" />
+        <option value="$PROJECT_DIR$/../landing_page/lander/css/style.css" />
         <option value="$PROJECT_DIR$/application/views/preview/preview_header_view.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/admin_dashboard_navbar_view.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/admin_create_country_theme_view.php" />
+        <option value="$PROJECT_DIR$/application/controllers/Admin.php" />
+        <option value="$PROJECT_DIR$/application/models/App_user_model.php" />
+        <option value="$PROJECT_DIR$/DB/sdil_lander_v4.sql" />
       </list>
     </option>
   </component>
@@ -196,17 +379,16 @@
   <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
-    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpServers">
     <servers />
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="744" />
+    <option name="x" value="2" />
+    <option name="y" value="22" />
+    <option name="width" value="1918" />
+    <option name="height" value="983" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -229,10 +411,9 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
-      <manualOrder />
-      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -248,7 +429,7 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -258,39 +439,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="img" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="images" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -300,11 +453,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="DB" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -314,25 +467,11 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="css" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -342,15 +481,15 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -360,19 +499,19 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="preview" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -382,19 +521,19 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="admin" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -404,15 +543,15 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="models" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -422,15 +561,15 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
           <PATH>
@@ -440,25 +579,24 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="lander" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="config" />
-              <option name="myItemType" value="com.jetbrains.php.projectView.PhpTreeStructureProvider$1" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
       <pane id="Scratches" />
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../newsdil" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../wsong" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
@@ -466,180 +604,42 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/DB" />
+      <recent name="$PROJECT_DIR$/application/views/admin" />
       <recent name="D:\xampp\htdocs\lander\images" />
       <recent name="D:\xampp\htdocs\lander\js" />
       <recent name="D:\xampp\htdocs\lander\application\views\preview" />
-      <recent name="D:\xampp\htdocs\lander\css" />
-      <recent name="D:\xampp\htdocs\lander\application\views\admin" />
     </key>
   </component>
-  <component name="RestoreUpdateTree" date="Moments ago" ActionInfo="_Update">
-    <UpdatedFiles>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Updated from server" />
-        <option name="myStatusName" value="Changed on server" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="CHANGED_ON_SERVER" />
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Updated" />
-          <option name="myStatusName" value="Changed" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="UPDATED" />
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/config/routes.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/controllers/Admin.php</PATH>
-          <PATH vcs="Git" revision="">$PROJECT_DIR$/application/views/admin/admin_update_lander_slider_view.php</PATH>
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Created" />
-          <option name="myStatusName" value="Created" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="CREATED" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Deleted" />
-          <option name="myStatusName" value="Deleted" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="true" />
-          <option name="myId" value="REMOVED_FROM_REPOSITORY" />
-        </FILE-GROUP>
-        <FILE-GROUP>
-          <option name="myUpdateName" value="Restored" />
-          <option name="myStatusName" value="Will be restored" />
-          <option name="mySupportsDeletion" value="false" />
-          <option name="myCanBeAbsent" value="false" />
-          <option name="myId" value="RESTORED" />
-        </FILE-GROUP>
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Modified" />
-        <option name="myStatusName" value="Modified" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MODIFIED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Skipped" />
-        <option name="myStatusName" value="Skipped" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SKIPPED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with conflicts" />
-        <option name="myStatusName" value="Will be merged with conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_CONFLICTS" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with tree conflicts" />
-        <option name="myStatusName" value="Merged with tree conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_TREE_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged with property conflicts" />
-        <option name="myStatusName" value="Will be merged with property conflicts" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED_WITH_PROPERTY_CONFLICT" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Merged" />
-        <option name="myStatusName" value="Will be merged" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="MERGED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Not in repository" />
-        <option name="myStatusName" value="Not in repository" />
-        <option name="mySupportsDeletion" value="true" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="UNKNOWN" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally added" />
-        <option name="myStatusName" value="Locally added" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_ADDED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Locally removed" />
-        <option name="myStatusName" value="Locally removed" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="LOCALLY_REMOVED" />
-      </FILE-GROUP>
-      <FILE-GROUP>
-        <option name="myUpdateName" value="Switched" />
-        <option name="myStatusName" value="Switched" />
-        <option name="mySupportsDeletion" value="false" />
-        <option name="myCanBeAbsent" value="false" />
-        <option name="myId" value="SWITCHED" />
-      </FILE-GROUP>
-    </UpdatedFiles>
-  </component>
   <component name="RunManager">
-    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
-      <method />
-    </configuration>
-    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
-      <method />
-    </configuration>
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
       <TestRunner />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
+      <method />
+    </configuration>
+    <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
       <method />
     </configuration>
     <configuration default="true" type="PhpBehatConfigurationType" factoryName="Behat">
       <BehatRunner />
       <method />
     </configuration>
-    <configuration default="true" type="PhpLocalRunConfigurationType" factoryName="PHP Console">
-      <method />
-    </configuration>
     <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server">
       <method />
     </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
       <node-options />
       <gulpfile />
       <tasks />
-      <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.npm" factoryName="npm">
-      <command value="run-script" />
-      <scripts />
-      <node-interpreter value="project" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="mocha-javascript-test-runner" factoryName="Mocha">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <working-directory />
-      <pass-parent-env>true</pass-parent-env>
-      <envs />
-      <ui />
-      <extra-mocha-options />
-      <test-kind>DIRECTORY</test-kind>
-      <test-directory />
-      <recursive>false</recursive>
-      <method />
-    </configuration>
+    <list size="0" />
   </component>
-  <component name="ShelveChangesManager" show_recycled="false">
-    <option name="remove_strategy" value="false" />
-  </component>
+  <component name="ShelveChangesManager" show_recycled="false" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -648,7 +648,6 @@
       <changelist id="262a4ebb-918b-4ced-8e7b-6b73a0dd5394" name="Default" comment="" />
       <created>1478712426374</created>
       <option name="number" value="Default" />
-      <option name="presentableId" value="Default" />
       <updated>1478712426374</updated>
       <workItem from="1478712428081" duration="9725000" />
       <workItem from="1478796351427" duration="12189000" />
@@ -664,54 +663,57 @@
     <task id="LOCAL-00001" summary="Commit from home: 12-11-2016;; 3:50 AM">
       <created>1478900974335</created>
       <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
       <option name="project" value="LOCAL" />
       <updated>1478900974335</updated>
     </task>
     <task id="LOCAL-00002" summary="Commit from home: 16-11-2016;; 4:00 AM">
       <created>1479247264896</created>
       <option name="number" value="00002" />
-      <option name="presentableId" value="LOCAL-00002" />
       <option name="project" value="LOCAL" />
       <updated>1479247264896</updated>
     </task>
     <task id="LOCAL-00003" summary="Commit from home: 17-11-2016;; 11:12 AM">
       <created>1479359577983</created>
       <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
       <option name="project" value="LOCAL" />
       <updated>1479359577983</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Commit from office: 18-11-2016;; 9:35 AM">
+      <created>1479483323740</created>
+      <option name="number" value="00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1479483323741</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
     <option name="totallyTimeSpent" value="67107000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="2" y="22" width="1918" height="983" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24743778" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.329653" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32947975" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947975" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.19083156" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329653" sideWeight="0.5" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.329653" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947975" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -727,11 +729,15 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="false" />
+    <option name="myTodoPanelSettings">
+      <TodoPanelSettings />
+    </option>
     <MESSAGE value="Commit from office: 11-11-2016" />
     <MESSAGE value="Commit from home: 12-11-2016;; 3:50 AM" />
     <MESSAGE value="Commit from home: 16-11-2016;; 4:00 AM" />
     <MESSAGE value="Commit from home: 17-11-2016;; 11:12 AM" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit from home: 17-11-2016;; 11:12 AM" />
+    <MESSAGE value="Commit from office: 18-11-2016;; 9:35 AM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit from office: 18-11-2016;; 9:35 AM" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -740,6 +746,14 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/application/models/App_user_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="6465" max-vertical-offset="7185">
+          <caret line="431" column="66" selection-start-line="431" selection-start-column="66" selection-end-line="431" selection-end-column="66" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/images/avatar.png">
       <provider selected="true" editor-type-id="images">
         <state />
@@ -747,14 +761,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="1251" column="9" selection-start-line="1251" selection-start-column="5" selection-end-line="1251" selection-end-column="9" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/lander-admin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="124" column="23" selection-start-line="124" selection-start-column="23" selection-end-line="124" selection-end-column="23" />
         </state>
       </provider>
@@ -766,165 +780,128 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/system/libraries/Form_validation.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="1233" column="16" selection-start-line="1233" selection-start-column="16" selection-end-line="1233" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/filter.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="85" column="14" selection-start-line="85" selection-start-column="14" selection-end-line="85" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_login_index_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="3" column="42" selection-start-line="3" selection-start-column="42" selection-end-line="3" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/app_user_registration_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="91" column="84" selection-start-line="91" selection-start-column="84" selection-end-line="91" selection-end-column="84" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/models/Main_ui_model.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/footer_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="34" column="49" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_profile_update_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="22" column="53" selection-start-line="22" selection-start-column="53" selection-end-line="22" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_password_update_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="109" column="69" selection-start-line="109" selection-start-column="69" selection-end-line="109" selection-end-column="69" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_top_nevigation_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="12" column="130" selection-start-line="12" selection-start-column="130" selection-end-line="12" selection-end-column="130" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DB/sdil_lander.sql" />
     <entry file="file://$PROJECT_DIR$/application/views/admin/header_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="17" column="61" selection-start-line="17" selection-start-column="61" selection-end-line="17" selection-end-column="61" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/config/autoload.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/config/config.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="19" column="49" selection-start-line="19" selection-start-column="49" selection-end-line="19" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_country_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="144" column="115" selection-start-line="144" selection-start-column="115" selection-end-line="144" selection-end-column="115" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_lander_slider_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="175" column="42" selection-start-line="154" selection-start-column="36" selection-end-line="175" selection-end-column="42" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_device_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2448">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="144" column="88" selection-start-line="144" selection-start-column="88" selection-end-line="144" selection-end-column="88" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_lander_slider_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2040">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="120" column="72" selection-start-line="120" selection-start-column="72" selection-end-line="120" selection-end-column="72" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_country_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1513">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="89" column="39" selection-start-line="82" selection-start-column="32" selection-end-line="89" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DB/sdil_lander_updated.sql" />
-    <entry file="file://$PROJECT_DIR$/application/config/database.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="215">
-          <caret line="68" column="19" selection-start-line="68" selection-start-column="19" selection-end-line="68" selection-end-column="19" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../bco/index.php" />
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_last_btn_link_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="51">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="3" column="77" selection-start-line="3" selection-start-column="77" selection-end-line="3" selection-end-column="77" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../landing/vegas/vegas.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/bootstrap-colorpicker.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="9" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_navbar_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" column="94" selection-start-line="9" selection-start-column="94" selection-end-line="9" selection-end-column="94" />
         </state>
       </provider>
     </entry>
@@ -935,110 +912,120 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/css/bootstrap-colorpicker.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1785">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_header_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="30" column="16" selection-start-line="30" selection-start-column="16" selection-end-line="30" selection-end-column="16" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="202">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="4" column="82797" selection-start-line="4" selection-start-column="82797" selection-end-line="4" selection-end-column="82797" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_last_btn_link_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="171" column="165" selection-start-line="171" selection-start-column="86" selection-end-line="171" selection-end-column="165" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_device_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3706">
-          <caret line="218" column="28" selection-start-line="218" selection-start-column="28" selection-end-line="218" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_theme_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2482">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="146" column="77" selection-start-line="146" selection-start-column="77" selection-end-line="146" selection-end-column="77" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/App_user_model.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7327">
-          <caret line="431" column="66" selection-start-line="431" selection-start-column="66" selection-end-line="431" selection-end-column="66" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/lander_unsub.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/lander_vegas.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_footer_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="15" column="54" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/_types.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="81" column="18" selection-start-line="81" selection-start-column="14" selection-end-line="81" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <caret line="147" column="13" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/preview/preview_body_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3413" max-vertical-offset="4215">
+          <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_theme_view.php">
+    <entry file="file://$PROJECT_DIR$/application/views/preview/preview_footer_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="252" column="100" selection-start-line="252" selection-start-column="100" selection-end-line="252" selection-end-column="100" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="15" max-vertical-offset="1890">
+          <caret line="1" column="53" selection-start-line="1" selection-start-column="53" selection-end-line="1" selection-end-column="53" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
+    <entry file="file://$PROJECT_DIR$/../landing_page/lander/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="997" column="55" selection-start-line="997" selection-start-column="38" selection-end-line="997" selection-end-column="55" />
-          <folding>
-            <element signature="n#admin_delete_theme#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#admin_create_country_theme#0;n#Admin#0;n#!!top" expanded="false" />
-            <marker date="1479412142828" expanded="false" signature="4938:10447" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="12167:16989" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="17054:22210" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="22275:23122" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="23771:26093" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="26146:31586" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="31639:32652" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="33257:37041" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="37111:41084" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="55725:56218" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="56260:57526" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="57567:59173" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="59218:61025" ph="{...}" />
-            <marker date="1479412142828" expanded="false" signature="61062:61358" ph="{...}" />
-          </folding>
+        <state vertical-scroll-proportion="0.42091838" vertical-offset="0" max-vertical-offset="4005">
+          <caret line="22" column="46" selection-start-line="0" selection-start-column="0" selection-end-line="261" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="526" max-vertical-offset="1365">
+          <caret line="44" column="75" selection-start-line="44" selection-start-column="75" selection-end-line="44" selection-end-column="75" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/preview/preview_header_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="210" max-vertical-offset="300">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="7" selection-end-line="14" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_country_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2460" max-vertical-offset="4125">
+          <caret line="165" column="60" selection-start-line="165" selection-start-column="60" selection-end-line="165" selection-end-column="60" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_lander_slider_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="3565" max-vertical-offset="4365">
+          <caret line="256" column="87" selection-start-line="256" selection-start-column="87" selection-end-line="256" selection-end-column="87" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1047,57 +1034,269 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/images/checked_checkbox-pink.png">
-      <provider selected="true" editor-type-id="images">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/preview/preview_body_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="264" column="0" selection-start-line="264" selection-start-column="0" selection-end-line="264" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#5;n#div#1;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#6;n#div#1;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#7;n#div#1;n#body#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#div#8;n#div#1;n#body#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/images/unchecked_checkbox.png">
       <provider selected="true" editor-type-id="images">
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_footer_view.php">
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_device_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="54" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="54" />
+        <state vertical-scroll-proportion="-48.75" vertical-offset="2100" max-vertical-offset="4215">
+          <caret line="218" column="28" selection-start-line="218" selection-start-column="28" selection-end-line="218" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/preview/preview_footer_view.php">
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_theme_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="1" column="53" selection-start-line="1" selection-start-column="53" selection-end-line="1" selection-end-column="53" />
+        <state vertical-scroll-proportion="-11.208333" vertical-offset="3481" max-vertical-offset="4305">
+          <caret line="250" column="49" selection-start-line="245" selection-start-column="44" selection-end-line="250" selection-end-column="49" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_navbar_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="1905">
+          <caret line="10" column="76" selection-start-line="10" selection-start-column="76" selection-end-line="10" selection-end-column="76" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/_types.php">
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-665">
-          <caret line="147" column="13" selection-start-line="147" selection-start-column="13" selection-end-line="147" selection-end-column="13" />
+        <state vertical-scroll-proportion="-18.0" vertical-offset="723" max-vertical-offset="1560">
+          <caret line="77" column="34" selection-start-line="77" selection-start-column="14" selection-end-line="77" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/preview/preview_header_view.php">
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_country_theme_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="10" column="15" selection-start-line="10" selection-start-column="15" selection-end-line="10" selection-end-column="15" />
+        <state vertical-scroll-proportion="-20.125" vertical-offset="1797" max-vertical-offset="4455">
+          <caret line="152" column="131" selection-start-line="152" selection-start-column="131" selection-end-line="152" selection-end-column="131" />
+          <folding>
+            <element signature="n#style#0;n#option#1;n#select#0;n#div#0;n#div#1;n#form#0;n#div#1;n#div#0;n#div#0;n#div#1;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#div#0;n#div#0;n#td#2;n#tr#0;n#tbody#0;n#table#0;n#div#1;n#div#0;n#div#0;n#div#2;n#div#0;n#div#1;n#div#0;n#div#0;n#body#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-7.980392" vertical-offset="2773" max-vertical-offset="5385">
+          <caret line="970" column="55" selection-start-line="970" selection-start-column="55" selection-end-line="970" selection-end-column="55" />
+          <folding>
+            <element signature="n#__construct#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#index#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#731#2234#0#PHP" expanded="false" />
+            <element signature="e#842#2234#0#PHP" expanded="false" />
+            <element signature="e#1216#2223#0#PHP" expanded="false" />
+            <element signature="e#1584#2223#0#PHP" expanded="false" />
+            <element signature="e#1868#2209#0#PHP" expanded="false" />
+            <element signature="e#1955#2209#0#PHP" expanded="false" />
+            <element signature="e#2246#2498#0#PHP" expanded="false" />
+            <element signature="n#admin_create_lander_country#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#2564#4870#0#PHP" expanded="false" />
+            <element signature="e#2658#4870#0#PHP" expanded="false" />
+            <element signature="e#3140#4860#0#PHP" expanded="false" />
+            <element signature="e#4017#4860#0#PHP" expanded="false" />
+            <element signature="e#4118#4350#0#PHP" expanded="false" />
+            <element signature="e#4444#4771#0#PHP" expanded="false" />
+            <element signature="e#4600#4771#0#PHP" expanded="false" />
+            <element signature="n#admin_update_lander_country#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#5099#10441#0#PHP" expanded="false" />
+            <element signature="e#5193#10441#0#PHP" expanded="false" />
+            <element signature="e#5617#10431#0#PHP" expanded="false" />
+            <element signature="e#6295#10431#0#PHP" expanded="false" />
+            <element signature="e#6532#6722#0#PHP" expanded="false" />
+            <element signature="e#6885#9978#0#PHP" expanded="false" />
+            <element signature="e#7122#9978#0#PHP" expanded="false" />
+            <element signature="e#7221#9745#0#PHP" expanded="false" />
+            <element signature="e#7489#7690#0#PHP" expanded="false" />
+            <element signature="e#7837#8038#0#PHP" expanded="false" />
+            <element signature="e#8063#8259#0#PHP" expanded="false" />
+            <element signature="e#8287#9745#0#PHP" expanded="false" />
+            <element signature="e#8555#8991#0#PHP" expanded="false" />
+            <element signature="e#9019#9745#0#PHP" expanded="false" />
+            <element signature="e#9287#9723#0#PHP" expanded="false" />
+            <element signature="e#9766#9960#0#PHP" expanded="false" />
+            <element signature="e#9997#10342#0#PHP" expanded="false" />
+            <element signature="e#10162#10342#0#PHP" expanded="false" />
+            <element signature="e#10828#11463#0#PHP" expanded="false" />
+            <element signature="e#11085#11463#0#PHP" expanded="false" />
+            <element signature="e#11104#11453#0#PHP" expanded="false" />
+            <element signature="e#11244#11453#0#PHP" expanded="false" />
+            <element signature="e#11531#11784#0#PHP" expanded="false" />
+            <element signature="e#11790#12111#0#PHP" expanded="false" />
+            <element signature="e#12826#13737#0#PHP" expanded="false" />
+            <element signature="e#13750#16973#0#PHP" expanded="false" />
+            <element signature="e#13877#15553#0#PHP" expanded="false" />
+            <element signature="e#14725#15535#0#PHP" expanded="false" />
+            <element signature="e#15339#15535#0#PHP" expanded="false" />
+            <element signature="e#15571#16958#0#PHP" expanded="false" />
+            <element signature="e#15773#16094#0#PHP" expanded="false" />
+            <element signature="e#15930#16094#0#PHP" expanded="false" />
+            <element signature="e#16196#16958#0#PHP" expanded="false" />
+            <element signature="n#admin_update_lander_slider_image#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#17252#22204#0#PHP" expanded="false" />
+            <element signature="e#17346#22204#0#PHP" expanded="false" />
+            <element signature="e#17704#18558#0#PHP" expanded="false" />
+            <element signature="e#18571#22193#0#PHP" expanded="false" />
+            <element signature="e#19264#19582#0#PHP" expanded="false" />
+            <element signature="e#19419#19582#0#PHP" expanded="false" />
+            <element signature="e#19677#22193#0#PHP" expanded="false" />
+            <element signature="e#20034#20807#0#PHP" expanded="false" />
+            <element signature="e#20623#20807#0#PHP" expanded="false" />
+            <element signature="e#20825#22179#0#PHP" expanded="false" />
+            <element signature="e#21042#21376#0#PHP" expanded="false" />
+            <element signature="e#21205#21376#0#PHP" expanded="false" />
+            <element signature="e#21478#22179#0#PHP" expanded="false" />
+            <element signature="n#admin_delete_lander_slider_image#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#22488#23055#0#PHP" expanded="false" />
+            <element signature="e#22618#23055#0#PHP" expanded="false" />
+            <element signature="e#22866#22929#0#PHP" expanded="false" />
+            <element signature="e#23128#23448#0#PHP" expanded="false" />
+            <element signature="e#23454#23729#0#PHP" expanded="false" />
+            <element signature="n#admin_create_device#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#23786#26087#0#PHP" expanded="false" />
+            <element signature="e#23880#26087#0#PHP" expanded="false" />
+            <element signature="e#24356#26077#0#PHP" expanded="false" />
+            <element signature="e#25218#26077#0#PHP" expanded="false" />
+            <element signature="e#25319#25573#0#PHP" expanded="false" />
+            <element signature="e#25666#25989#0#PHP" expanded="false" />
+            <element signature="e#25820#25989#0#PHP" expanded="false" />
+            <element signature="n#admin_update_device#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#26302#31580#0#PHP" expanded="false" />
+            <element signature="e#26396#31580#0#PHP" expanded="false" />
+            <element signature="e#26816#31570#0#PHP" expanded="false" />
+            <element signature="e#27489#31570#0#PHP" expanded="false" />
+            <element signature="e#27734#27934#0#PHP" expanded="false" />
+            <element signature="e#28095#31122#0#PHP" expanded="false" />
+            <element signature="e#28324#31122#0#PHP" expanded="false" />
+            <element signature="e#28423#30893#0#PHP" expanded="false" />
+            <element signature="e#28682#28880#0#PHP" expanded="false" />
+            <element signature="e#29024#29222#0#PHP" expanded="false" />
+            <element signature="e#29247#29439#0#PHP" expanded="false" />
+            <element signature="e#29467#30893#0#PHP" expanded="false" />
+            <element signature="e#29726#30155#0#PHP" expanded="false" />
+            <element signature="e#30183#30893#0#PHP" expanded="false" />
+            <element signature="e#30442#30871#0#PHP" expanded="false" />
+            <element signature="e#30914#31104#0#PHP" expanded="false" />
+            <element signature="e#31141#31482#0#PHP" expanded="false" />
+            <element signature="e#31304#31482#0#PHP" expanded="false" />
+            <element signature="n#admin_delete_device#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#31899#32592#0#PHP" expanded="false" />
+            <element signature="e#32151#32592#0#PHP" expanded="false" />
+            <element signature="e#32238#32582#0#PHP" expanded="false" />
+            <element signature="e#32377#32582#0#PHP" expanded="false" />
+            <element signature="e#32658#32930#0#PHP" expanded="false" />
+            <element signature="e#32936#33207#0#PHP" expanded="false" />
+            <element signature="e#36424#36928#0#PHP" expanded="false" />
+            <element signature="e#36537#36910#0#PHP" expanded="false" />
+            <element signature="e#36716#36910#0#PHP" expanded="false" />
+            <element signature="n#admin_update_last_button_link#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#37669#41078#0#PHP" expanded="false" />
+            <element signature="e#37763#41078#0#PHP" expanded="false" />
+            <element signature="e#38191#41068#0#PHP" expanded="false" />
+            <element signature="e#38901#41068#0#PHP" expanded="false" />
+            <element signature="e#39154#39368#0#PHP" expanded="false" />
+            <element signature="e#39478#40576#0#PHP" expanded="false" />
+            <element signature="e#39673#40576#0#PHP" expanded="false" />
+            <element signature="e#39700#40364#0#PHP" expanded="false" />
+            <element signature="e#39921#40138#0#PHP" expanded="false" />
+            <element signature="e#40163#40342#0#PHP" expanded="false" />
+            <element signature="e#40385#40558#0#PHP" expanded="false" />
+            <element signature="e#40595#40970#0#PHP" expanded="false" />
+            <element signature="e#40775#40970#0#PHP" expanded="false" />
+            <element signature="n#admin_delete_last_button_link#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#41392#41746#0#PHP" expanded="false" />
+            <element signature="e#41528#41746#0#PHP" expanded="false" />
+            <element signature="e#41823#42103#0#PHP" expanded="false" />
+            <element signature="e#42109#42383#0#PHP" expanded="false" />
+            <element signature="e#43966#45036#0#PHP" expanded="false" />
+            <element signature="e#44269#44530#0#PHP" expanded="false" />
+            <element signature="e#44629#44949#0#PHP" expanded="false" />
+            <element signature="e#44781#44949#0#PHP" expanded="false" />
+            <element signature="n#admin_update_theme#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#45254#50829#0#PHP" expanded="false" />
+            <element signature="e#45348#50829#0#PHP" expanded="false" />
+            <element signature="e#45866#50819#0#PHP" expanded="false" />
+            <element signature="e#46534#50819#0#PHP" expanded="false" />
+            <element signature="e#46837#47098#0#PHP" expanded="false" />
+            <element signature="e#47263#50376#0#PHP" expanded="false" />
+            <element signature="e#47503#50376#0#PHP" expanded="false" />
+            <element signature="e#47602#50138#0#PHP" expanded="false" />
+            <element signature="e#47864#48059#0#PHP" expanded="false" />
+            <element signature="e#48218#48431#0#PHP" expanded="false" />
+            <element signature="e#48456#48650#0#PHP" expanded="false" />
+            <element signature="e#48678#50138#0#PHP" expanded="false" />
+            <element signature="e#48940#49368#0#PHP" expanded="false" />
+            <element signature="e#49396#50138#0#PHP" expanded="false" />
+            <element signature="e#49676#50116#0#PHP" expanded="false" />
+            <element signature="e#50159#50358#0#PHP" expanded="false" />
+            <element signature="e#50395#50732#0#PHP" expanded="false" />
+            <element signature="e#50556#50732#0#PHP" expanded="false" />
+            <element signature="n#admin_delete_theme#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="e#51100#51426#0#PHP" expanded="false" />
+            <element signature="e#51230#51426#0#PHP" expanded="false" />
+            <element signature="e#51493#51764#0#PHP" expanded="false" />
+            <element signature="e#51770#52052#0#PHP" expanded="false" />
+            <element signature="e#55602#55880#0#PHP" expanded="false" />
+            <element signature="e#55946#56551#0#PHP" expanded="false" />
+            <element signature="e#56040#56551#0#PHP" expanded="false" />
+            <element signature="e#57824#58399#0#PHP" expanded="false" />
+            <element signature="e#58136#58399#0#PHP" expanded="false" />
+            <element signature="e#58529#60046#0#PHP" expanded="false" />
+            <element signature="e#58623#60046#0#PHP" expanded="false" />
+            <element signature="e#59055#60036#0#PHP" expanded="false" />
+            <element signature="e#59742#60036#0#PHP" expanded="false" />
+            <element signature="e#60254#61898#0#PHP" expanded="false" />
+            <element signature="e#60348#61898#0#PHP" expanded="false" />
+            <element signature="e#60864#61888#0#PHP" expanded="false" />
+            <element signature="e#61493#61888#0#PHP" expanded="false" />
+            <element signature="e#61637#61799#0#PHP" expanded="false" />
+            <element signature="e#62002#62231#0#PHP" expanded="false" />
+            <element signature="e#62092#62231#0#PHP" expanded="false" />
+            <element signature="e#62331#62557#0#PHP" expanded="false" />
+            <element signature="e#62422#62557#0#PHP" expanded="false" />
+            <element signature="e#62664#62905#0#PHP" expanded="false" />
+            <element signature="e#62763#62905#0#PHP" expanded="false" />
+            <element signature="e#63015#63262#0#PHP" expanded="false" />
+            <element signature="e#63117#63262#0#PHP" expanded="false" />
+            <element signature="e#63369#63610#0#PHP" expanded="false" />
+            <element signature="e#63468#63610#0#PHP" expanded="false" />
+            <element signature="e#63716#63955#0#PHP" expanded="false" />
+            <element signature="e#63814#63955#0#PHP" expanded="false" />
+            <element signature="e#64060#64297#0#PHP" expanded="false" />
+            <element signature="e#64157#64297#0#PHP" expanded="false" />
+            <element signature="e#64408#64657#0#PHP" expanded="false" />
+            <element signature="e#64511#64657#0#PHP" expanded="false" />
+            <element signature="e#64764#65003#0#PHP" expanded="false" />
+            <element signature="e#64862#65003#0#PHP" expanded="false" />
+            <element signature="e#65103#65326#0#PHP" expanded="false" />
+            <element signature="e#65193#65326#0#PHP" expanded="false" />
+            <element signature="e#65428#65676#0#PHP" expanded="false" />
+            <element signature="e#65521#65676#0#PHP" expanded="false" />
+            <element signature="e#65738#65881#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/App_user_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.0" vertical-offset="3732" max-vertical-offset="7995">
+          <caret line="276" column="82" selection-start-line="276" selection-start-column="82" selection-end-line="276" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DB/sdil_lander_v4.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.99354005" vertical-offset="3341" max-vertical-offset="4200">
+          <caret line="274" column="93" selection-start-line="274" selection-start-column="93" selection-end-line="274" selection-end-column="93" />
           <folding />
         </state>
       </provider>

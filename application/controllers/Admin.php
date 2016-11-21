@@ -918,7 +918,7 @@ class Admin extends CI_Controller
     }
 
 
-   /*
+    /*
     * *************************************************************************************
     * Lander Theme Create, Read (List), Update & Delete Implementation Finish
     * *************************************************************************************
@@ -937,68 +937,79 @@ class Admin extends CI_Controller
         } else {
             $this->load->library('Form_validation');
             // field name, error message, validation rules
-            $this->form_validation->set_rules('theme_name', 'Theme name', 'trim|required|min_length[2]|callback_unique_theme_name');
-            $this->form_validation->set_rules('theme_color_code', 'Theme Color Code', 'trim|required|min_length[2]|callback_unique_theme_color_code');
-            $this->form_validation->set_rules('theme_css', 'Theme CSS', 'trim|required');
-            $this->form_validation->set_rules('is_active', 'Is Active');
+            $this->form_validation->set_rules('theme_id', 'Selected Theme', 'trim|required');
+            $this->form_validation->set_rules('country_id', 'Selected Country', 'trim|required');
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'SDIL Lander Country Theme List - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
-                $data['page_title'] = 'Create Theme';
+                $data['page_title'] = 'Create Country Theme';
                 $data['navbar_title'] = Admin::$navbar_title;
-                $data['data_list_title'] = 'All Themes List';
+                $data['data_list_title'] = 'All Country Themes List';
                 $data['footer_title'] = Admin::$footer_title;
 
-                $all_themes = $this->app_user_model->get_all_themes(); // Reading and showing the devices list from DB
-                $data['all_themes'] = $all_themes;
+                $all_country_themes = $this->app_user_model->get_all_country_themes(); // Reading and showing the devices list from DB
+                $data['all_country_themes'] = $all_country_themes;
+
+                $all_active_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the country list from DB
+                $data['all_active_countries'] = $all_active_countries;
+
+                $all_active_themes = $this->app_user_model->get_all_active_themes(); // Reading and showing the devices list from DB
+                $data['all_active_themes'] = $all_active_themes;
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
-                $this->load->view('admin/admin_create_theme_view', $data);
+                $this->load->view('admin/admin_create_country_theme_view', $data);
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
             } else {
-                $is_active = $this->input->post('is_active') ? 1 : 0;
-                $theme_name = $this->input->post('theme_name');
-                $theme_color_code = $this->input->post('theme_color_code');
-                $theme_css = $this->input->post('theme_css');
+                $country_id = $this->input->post('country_id');
+                $theme_id = $this->input->post('theme_id');
                 $data = array(
-                    'lander_theme_name' => $theme_name,
-                    'lander_theme_color_code' => $theme_color_code,
-                    'lander_theme_css' => $theme_css,
-                    'lander_theme_is_active' => $is_active
+                    'lander_theme_country_id' => $country_id,
+                    'lander_theme_country_them_id' => $theme_id
                 );
-                $is_created = $this->app_user_model->create_lander_theme($data);
-                if ($is_created) {
-                    $this->session->set_flashdata('admin_create_theme_message', "Theme is created successfully.");
+                $country_theme_association_count_all = $this->app_user_model->get_associated_country_theme_count_all($theme_id, $country_id);
+                $country_theme_association_count = $this->app_user_model->get_associated_country_theme_count($country_id);
+                if ($country_theme_association_count >= 1) {
+                    $this->session->set_flashdata('admin_can_not_associate_country_theme_message', "Sorry! Selected Country is already associated with a Theme.");
                 } else {
-                    $this->session->set_flashdata('admin_create_theme_error_message', " Theme is not created successfully. Please try again.");
+                    if ($country_theme_association_count_all) {
+                        $this->session->set_flashdata('admin_can_not_create_country_theme_message', "Sorry! These theme is already associated with the selected Country.");
+                    } else {
+                        $is_created = $this->app_user_model->create_lander_country_theme($data);
+                        if ($is_created) {
+                            $this->session->set_flashdata('admin_create_country_theme_message', "Country Theme is created successfully.");
+                        } else {
+                            $this->session->set_flashdata('admin_create_theme_error_message', " Country Theme is not created successfully. Please try again.");
+                        }
+                    }
                 }
-
-                redirect(base_url() . 'admin/theme/create', 'refresh');
+                redirect(base_url() . 'admin/country/theme/create', 'refresh');
             }
         }
     }
 
 
-   /*
+    /*
     * *************************************************************************************
     * Lander Country Theme Create, Read (List), Update & Delete Implementation Start
     * *************************************************************************************
     */
 
-   public function admin_show_preview($theme_id){
-       if (($this->session->userdata('admin_email') == "")) {
-           $this->logout();
-       } else {
-           $theme_id_dec = base64_decode($theme_id);
-           $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec);
-           $data['theme_name'] = $single_theme['lander_theme_name'];
-           $data['lander_theme_css'] = $single_theme['lander_theme_css'];
+    public function admin_show_preview($theme_id)
+    {
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $theme_id_dec = base64_decode($theme_id);
+            $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec);
+            $data['theme_name'] = $single_theme['lander_theme_name'];
+            $data['lander_theme_css'] = $single_theme['lander_theme_css'];
 
-           $this->load->view('preview/preview_header_view', $data);
-           $this->load->view('preview/preview_body_view', $data);
-           $this->load->view('preview/preview_footer_view', $data);
-       }
-   }
+            $this->load->view('preview/preview_header_view', $data);
+            $this->load->view('preview/preview_body_view', $data);
+            $this->load->view('preview/preview_footer_view', $data);
+        }
+    }
+
     public function welcome_admin_dashboard()
     {
         $data['title'] = 'Welcome SDIL Lander Admin Panel';
