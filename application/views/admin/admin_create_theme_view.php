@@ -251,15 +251,24 @@
                                             </td>
                                             <td><?php echo $row->lander_theme_is_active ? 'Yes' : 'No'; ?></td>
                                             <td><a href="<?php echo base_url();?>admin/show/preview/<?php echo base64_encode($row->lander_theme_id); ?>" class="btn btn-warning" target="_blank">Show Preview</a></td>
-                                            <td align="center"><a class="btn btn-success" title="Edit"
-                                                                  href="<?php echo base_url(); ?>admin/theme/update/<?php echo base64_encode($row->lander_theme_id); ?>"
-                                                                  role="button"><span
-                                                        class="glyphicon glyphicon-edit"></span></a>
+                                            <td align="center">
+                                                <?php
+                                                if($row->is_lander_theme_reserved){
+                                                    echo 'Reserved';
+                                                } else { ?>
+                                                    <a class="btn btn-success" title="Edit"
+                                                       href="<?php echo base_url(); ?>admin/theme/update/<?php echo base64_encode($row->lander_theme_id); ?>"
+                                                       role="button"><span
+                                                            class="glyphicon glyphicon-edit"></span></a>
 
-                                                <a class="btn btn-danger"
-                                                   href="<?php echo base_url(); ?>admin/theme/delete/<?php echo base64_encode($row->lander_theme_id); ?>"
-                                                   onclick="return checkMe()" title="Delete"
-                                                   role="button"><span class="glyphicon glyphicon-trash"></span></a>
+                                                    <a class="btn btn-danger"
+                                                       href="<?php echo base_url(); ?>admin/theme/delete/<?php echo base64_encode($row->lander_theme_id); ?>"
+                                                       onclick="return checkMe()" title="Delete"
+                                                       role="button"><span class="glyphicon glyphicon-trash"></span></a>
+                                                <?php
+                                                }
+                                                ?>
+
                                             </td>
                                         </tr>
 

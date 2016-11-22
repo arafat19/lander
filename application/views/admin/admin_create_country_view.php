@@ -239,15 +239,24 @@
                                             <td><?php echo $row->lander_country_name; ?></td>
                                             <td><?php echo $row->lander_country_code; ?></td>
                                             <td><?php echo $row->is_active ? 'Yes' : 'No'; ?></td>
-                                            <td align="center"><a class="btn btn-success" title="Edit"
-                                                                  href="<?php echo base_url(); ?>admin/country/update/<?php echo base64_encode($row->lander_country_id); ?>"
-                                                                  role="button"><span
-                                                        class="glyphicon glyphicon-edit"></span></a>
+                                            <td align="center">
+                                                <?php
+                                                if ($row->is_country_reserved) echo 'Reserved';
+                                                else { ?>
+                                                    <a class="btn btn-success" title="Edit"
+                                                       href="<?php echo base_url(); ?>admin/country/update/<?php echo base64_encode($row->lander_country_id); ?>"
+                                                       role="button"><span
+                                                            class="glyphicon glyphicon-edit"></span></a>
 
-                                                <a class="btn btn-danger"
-                                                   href="<?php echo base_url(); ?>admin/country/delete/<?php echo base64_encode($row->lander_country_id); ?>"
-                                                   onclick="return checkMe()" title="Delete"
-                                                   role="button"><span class="glyphicon glyphicon-trash"></span></a>
+                                                    <a class="btn btn-danger"
+                                                       href="<?php echo base_url(); ?>admin/country/delete/<?php echo base64_encode($row->lander_country_id); ?>"
+                                                       onclick="return checkMe()" title="Delete"
+                                                       role="button"><span class="glyphicon glyphicon-trash"></span></a>
+                                                    <?php
+                                                }
+                                                ?>
+
+
                                             </td>
                                         </tr>
 

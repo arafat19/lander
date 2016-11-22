@@ -1042,6 +1042,30 @@ class Admin extends CI_Controller
         }
     }
 
+    public function admin_delete_country_theme($sdil_lander_theme_country_ID)
+    {
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
+        } else {
+            $sdil_lander_theme_country_ID_dec = base64_decode($sdil_lander_theme_country_ID);
+            $single_theme_country = $this->app_user_model->get_single_theme_country_by_id($sdil_lander_theme_country_ID_dec);
+
+            $is_live = $single_theme_country["sdil_lander_theme_country_is_live"];
+            if ($is_live) {
+                $this->session->set_flashdata('cant_delete_message', 'Live Country Theme can not be deleted.');
+            } else {
+                $is_deleted = $this->app_user_model->delete_lander_country_theme($sdil_lander_theme_country_ID_dec);
+                if($is_deleted){
+                    $this->session->set_flashdata('country_theme_delete_message', 'Selected Country Theme is successfully deleted.');
+                }
+
+            }
+
+            redirect(base_url() . 'admin/country/theme/create', 'refresh');
+        }
+
+    }
+
 
     /*
     * *************************************************************************************

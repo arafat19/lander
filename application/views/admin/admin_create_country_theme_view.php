@@ -1,7 +1,7 @@
 <body class="nav-md">
 <script language="javascript">
     function checkMe() {
-        if (confirm("Are you sure you want to delete the selected Button link?")) {
+        if (confirm("Are you sure you want to delete the selected Country Theme?")) {
             return true;
         } else {
             return false;
@@ -152,6 +152,14 @@
                                         </button>
                                         <strong><?php echo $this->session->flashdata('admin_can_not_associate_country_theme_message'); ?></strong>
                                     </div>
+                                <?php }
+                                if ($this->session->flashdata('country_theme_delete_message')) { ?>
+                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong><?php echo $this->session->flashdata('country_theme_delete_message'); ?></strong>
+                                    </div>
                                 <?php } ?>
 
                                 <br/>
@@ -275,7 +283,11 @@
                                                 </div>
                                             </td>
                                             <td><?php echo $row->lander_country_name; ?></td>
-                                            <td><?php echo $row->sdil_lander_theme_country_is_live ? 'Yes' : 'No'; ?></td>
+                                            <td align="center"><?php if($row->sdil_lander_theme_country_is_live){ ?>
+                                                    <a class="btn btn-warning" target="_blank"
+                                                       href="<?php echo base_url(); ?>">Live Preview</span></a>
+                                                   <?php
+                                                    } else echo 'No'; ?></td>
                                             <td align="center"><a class="btn btn-success" title="Edit"
                                                                   href="<?php echo base_url(); ?>admin/country/theme/update/<?php echo base64_encode($row->sdil_lander_theme_country_ID); ?>"
                                                                   role="button"><span

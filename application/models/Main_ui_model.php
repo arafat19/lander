@@ -24,6 +24,23 @@ class main_ui_model extends CI_Model
         $result = $this->db->get(Main_ui_model::$table_sdil_lander_theme_country);
         return $result->row_array();
     }
+    public function get_last_btn_link_by_device_country_id($country_ID, $current_device_id)
+    {
+        $this->db->select('*');
+        $this->db->where('lander_last_btn_country_id', $country_ID);
+        $this->db->where('lander_last_btn_device_id', $current_device_id);
+        $this->db->where('lander_last_btn_is_active', 1);
+        $result = $this->db->get(Main_ui_model::$table_sdil_lander_last_button_link);
+        return $result->row_array();
+    }
+    public function get_current_device_id_device_code($current_device_code)
+    {
+        $this->db->select('*');
+        $this->db->where('lander_device_code', $current_device_code);
+        $this->db->where('lander_device_is_active', 1);
+        $result = $this->db->get(Main_ui_model::$table_sdil_lander_device);
+        return $result->row_array();
+    }
     public function get_country_id_by_country_code_is_active($country_code, $is_active)
     {
         $this->db->select('*');

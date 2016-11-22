@@ -538,5 +538,11 @@ class app_user_model extends CI_Model
         $is_deleted = $this->db->delete(App_user_model::$table_sdil_lander_last_button_link);
         return $is_deleted;
     }
+    public function delete_lander_country_theme($sdil_lander_theme_country_ID)
+    {
+        $this->db->where('sdil_lander_theme_country_ID', $sdil_lander_theme_country_ID);
+        $is_deleted = $this->db->delete(App_user_model::$table_sdil_lander_theme_country);
+        return $is_deleted;
+    }
 
 }
