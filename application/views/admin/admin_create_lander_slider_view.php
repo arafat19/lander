@@ -232,6 +232,7 @@
                                         <th>Image</th>
                                         <th>Created On</th>
                                         <th>Country Name</th>
+                                        <th>Created By</th>
                                         <th>Is Active</th>
                                         <th>Actions</th>
                                     </tr>
@@ -252,6 +253,7 @@
                                             </td>
                                             <td><?php echo $row->lander_image_file_created; ?></td>
                                             <td><?php echo $row->lander_country_name; ?></td>
+                                            <td><?php echo $row->full_name; ?></td>
                                             <td align="center"><?php echo $row->lander_image_is_active ? 'Yes' : 'No'; ?></td>
                                             <td align="center">
                                                 <a class="btn btn-success" title="Edit"

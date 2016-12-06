@@ -223,6 +223,7 @@
                                         <th>Serial</th>
                                         <th>Device Name</th>
                                         <th>Device Code</th>
+                                        <th>Created By</th>
                                         <th>Is Active</th>
                                         <th>Is Reserved</th>
                                         <th>Action</th>
@@ -239,6 +240,7 @@
                                             <td><?php echo $i++; ?></td>
                                             <td><?php echo $row->lander_device_name; ?></td>
                                             <td><?php echo $row->lander_device_code; ?></td>
+                                            <td><?php echo $row->full_name; ?></td>
                                             <td><?php echo $row->lander_device_is_active ? 'Yes' : 'No'; ?></td>
                                             <td><?php echo $row->lander_device_is_reserved ? 'Yes' : 'No'; ?></td>
                                             <?php if(!$row->lander_device_is_reserved) { ?>

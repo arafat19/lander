@@ -223,6 +223,7 @@
                                         <th>Serial</th>
                                         <th>Country Name</th>
                                         <th>Country Code</th>
+                                        <th>Created By</th>
                                         <th>Is Active</th>
                                         <th>Action</th>
                                     </tr>
@@ -238,6 +239,7 @@
                                             <td><?php echo $i++; ?></td>
                                             <td><?php echo $row->lander_country_name; ?></td>
                                             <td><?php echo $row->lander_country_code; ?></td>
+                                            <td><?php echo $row->full_name; ?></td>
                                             <td><?php echo $row->is_active ? 'Yes' : 'No'; ?></td>
                                             <td align="center">
                                                 <?php

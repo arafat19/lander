@@ -81,17 +81,6 @@ $route['admin/country/theme/delete/(:any)'] = "admin/admin_delete_country_theme/
 
 $route['admin/show/preview/(:any)'] = "admin/admin_show_preview/$1";
 
-$route['admin/instructor/photo/update/(:any)'] = "admin/update_instructor_photo/$1";
-
-$route['admin/assign/course/to/instructor/(:any)'] = "admin/admin_assign_course_instructor/$1";
-
-
-$route['admin/show/sub/district'] = "admin/show_sub_district";
-$route['home/show/applicant/sub/district'] = "home/show_applicant_sub_district";
-$route['home/edit/applicant/data/(:any)'] = "home/edit_applicant_data/$1";
-
-$route['home/application'] = "home/application_submit";
-$route['home/confirm/application/(:any)'] = "home/confirm_applicant_submission/$1";
 $route['sign-out'] = "admin/logout";
 
 $route['404_override'] = '';

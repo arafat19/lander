@@ -70,6 +70,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('country_name', 'Country name', 'trim|required|min_length[2]|callback_unique_country_name');
@@ -83,7 +84,7 @@ class Admin extends CI_Controller
                 $data['data_list_title'] = 'All Countries List';
                 $data['footer_title'] = Admin::$footer_title;
 
-                $all_countries = $this->app_user_model->get_all_countries(); // Reading and showing the countries list from DB
+                $all_countries = $this->app_user_model->get_all_countries($created_by); // Reading and showing the countries list from DB
                 $data['all_countries'] = $all_countries;
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
@@ -91,10 +92,12 @@ class Admin extends CI_Controller
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
             } else {
                 $is_active = $this->input->post('is_active') ? 1 : 0;
+
                 $data = array(
                     'lander_country_name' => $this->input->post('country_name'),
                     'lander_country_code' => $this->input->post('country_code'),
-                    'is_active' => $is_active
+                    'is_active' => $is_active,
+                    'created_by' => $created_by
                 );
                 $is_created = $this->app_user_model->create_country($data);
                 if ($is_created) {
@@ -110,11 +113,12 @@ class Admin extends CI_Controller
 
     public function admin_update_lander_country($country_id)
     {
-        $country_id_dec = base64_decode($country_id);
-        $single_country = $this->app_user_model->get_single_country_by_id($country_id_dec);
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $country_id_dec = base64_decode($country_id);
+            $created_by = $this->session->userdata('admin_id');
+            $single_country = $this->app_user_model->get_single_country_by_id($country_id_dec, $created_by);
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('country_name', 'Country name', 'trim|required|min_length[2]');
@@ -137,10 +141,12 @@ class Admin extends CI_Controller
                 $country_name = $this->input->post('country_name');
                 $country_code = $this->input->post('country_code');
                 $is_active = $this->input->post('is_active') ? 1 : 0;
+
                 $data = array(
                     'lander_country_name' => $country_name,
                     'lander_country_code' => $country_code,
-                    'is_active' => $is_active
+                    'is_active' => $is_active,
+                    'modified_by' => $created_by
                 );
                 $is_updated = FALSE;
                 $check_country_name_is_unique = TRUE;
@@ -150,11 +156,11 @@ class Admin extends CI_Controller
                 } else {
                     // Country name and code unique check during update
                     if ($country_name != $single_country['lander_country_name'] && $country_code != $single_country['lander_country_code']) {
-                        $check_country_name_is_unique = $this->app_user_model->unique_lander_country_name($country_name);
+                        $check_country_name_is_unique = $this->app_user_model->unique_lander_country_name($country_name, $created_by);
                         if ($check_country_name_is_unique) {
                             $this->session->set_flashdata('admin_country_name_not_unique_message', "Given Country name is already exist");
                         }
-                        $check_country_code_is_unique = $this->app_user_model->unique_lander_country_code($country_code);
+                        $check_country_code_is_unique = $this->app_user_model->unique_lander_country_code($country_code, $created_by);
                         if ($check_country_code_is_unique) {
                             $this->session->set_flashdata('admin_country_code_not_unique_message', "Given Country code is already exist");
                         }
@@ -162,7 +168,7 @@ class Admin extends CI_Controller
                             redirect(base_url() . 'admin/country/update/' . $country_id, 'refresh');
                         }
                     } else if ($country_name != $single_country['lander_country_name'] && $country_code == $single_country['lander_country_code']) {
-                        $check_country_name_is_unique = $this->app_user_model->unique_lander_country_name($country_name);
+                        $check_country_name_is_unique = $this->app_user_model->unique_lander_country_name($country_name, $created_by);
                         if ($check_country_name_is_unique) {
                             $this->session->set_flashdata('admin_country_name_not_unique_message', "Given Country name is already exist");
                             $check_country_name_is_unique = FALSE;
@@ -170,7 +176,7 @@ class Admin extends CI_Controller
                             redirect(base_url() . 'admin/country/update/' . $country_id, 'refresh');
                         }
                     } else if ($country_name == $single_country['lander_country_name'] && $country_code != $single_country['lander_country_code']) {
-                        $check_country_code_is_unique = $this->app_user_model->unique_lander_country_code($country_code);
+                        $check_country_code_is_unique = $this->app_user_model->unique_lander_country_code($country_code, $created_by);
                         if ($check_country_code_is_unique) {
                             $this->session->set_flashdata('admin_country_code_not_unique_message', "Given Country code is already exist");
                             $check_country_code_is_unique = FALSE;
@@ -197,22 +203,27 @@ class Admin extends CI_Controller
 
     public function admin_delete_lander_country($country_id)
     {
-        $country_id_dec = base64_decode($country_id);
-        $single_country = $this->app_user_model->get_single_country_by_id($country_id_dec);
-        $country_association_count = $this->app_user_model->get_associated_country_count($country_id_dec);
-        $is_active = $single_country["is_active"];
-        if ($country_association_count > 0) {
-            $this->session->set_flashdata('cant_delete_associate_message', 'Country ' . $single_country['lander_country_name'] . ' can not be deleted. It has ' . $country_association_count . ' association.');
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
         } else {
-            if ($is_active) {
-                $this->session->set_flashdata('cant_delete_message', 'Active Country can not be deleted.');
+            $created_by = $this->session->userdata('admin_id');
+            $country_id_dec = base64_decode($country_id);
+            $single_country = $this->app_user_model->get_single_country_by_id($country_id_dec, $created_by);
+            $country_association_count = $this->app_user_model->get_associated_country_count($country_id_dec, $created_by);
+            $is_active = $single_country["is_active"];
+            if ($country_association_count > 0) {
+                $this->session->set_flashdata('cant_delete_associate_message', 'Country ' . $single_country['lander_country_name'] . ' can not be deleted. It has ' . $country_association_count . ' association(s).');
             } else {
-                $this->app_user_model->delete_country($country_id_dec);
-                $this->session->set_flashdata('country_delete_message', 'Selected Country is successfully deleted');
+                if ($is_active) {
+                    $this->session->set_flashdata('cant_delete_message', 'Active Country can not be deleted.');
+                } else {
+                    $this->app_user_model->delete_country($country_id_dec, $created_by);
+                    $this->session->set_flashdata('country_delete_message', 'Selected Country is successfully deleted');
+                }
             }
-        }
 
-        redirect(base_url() . 'admin/country/create');
+            redirect(base_url() . 'admin/country/create');
+        }
     }
 
     /*
@@ -232,9 +243,10 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
-            $all_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the country list from DB
+            $created_by = $this->session->userdata('admin_id');
+            $all_countries = $this->app_user_model->get_all_active_countries($created_by); // Reading and showing the country list from DB
 
-            $all_slider_images = $this->app_user_model->get_all_slider_images(); // Reading and showing the countries list from DB
+            $all_slider_images = $this->app_user_model->get_all_slider_images($created_by); // Reading and showing the countries list from DB
             $data['all_slider_images'] = $all_slider_images;
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -281,6 +293,7 @@ class Admin extends CI_Controller
                         $uploadData[$i]['lander_image_file_modified'] = date("Y-m-d H:i:s");
                         $uploadData[$i]['lander_image_country_id'] = $this->input->post('country_id');
                         $uploadData[$i]['lander_image_is_active'] = $this->input->post('is_active') ? 1 : 0;
+                        $uploadData[$i]['lander_image_created_by'] = $created_by;
                     } else {
                         $file_errors = $this->upload->display_errors();
                         $this->session->set_flashdata('file_errors', strip_tags($file_errors));
@@ -319,12 +332,13 @@ class Admin extends CI_Controller
     public function admin_update_lander_slider_image($image_id)
     {
         $image_id_dec = base64_decode($image_id);
-        $single_image = $this->app_user_model->get_single_image_by_id($image_id_dec);
+        $created_by = $this->session->userdata('admin_id');
+        $single_image = $this->app_user_model->get_single_image_by_id($image_id_dec, $created_by);
         $data['single_image'] = $single_image;
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
-            $all_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the country list from DB
+            $all_countries = $this->app_user_model->get_all_active_countries($created_by); // Reading and showing the country list from DB
 
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -353,6 +367,7 @@ class Admin extends CI_Controller
                 $uploadData['lander_image_file_name'] = $single_image['lander_image_file_name'];
                 $uploadData['lander_image_file_created'] = $single_image['lander_image_file_created'];
                 $uploadData['lander_image_file_modified'] = date("Y-m-d H:i:s");
+                $uploadData['lander_image_modified_by'] = $created_by;
                 //Insert file information into the database
                 $is_updated = $this->app_user_model->update_image_slider($uploadData, $image_id_dec);
                 if ($is_updated) {
@@ -377,6 +392,7 @@ class Admin extends CI_Controller
                     $uploadData['lander_image_file_modified'] = date("Y-m-d H:i:s");
                     $uploadData['lander_image_country_id'] = $this->input->post('country_id');
                     $uploadData['lander_image_is_active'] = $this->input->post('is_active') ? 1 : 0;
+                    $uploadData['lander_image_modified_by'] = $created_by;
                 } else {
                     $file_errors = $this->upload->display_errors();
                     $this->session->set_flashdata('file_errors', strip_tags($file_errors));
@@ -412,22 +428,27 @@ class Admin extends CI_Controller
 
     public function admin_delete_lander_slider_image($image_id)
     {
-        $image_id_dec = base64_decode($image_id);
-        $single_image = $this->app_user_model->get_single_image_by_id($image_id_dec);
-        $is_active = $single_image["lander_image_is_active"];
-        if ($is_active) {
-            $this->session->set_flashdata('cant_delete_message', 'Active Image can not be deleted.');
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
         } else {
-            $image_name = $single_image["lander_image_file_name"];
-            $path = "./uploaded/lander_slider_images/" . $image_name;
-            $is_deleted = $this->app_user_model->delete_lander_slider_image($image_id_dec);
-            if ($is_deleted) {
-                unlink($path);
+            $created_by = $this->session->userdata('admin_id');
+            $image_id_dec = base64_decode($image_id);
+            $single_image = $this->app_user_model->get_single_image_by_id($image_id_dec, $created_by);
+            $is_active = $single_image["lander_image_is_active"];
+            if ($is_active) {
+                $this->session->set_flashdata('cant_delete_message', 'Active Image can not be deleted.');
+            } else {
+                $image_name = $single_image["lander_image_file_name"];
+                $path = "./uploaded/lander_slider_images/" . $image_name;
+                $is_deleted = $this->app_user_model->delete_lander_slider_image($image_id_dec, $created_by);
+                if ($is_deleted) {
+                    unlink($path);
+                }
+                $this->session->set_flashdata('slider_image_delete_message', 'Selected Image is successfully deleted');
             }
-            $this->session->set_flashdata('slider_image_delete_message', 'Selected Image is successfully deleted');
-        }
 
-        redirect(base_url() . 'admin/slider/image/create');
+            redirect(base_url() . 'admin/slider/image/create');
+        }
     }
 
     /*
@@ -446,6 +467,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('device_name', 'Device name', 'trim|required|min_length[2]|callback_unique_device_name');
@@ -459,7 +481,7 @@ class Admin extends CI_Controller
                 $data['data_list_title'] = 'All Devices List';
                 $data['footer_title'] = Admin::$footer_title;
 
-                $all_devices = $this->app_user_model->get_all_devices(); // Reading and showing the devices list from DB
+                $all_devices = $this->app_user_model->get_all_devices($created_by); // Reading and showing the devices list from DB
                 $data['all_devices'] = $all_devices;
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
@@ -470,7 +492,8 @@ class Admin extends CI_Controller
                 $data = array(
                     'lander_device_name' => $this->input->post('device_name'),
                     'lander_device_code' => strtolower($this->input->post('device_code')),
-                    'lander_device_is_active' => $is_active
+                    'lander_device_is_active' => $is_active,
+                    'lander_device_created_by' => $created_by
                 );
                 $is_created = $this->app_user_model->create_device($data);
                 if ($is_created) {
@@ -487,7 +510,8 @@ class Admin extends CI_Controller
     public function admin_update_device($device_id)
     {
         $device_id_dec = base64_decode($device_id);
-        $single_device = $this->app_user_model->get_single_device_by_id($device_id_dec);
+        $created_by = $this->session->userdata('admin_id');
+        $single_device = $this->app_user_model->get_single_device_by_id($device_id_dec, $created_by);
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
@@ -516,7 +540,8 @@ class Admin extends CI_Controller
                 $data = array(
                     'lander_device_name' => $device_name,
                     'lander_device_code' => $device_code,
-                    'lander_device_is_active' => $is_active
+                    'lander_device_is_active' => $is_active,
+                    'lander_device_modified_by' => $created_by
                 );
                 $is_updated = FALSE;
                 $check_device_name_is_unique = TRUE;
@@ -526,11 +551,11 @@ class Admin extends CI_Controller
                 } else {
                     // Country name and code unique check during update
                     if ($device_name != $single_device['lander_device_name'] && $device_code != $single_device['lander_device_code']) {
-                        $check_device_name_is_unique = $this->app_user_model->unique_lander_device_name($device_name);
+                        $check_device_name_is_unique = $this->app_user_model->unique_lander_device_name($device_name, $created_by);
                         if ($check_device_name_is_unique) {
                             $this->session->set_flashdata('admin_device_name_not_unique_message', "Given Device name is already exist");
                         }
-                        $check_device_code_is_unique = $this->app_user_model->unique_lander_device_code($device_code);
+                        $check_device_code_is_unique = $this->app_user_model->unique_lander_device_code($device_code, $created_by);
                         if ($check_device_code_is_unique) {
                             $this->session->set_flashdata('admin_device_code_not_unique_message', "Given Device code is already exist");
                         }
@@ -538,7 +563,7 @@ class Admin extends CI_Controller
                             redirect(base_url() . 'admin/device/update/' . $device_id, 'refresh');
                         }
                     } else if ($device_name != $single_device['lander_device_name'] && $device_code == $single_device['lander_device_code']) {
-                        $check_device_name_is_unique = $this->app_user_model->unique_lander_device_name($device_name);
+                        $check_device_name_is_unique = $this->app_user_model->unique_lander_device_name($device_name, $created_by);
                         if ($check_device_name_is_unique) {
                             $this->session->set_flashdata('admin_device_name_not_unique_message', "Given Device name is already exist");
                             $check_device_name_is_unique = FALSE;
@@ -546,7 +571,7 @@ class Admin extends CI_Controller
                             redirect(base_url() . 'admin/device/update/' . $device_id, 'refresh');
                         }
                     } else if ($device_name == $single_device['lander_device_name'] && $device_code != $single_device['lander_device_code']) {
-                        $check_device_code_is_unique = $this->app_user_model->unique_lander_device_code($device_code);
+                        $check_device_code_is_unique = $this->app_user_model->unique_lander_device_code($device_code, $created_by);
                         if ($check_device_code_is_unique) {
                             $this->session->set_flashdata('admin_device_code_not_unique_message', "Given Device code is already exist");
                             $check_device_code_is_unique = FALSE;
@@ -573,21 +598,26 @@ class Admin extends CI_Controller
 
     public function admin_delete_device($device_id)
     {
-        $device_id_dec = base64_decode($device_id);
-        $single_device = $this->app_user_model->get_single_device_by_id($device_id_dec);
-        $device_association_count = $this->app_user_model->get_associated_device_count($device_id_dec);
-        if ($device_association_count > 0) {
-            $this->session->set_flashdata('cant_delete_associate_message', 'Device ' . $single_device['lander_device_name'] . ' can not be deleted. It has ' . $device_association_count . ' association.');
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
         } else {
-            $is_active = $single_device["lander_device_is_active"];
-            if ($is_active) {
-                $this->session->set_flashdata('cant_delete_message', 'Active Device can not be deleted.');
+            $created_by = $this->session->userdata('admin_id');
+            $device_id_dec = base64_decode($device_id);
+            $single_device = $this->app_user_model->get_single_device_by_id($device_id_dec, $created_by);
+            $device_association_count = $this->app_user_model->get_associated_device_count($device_id_dec, $created_by);
+            if ($device_association_count > 0) {
+                $this->session->set_flashdata('cant_delete_associate_message', 'Device ' . $single_device['lander_device_name'] . ' can not be deleted. It has ' . $device_association_count . ' association(s).');
             } else {
-                $this->app_user_model->delete_device($device_id_dec);
-                $this->session->set_flashdata('device_delete_message', 'Selected Device is successfully deleted');
+                $is_active = $single_device["lander_device_is_active"];
+                if ($is_active) {
+                    $this->session->set_flashdata('cant_delete_message', 'Active Device can not be deleted.');
+                } else {
+                    $this->app_user_model->delete_device($device_id_dec, $created_by);
+                    $this->session->set_flashdata('device_delete_message', 'Selected Device is successfully deleted');
+                }
             }
+            redirect(base_url() . 'admin/device/create');
         }
-        redirect(base_url() . 'admin/device/create');
     }
 
     /*
@@ -607,6 +637,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('country_id', 'Selected Country', 'trim|required');
@@ -622,13 +653,13 @@ class Admin extends CI_Controller
                 $data['data_list_title'] = 'All Buttons URL List';
                 $data['footer_title'] = Admin::$footer_title;
 
-                $all_active_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the countries list from DB
+                $all_active_countries = $this->app_user_model->get_all_active_countries($created_by); // Reading and showing the countries list from DB
                 $data['all_active_countries'] = $all_active_countries;
 
-                $all_active_devices = $this->app_user_model->get_all_active_devices(); // Reading and showing the devices list from DB
+                $all_active_devices = $this->app_user_model->get_all_active_devices($created_by); // Reading and showing the devices list from DB
                 $data['all_active_devices'] = $all_active_devices;
 
-                $all_last_btn_links = $this->app_user_model->get_all_last_btn_link(); // Reading and showing the devices list from DB
+                $all_last_btn_links = $this->app_user_model->get_all_last_btn_link($created_by); // Reading and showing the devices list from DB
                 $data['all_last_btn_links'] = $all_last_btn_links;
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
@@ -645,9 +676,10 @@ class Admin extends CI_Controller
                     'lander_last_btn_link_url' => $button_link_url,
                     'lander_last_btn_country_id' => $country_id,
                     'lander_last_btn_device_id' => $device_id,
-                    'lander_last_btn_is_active' => $is_active
+                    'lander_last_btn_is_active' => $is_active,
+                    'lander_last_btn_created_by' => $created_by
                 );
-                $is_exist = $this->app_user_model->check_existence_data($device_id, $country_id);
+                $is_exist = $this->app_user_model->check_existence_data($device_id, $country_id, $created_by);
                 if ($is_exist > 0) {
                     $this->session->set_flashdata('admin_create_last_btn_link_error_message', "Sorry! You can not create last button link using same Country and Device for two times. Please try again.");
                 } else {
@@ -665,13 +697,14 @@ class Admin extends CI_Controller
 
     public function admin_update_last_button_link($last_btn_link_id)
     {
+        $created_by = $this->session->userdata('admin_id');
         $last_btn_link_id_dec = base64_decode($last_btn_link_id);
-        $single_link = $this->app_user_model->get_single_link_by_id($last_btn_link_id_dec);
+        $single_link = $this->app_user_model->get_single_link_by_id($last_btn_link_id_dec, $created_by);
 
-        $all_active_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the countries list from DB
+        $all_active_countries = $this->app_user_model->get_all_active_countries($created_by); // Reading and showing the countries list from DB
         $data['all_active_countries'] = $all_active_countries;
 
-        $all_active_devices = $this->app_user_model->get_all_active_devices(); // Reading and showing the devices list from DB
+        $all_active_devices = $this->app_user_model->get_all_active_devices($created_by); // Reading and showing the devices list from DB
         $data['all_active_devices'] = $all_active_devices;
 
         if (($this->session->userdata('admin_email') == "")) {
@@ -702,12 +735,13 @@ class Admin extends CI_Controller
                 $data = array(
                     'lander_last_btn_name' => $button_name,
                     'lander_last_btn_link_url' => $button_link_url,
-                    'lander_last_btn_is_active' => $is_active
+                    'lander_last_btn_is_active' => $is_active,
+                    'lander_last_btn_modified_by' => $created_by
                 );
                 $is_updated = FALSE;
                 $check_last_btn_link_is_unique = TRUE;
                 if ($button_link_url == $single_link['lander_last_btn_link_url']) {
-                    $is_updated = $this->app_user_model->update_last_btn_link($data, $last_btn_link_id_dec);
+                    $is_updated = $this->app_user_model->update_last_btn_link($data, $last_btn_link_id_dec, $created_by);
                 } else {
                     if ($button_link_url != $single_link['lander_last_btn_link_url']) {
                         $check_last_btn_link_is_unique = $this->app_user_model->unique_lander_url_link_button($button_link_url);
@@ -719,7 +753,7 @@ class Admin extends CI_Controller
                         }
                     }
                     if (!$check_last_btn_link_is_unique) {
-                        $is_updated = $this->app_user_model->update_last_btn_link($data, $last_btn_link_id_dec);
+                        $is_updated = $this->app_user_model->update_last_btn_link($data, $last_btn_link_id_dec, $created_by);
                     }
                 }
 
@@ -737,18 +771,23 @@ class Admin extends CI_Controller
 
     public function admin_delete_last_button_link($last_btn_link_id)
     {
-        $last_btn_link_id_dec = base64_decode($last_btn_link_id);
-        $single_link = $this->app_user_model->get_single_link_by_id($last_btn_link_id_dec);
-
-        $is_active = $single_link["lander_last_btn_is_active"];
-        if ($is_active) {
-            $this->session->set_flashdata('cant_delete_message', 'Active Button Link can not be deleted.');
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
         } else {
-            $this->app_user_model->delete_last_button_link($last_btn_link_id_dec);
-            $this->session->set_flashdata('last_link_delete_message', 'Selected Button Link is successfully deleted');
-        }
+            $created_by = $this->session->userdata('admin_id');
+            $last_btn_link_id_dec = base64_decode($last_btn_link_id);
+            $single_link = $this->app_user_model->get_single_link_by_id($last_btn_link_id_dec, $created_by);
 
-        redirect(base_url() . 'admin/last/button/link/create');
+            $is_active = $single_link["lander_last_btn_is_active"];
+            if ($is_active) {
+                $this->session->set_flashdata('cant_delete_message', 'Active Button Link can not be deleted.');
+            } else {
+                $this->app_user_model->delete_last_button_link($last_btn_link_id_dec, $created_by);
+                $this->session->set_flashdata('last_link_delete_message', 'Selected Button Link is successfully deleted');
+            }
+
+            redirect(base_url() . 'admin/last/button/link/create');
+        }
     }
 
     /*
@@ -1055,7 +1094,7 @@ class Admin extends CI_Controller
                 $this->session->set_flashdata('cant_delete_message', 'Live Country Theme can not be deleted.');
             } else {
                 $is_deleted = $this->app_user_model->delete_lander_country_theme($sdil_lander_theme_country_ID_dec);
-                if($is_deleted){
+                if ($is_deleted) {
                     $this->session->set_flashdata('country_theme_delete_message', 'Selected Country Theme is successfully deleted.');
                 }
 
@@ -1217,8 +1256,9 @@ class Admin extends CI_Controller
 
     function unique_country_code($str)
     {
+        $created_by = $this->session->userdata('admin_id');
         $this->load->model('app_user_model');
-        if (!$this->app_user_model->unique_lander_country_code($str)) {
+        if (!$this->app_user_model->unique_lander_country_code($str, $created_by)) {
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_country_code', "%s {$str} already exist!");
@@ -1239,8 +1279,9 @@ class Admin extends CI_Controller
 
     function unique_country_name($str)
     {
+        $created_by = $this->session->userdata('admin_id');
         $this->load->model('app_user_model');
-        if (!$this->app_user_model->unique_lander_country_name($str)) {
+        if (!$this->app_user_model->unique_lander_country_name($str, $created_by)) {
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_country_name', "%s {$str} already exist!");
@@ -1250,8 +1291,9 @@ class Admin extends CI_Controller
 
     function unique_device_name($str)
     {
+        $created_by = $this->session->userdata('admin_id');
         $this->load->model('app_user_model');
-        if (!$this->app_user_model->unique_lander_device_name($str)) {
+        if (!$this->app_user_model->unique_lander_device_name($str, $created_by)) {
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_device_name', "%s {$str} already exist!");
@@ -1284,8 +1326,9 @@ class Admin extends CI_Controller
 
     function unique_device_code($str)
     {
+        $created_by = $this->session->userdata('admin_id');
         $this->load->model('app_user_model');
-        if (!$this->app_user_model->unique_lander_device_code($str)) {
+        if (!$this->app_user_model->unique_lander_device_code($str, $created_by)) {
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_device_code', "%s {$str} already exist!");
