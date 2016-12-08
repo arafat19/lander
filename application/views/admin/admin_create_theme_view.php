@@ -228,6 +228,7 @@
                                         <th>Serial</th>
                                         <th>Theme Name</th>
                                         <th>Theme Color</th>
+                                        <th>Created By</th>
                                         <th>Is Active</th>
                                         <th>Preview</th>
                                         <th>Action</th>
@@ -249,6 +250,7 @@
                                                          style="background-color:<?php echo $row->lander_theme_color_code; ?> !important; width: 100%;"></div>
                                                 </div>
                                             </td>
+                                            <td><?php echo $row->full_name; ?></td>
                                             <td><?php echo $row->lander_theme_is_active ? 'Yes' : 'No'; ?></td>
                                             <td><a href="<?php echo base_url();?>admin/show/preview/<?php echo base64_encode($row->lander_theme_id); ?>" class="btn btn-warning" target="_blank">Show Preview</a></td>
                                             <td align="center">

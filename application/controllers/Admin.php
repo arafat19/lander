@@ -807,6 +807,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('theme_name', 'Theme name', 'trim|required|min_length[2]|callback_unique_theme_name');
@@ -821,7 +822,7 @@ class Admin extends CI_Controller
                 $data['data_list_title'] = 'All Themes List';
                 $data['footer_title'] = Admin::$footer_title;
 
-                $all_themes = $this->app_user_model->get_all_themes(); // Reading and showing the devices list from DB
+                $all_themes = $this->app_user_model->get_all_themes($created_by); // Reading and showing the devices list from DB
                 $data['all_themes'] = $all_themes;
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
@@ -836,7 +837,8 @@ class Admin extends CI_Controller
                     'lander_theme_name' => $theme_name,
                     'lander_theme_color_code' => $theme_color_code,
                     'lander_theme_css' => $theme_css,
-                    'lander_theme_is_active' => $is_active
+                    'lander_theme_is_active' => $is_active,
+                    'lander_theme_created_by' => $created_by
                 );
                 $is_created = $this->app_user_model->create_lander_theme($data);
                 if ($is_created) {
@@ -853,7 +855,8 @@ class Admin extends CI_Controller
     public function admin_update_theme($theme_id)
     {
         $theme_id_dec = base64_decode($theme_id);
-        $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec);
+        $created_by = $this->session->userdata('admin_id');
+        $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec, $created_by);
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
@@ -885,7 +888,8 @@ class Admin extends CI_Controller
                     'lander_theme_name' => $theme_name,
                     'lander_theme_color_code' => $theme_color_code,
                     'lander_theme_css' => $theme_css,
-                    'lander_theme_is_active' => $is_active
+                    'lander_theme_is_active' => $is_active,
+                    'lander_theme_modified_by' => $created_by
                 );
                 $is_updated = FALSE;
                 $check_theme_name_is_unique = TRUE;
@@ -895,11 +899,11 @@ class Admin extends CI_Controller
                 } else {
                     // Country name and code unique check during update
                     if ($theme_name != $single_theme['lander_theme_name'] && $theme_color_code != $single_theme['lander_theme_color_code']) {
-                        $check_theme_name_is_unique = $this->app_user_model->unique_lander_theme_name($theme_name);
+                        $check_theme_name_is_unique = $this->app_user_model->unique_lander_theme_name($theme_name, $created_by);
                         if ($check_theme_name_is_unique) {
                             $this->session->set_flashdata('admin_theme_name_not_unique_message', "Given Theme name is already exist");
                         }
-                        $check_theme_color_code_is_unique = $this->app_user_model->unique_lander_theme_color_code($theme_color_code);
+                        $check_theme_color_code_is_unique = $this->app_user_model->unique_lander_theme_color_code($theme_color_code, $created_by);
                         if ($check_theme_color_code_is_unique) {
                             $this->session->set_flashdata('admin_theme_color_code_not_unique_message', "Given Theme Color code is already exist");
                         }
@@ -907,7 +911,7 @@ class Admin extends CI_Controller
                             redirect(base_url() . 'admin/theme/update/' . $theme_id, 'refresh');
                         }
                     } else if ($theme_name != $single_theme['lander_theme_name'] && $theme_color_code == $single_theme['lander_theme_color_code']) {
-                        $check_theme_name_is_unique = $this->app_user_model->unique_lander_theme_name($theme_name);
+                        $check_theme_name_is_unique = $this->app_user_model->unique_lander_theme_name($theme_name, $created_by);
                         if ($check_theme_name_is_unique) {
                             $this->session->set_flashdata('admin_theme_name_not_unique_message', "Given Theme name is already exist");
                             $check_theme_name_is_unique = FALSE;
@@ -915,7 +919,7 @@ class Admin extends CI_Controller
                             redirect(base_url() . 'admin/theme/update/' . $theme_id, 'refresh');
                         }
                     } else if ($theme_name == $single_theme['lander_theme_name'] && $theme_color_code != $single_theme['lander_theme_color_code']) {
-                        $check_theme_color_code_is_unique = $this->app_user_model->unique_lander_theme_color_code($theme_color_code);
+                        $check_theme_color_code_is_unique = $this->app_user_model->unique_lander_theme_color_code($theme_color_code, $created_by);
                         if ($check_theme_color_code_is_unique) {
                             $this->session->set_flashdata('admin_theme_color_code_not_unique_message', "Given Theme code is already exist");
                             $check_theme_name_is_unique = FALSE;
@@ -942,18 +946,23 @@ class Admin extends CI_Controller
 
     public function admin_delete_theme($theme_id)
     {
-        $theme_id_dec = base64_decode($theme_id);
-        $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec);
-
-        $is_active = $single_theme["lander_theme_is_active"];
-        if ($is_active) {
-            $this->session->set_flashdata('cant_delete_message', 'Active Theme can not be deleted.');
+        if (($this->session->userdata('admin_email') == "")) {
+            $this->logout();
         } else {
-            $this->app_user_model->delete_lander_theme($theme_id_dec);
-            $this->session->set_flashdata('theme_delete_message', 'Selected Theme is successfully deleted');
-        }
+            $created_by = $this->session->userdata('admin_id');
+            $theme_id_dec = base64_decode($theme_id);
+            $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec, $created_by);
 
-        redirect(base_url() . 'admin/theme/create');
+            $is_active = $single_theme["lander_theme_is_active"];
+            if ($is_active) {
+                $this->session->set_flashdata('cant_delete_message', 'Active Theme can not be deleted.');
+            } else {
+                $this->app_user_model->delete_lander_theme($theme_id_dec, $created_by);
+                $this->session->set_flashdata('theme_delete_message', 'Selected Theme is successfully deleted');
+            }
+
+            redirect(base_url() . 'admin/theme/create');
+        }
     }
 
 
@@ -974,6 +983,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('theme_id', 'Selected Theme', 'trim|required');
@@ -987,13 +997,13 @@ class Admin extends CI_Controller
                 $data['data_list_title'] = 'All Country Themes List';
                 $data['footer_title'] = Admin::$footer_title;
 
-                $all_country_themes = $this->app_user_model->get_all_country_themes(); // Reading and showing the devices list from DB
+                $all_country_themes = $this->app_user_model->get_all_country_themes($created_by); // Reading and showing the devices list from DB
                 $data['all_country_themes'] = $all_country_themes;
 
-                $all_active_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the country list from DB
+                $all_active_countries = $this->app_user_model->get_all_active_countries($created_by); // Reading and showing the country list from DB
                 $data['all_active_countries'] = $all_active_countries;
 
-                $all_active_themes = $this->app_user_model->get_all_active_themes(); // Reading and showing the devices list from DB
+                $all_active_themes = $this->app_user_model->get_all_active_themes($created_by); // Reading and showing the devices list from DB
                 $data['all_active_themes'] = $all_active_themes;
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
@@ -1006,10 +1016,11 @@ class Admin extends CI_Controller
                 $data = array(
                     'lander_theme_country_id' => $country_id,
                     'lander_theme_country_them_id' => $theme_id,
-                    'sdil_lander_theme_country_is_live' => $is_live
+                    'sdil_lander_theme_country_is_live' => $is_live,
+                    'lander_theme_country_created_by' => $created_by
                 );
-                $country_theme_association_count_all = $this->app_user_model->get_associated_country_theme_count_all($theme_id, $country_id);
-                $country_theme_association_count = $this->app_user_model->get_associated_country_theme_count($country_id);
+                $country_theme_association_count_all = $this->app_user_model->get_associated_country_theme_count_all($theme_id, $country_id,$created_by);
+                $country_theme_association_count = $this->app_user_model->get_associated_country_theme_count($country_id, $created_by);
                 if ($country_theme_association_count >= 1) {
                     $this->session->set_flashdata('admin_can_not_associate_country_theme_message', "Sorry! Selected Country is already associated with a Theme.");
                 } else {
@@ -1303,8 +1314,9 @@ class Admin extends CI_Controller
 
     function unique_theme_name($str)
     {
+        $created_by = $this->session->userdata('admin_id');
         $this->load->model('app_user_model');
-        if (!$this->app_user_model->unique_lander_theme_name($str)) {
+        if (!$this->app_user_model->unique_lander_theme_name($str, $created_by)) {
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_theme_name', "%s {$str} already exist!");
@@ -1314,8 +1326,9 @@ class Admin extends CI_Controller
 
     function unique_theme_color_code($str)
     {
+        $created_by = $this->session->userdata('admin_id');
         $this->load->model('app_user_model');
-        if (!$this->app_user_model->unique_lander_theme_color_code($str)) {
+        if (!$this->app_user_model->unique_lander_theme_color_code($str, $created_by)) {
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_theme_color_code', "%s {$str} already exist!");

@@ -100,9 +100,10 @@ class app_user_model extends CI_Model
         }
     }
 
-    public function unique_lander_theme_name($theme_name)
+    public function unique_lander_theme_name($theme_name, $created_by)
     {
         $this->db->where('lander_theme_name', $theme_name);
+        $this->db->where('lander_theme_created_by', $created_by);
         $query = $this->db->get(App_user_model::$table_sdil_lander_theme);
         if ($query->num_rows() > 0) {
             return TRUE;
@@ -111,9 +112,10 @@ class app_user_model extends CI_Model
         }
     }
 
-    public function unique_lander_theme_color_code($theme_color_code)
+    public function unique_lander_theme_color_code($theme_color_code, $created_by)
     {
         $this->db->where('lander_theme_color_code', $theme_color_code);
+        $this->db->where('lander_theme_created_by', $created_by);
         $query = $this->db->get(App_user_model::$table_sdil_lander_theme);
         if ($query->num_rows() > 0) {
             return TRUE;
@@ -256,10 +258,11 @@ class app_user_model extends CI_Model
         return $result->row_array();
     }
 
-    public function get_single_theme_by_id($theme_id)
+    public function get_single_theme_by_id($theme_id, $created_by)
     {
         $this->db->select('*');
         $this->db->where('lander_theme_id', $theme_id);
+        $this->db->where('lander_theme_created_by', $created_by);
         $result = $this->db->get(App_user_model::$table_sdil_lander_theme);
 
         return $result->row_array();
@@ -284,10 +287,11 @@ class app_user_model extends CI_Model
         return $row_count;
     }
 
-    public function get_associated_country_theme_count_all($theme_id, $country_id)
+    public function get_associated_country_theme_count_all($theme_id, $country_id, $created_by)
     {
         $this->db->where('lander_theme_country_id', $country_id);
         $this->db->where('lander_theme_country_them_id', $theme_id);
+        $this->db->where('lander_theme_country_created_by', $created_by);
         $result_lander_country_theme = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
 
         $row_count = $result_lander_country_theme->num_rows();
@@ -295,9 +299,10 @@ class app_user_model extends CI_Model
         return $row_count;
     }
 
-    public function get_associated_country_theme_count($country_id)
+    public function get_associated_country_theme_count($country_id, $created_by)
     {
         $this->db->where('lander_theme_country_id', $country_id);
+        $this->db->where('lander_theme_country_created_by', $created_by);
         $result_lander_country_theme = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
 
         $row_count = $result_lander_country_theme->num_rows();
@@ -372,9 +377,13 @@ class app_user_model extends CI_Model
         }
     }
 
-    function get_all_themes()
+    function get_all_themes($created_by)
     {
-        $result = $this->db->get(App_user_model::$table_sdil_lander_theme);
+        $result = $this->db->query("
+                                    SELECT sdil_lander_theme.*,full_name 
+                                    FROM sdil_lander_theme 
+                                    JOIN sdil_lander_admin ON sdil_lander_admin.admin_id = sdil_lander_theme.lander_theme_created_by 
+                                    WHERE sdil_lander_theme.lander_theme_created_by = $created_by");
         if ($result->num_rows() > 0) {
             return $result;
         } else {
@@ -397,13 +406,14 @@ class app_user_model extends CI_Model
         }
     }
 
-    function get_all_country_themes()
+    function get_all_country_themes($created_by)
     {
-        $this->db->select('*');
-        $this->db->from(App_user_model::$table_sdil_lander_theme_country);
-        $this->db->join(App_user_model::$table_sdil_lander_country, 'sdil_lander_country.lander_country_id = sdil_lander_theme_country.lander_theme_country_id');
-        $this->db->join(App_user_model::$table_sdil_lander_theme, 'sdil_lander_theme.lander_theme_id = sdil_lander_theme_country.lander_theme_country_them_id');
-        $result = $this->db->get();
+        $result = $this->db->query("SELECT sltc.*, admin.full_name, lc.lander_country_name, slt.*
+                                    FROM sdil_lander_theme_country AS sltc 
+                                    JOIN sdil_lander_country AS lc ON lc.lander_country_id = sltc.lander_theme_country_id 
+                                    JOIN sdil_lander_admin AS admin ON admin.admin_id = sltc.lander_theme_country_created_by 
+                                    JOIN sdil_lander_theme AS slt ON slt.lander_theme_id = sltc.lander_theme_country_them_id 
+                                    WHERE sltc.lander_theme_country_created_by = $created_by");
         if ($result->num_rows() > 0) {
             return $result;
         } else {
@@ -424,10 +434,11 @@ class app_user_model extends CI_Model
         }
     }
 
-    function get_all_active_themes()
+    function get_all_active_themes($created_by)
     {
         $this->db->select('*');
         $this->db->where('lander_theme_is_active', 1);
+        $this->db->where('lander_theme_created_by', $created_by);
         $result = $this->db->get(App_user_model::$table_sdil_lander_theme);
         if ($result->num_rows() > 0) {
             return $result;
@@ -528,9 +539,10 @@ class app_user_model extends CI_Model
         $this->db->delete(App_user_model::$table_sdil_lander_device);
     }
 
-    public function delete_lander_theme($theme_id)
+    public function delete_lander_theme($theme_id, $created_by)
     {
         $this->db->where('lander_theme_id', $theme_id);
+        $this->db->where('lander_theme_created_by', $created_by);
         $this->db->delete(App_user_model::$table_sdil_lander_theme);
     }
 

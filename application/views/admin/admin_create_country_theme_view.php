@@ -262,6 +262,7 @@
                                         <th>Theme Name</th>
                                         <th>Theme Color</th>
                                         <th>Country Name</th>
+                                        <th>Created By</th>
                                         <th>Is Live</th>
                                         <th>Action</th>
                                     </tr>
@@ -283,6 +284,7 @@
                                                 </div>
                                             </td>
                                             <td><?php echo $row->lander_country_name; ?></td>
+                                            <td><?php echo $row->full_name; ?></td>
                                             <td align="center"><?php if($row->sdil_lander_theme_country_is_live){ ?>
                                                     <a class="btn btn-warning" target="_blank"
                                                        href="<?php echo base_url(); ?>">Live Preview</span></a>
