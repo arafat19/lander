@@ -2,11 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262a4ebb-918b-4ced-8e7b-6b73a0dd5394" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DB/sdil_lander_V8.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Admin.php" afterPath="$PROJECT_DIR$/application/controllers/Admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/App_user_model.php" afterPath="$PROJECT_DIR$/application/models/App_user_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_create_country_theme_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_create_country_theme_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_create_theme_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_create_theme_view.php" />
     </list>
     <ignored path="lander.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -37,11 +34,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="admin_create_country_theme_view.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="admin_create_country_theme_view.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/admin/admin_create_country_theme_view.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="487">
               <caret line="286" column="74" selection-start-line="286" selection-start-column="74" selection-end-line="286" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sdil_lander_V8.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DB/sdil_lander_V8.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -526,7 +533,7 @@
       <workItem from="1480969301268" duration="8207000" />
       <workItem from="1481042070895" duration="16000" />
       <workItem from="1481083566712" duration="1346000" />
-      <workItem from="1481140583596" duration="5013000" />
+      <workItem from="1481140583596" duration="5082000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from home: 12-11-2016;; 3:50 AM">
       <created>1478900974335</created>
@@ -584,11 +591,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481001737022</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Commit from home: 08-12-2016 ::: 11:21 AM">
+      <created>1481174896494</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1481174896494</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="103767000" />
+    <option name="totallyTimeSpent" value="103836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -637,7 +651,8 @@
     <MESSAGE value="Commit from home: 22-11-2016;; 3:06 AM" />
     <MESSAGE value="Commit from home: 23-11-2016;; 2:31 AM" />
     <MESSAGE value="Commit from home: 06-12-2016 ::: 11:21 AM" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit from home: 06-12-2016 ::: 11:21 AM" />
+    <MESSAGE value="Commit from home: 08-12-2016 ::: 11:21 AM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit from home: 08-12-2016 ::: 11:21 AM" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -668,13 +683,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="34" column="49" selection-start-line="34" selection-start-column="49" selection-end-line="34" selection-end-column="49" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_profile_update_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1014,6 +1022,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="487">
           <caret line="286" column="74" selection-start-line="286" selection-start-column="74" selection-end-line="286" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DB/sdil_lander_V8.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
