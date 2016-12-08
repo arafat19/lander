@@ -9,6 +9,12 @@
             <li><a href="<?php echo base_url(); ?>admin/last/button/link/create"><i class="fa fa-external-link"></i> Add Last Button Link</a></li>
             <li><a href="<?php echo base_url(); ?>admin/theme/create"><i class="fa fa-paint-brush"></i> Add Theme</a></li>
             <li><a href="<?php echo base_url(); ?>admin/country/theme/create"><i class="fa fa-cog"></i> Add Country Theme</a></li>
+            <?php
+                $is_super_admin = $this->session->userdata('is_super_admin');
+                if($is_super_admin){
+            ?>
+                <li><a href="<?php echo base_url(); ?>admin/user/create"><i class="fa fa-group"></i> Add Admin User</a></li>
+            <?php } ?>
 
             <!--<li><a><i class="fa fa-users"></i> Applicants <span class="fa fa-chevron-down"></span></a>
                 <ul class="nav child_menu">

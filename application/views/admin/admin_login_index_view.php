@@ -3,7 +3,7 @@
     <div class="row">
         <div class="sdil-lander-header-bar  centered">
             <div class="header content clearfix">
-                <div class="logo logo-w" aria-label="Blri"></div>
+<!--                <div class="logo logo-w" aria-label="Blri"></div>-->
             </div>
         </div>
     </div>

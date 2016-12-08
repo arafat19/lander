@@ -50,7 +50,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |		my-controller/my-method	-> my_controller/my_method
 */
 $route['default_controller'] = 'Main';
-$route['admin/register'] = "admin/admin_registration";
+$route['admin/register'] = "admin/super_admin_registration";
+
 
 $route['admin/profile/update'] = "admin/update_admin_user";
 $route['admin/password/update'] = "admin/update_admin_password";
@@ -78,6 +79,10 @@ $route['admin/theme/delete/(:any)'] = "admin/admin_delete_theme/$1";
 $route['admin/country/theme/create'] = "admin/admin_create_country_theme";
 $route['admin/country/theme/update/(:any)'] = "admin/admin_update_country_theme/$1";
 $route['admin/country/theme/delete/(:any)'] = "admin/admin_delete_country_theme/$1";
+
+$route['admin/user/create'] = "admin/super_admin_create_user";
+$route['admin/user/update/(:any)'] = "admin/admin_update_user/$1";
+$route['admin/user/delete/(:any)'] = "admin/admin_delete_user/$1";
 
 $route['admin/show/preview/(:any)'] = "admin/admin_show_preview/$1";
 

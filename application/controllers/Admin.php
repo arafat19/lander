@@ -17,6 +17,7 @@ class Admin extends CI_Controller
     public static $login_title = 'Sign in to continue to SDIL Lander';
     public static $footer_title = 'Shwapnoduar IT Ltd.';
     public static $navbar_title = 'SDIL Lander Admin Panel';
+    public static $navbar_super_title = 'SDIL Lander Super Admin Panel';
 
     function __construct()
     {
@@ -71,6 +72,7 @@ class Admin extends CI_Controller
             $this->logout();
         } else {
             $created_by = $this->session->userdata('admin_id');
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('country_name', 'Country name', 'trim|required|min_length[2]|callback_unique_country_name');
@@ -80,7 +82,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'SDIL Lander Country List - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Create Country';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['data_list_title'] = 'All Countries List';
                 $data['footer_title'] = Admin::$footer_title;
 
@@ -118,6 +120,7 @@ class Admin extends CI_Controller
         } else {
             $country_id_dec = base64_decode($country_id);
             $created_by = $this->session->userdata('admin_id');
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $single_country = $this->app_user_model->get_single_country_by_id($country_id_dec, $created_by);
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -128,7 +131,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'Update Country - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Update Country';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['footer_title'] = Admin::$footer_title;
 
 
@@ -243,6 +246,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $created_by = $this->session->userdata('admin_id');
             $all_countries = $this->app_user_model->get_all_active_countries($created_by); // Reading and showing the country list from DB
 
@@ -255,7 +259,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'Lander Images Upload - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Upload Slider Images';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['data_list_title'] = 'All Slider Images';
                 $data['footer_title'] = Admin::$footer_title;
 
@@ -313,7 +317,7 @@ class Admin extends CI_Controller
                     $data['title'] = 'Lander Images Upload - SDIL Lander';
                     $data['full_name'] = $this->session->userdata('full_name');
                     $data['page_title'] = 'Upload Slider Images';
-                    $data['navbar_title'] = Admin::$navbar_title;
+                    $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                     $data['data_list_title'] = 'All Slider Images';
                     $data['footer_title'] = Admin::$footer_title;
 
@@ -338,6 +342,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $all_countries = $this->app_user_model->get_all_active_countries($created_by); // Reading and showing the country list from DB
 
             $this->load->library('Form_validation');
@@ -347,7 +352,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'Update Lander Images Upload - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Update Slider Images';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['footer_title'] = Admin::$footer_title;
 
                 $file_errors = '';
@@ -411,7 +416,7 @@ class Admin extends CI_Controller
                     $data['title'] = 'Update Lander Images Upload - SDIL Lander';
                     $data['full_name'] = $this->session->userdata('full_name');
                     $data['page_title'] = 'Update Slider Images';
-                    $data['navbar_title'] = Admin::$navbar_title;
+                    $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                     $data['footer_title'] = Admin::$footer_title;
 
 
@@ -467,6 +472,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -477,7 +483,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'SDIL Lander Device List - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Create Device';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['data_list_title'] = 'All Devices List';
                 $data['footer_title'] = Admin::$footer_title;
 
@@ -515,6 +521,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('device_name', 'Device name', 'trim|required|min_length[2]');
@@ -524,7 +531,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'Update Device - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Update Device';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['footer_title'] = Admin::$footer_title;
 
 
@@ -637,6 +644,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -649,7 +657,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'SDIL Lander Last Button Link List - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Create Last Button Link';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['data_list_title'] = 'All Buttons URL List';
                 $data['footer_title'] = Admin::$footer_title;
 
@@ -710,6 +718,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('button_name', 'Button name', 'trim|required|min_length[2]');
@@ -719,7 +728,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'Update Lander Last Button Link - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Update Lander Last Button Link';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['footer_title'] = Admin::$footer_title;
 
 
@@ -807,6 +816,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -818,7 +828,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'SDIL Lander Theme List - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Create Theme';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['data_list_title'] = 'All Themes List';
                 $data['footer_title'] = Admin::$footer_title;
 
@@ -860,6 +870,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('theme_name', 'Theme name', 'trim|required|min_length[2]');
@@ -870,7 +881,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'Update Theme - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Update Theme';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['footer_title'] = Admin::$footer_title;
 
 
@@ -983,6 +994,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -993,7 +1005,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'SDIL Lander Country Theme List - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Create Country Theme';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['data_list_title'] = 'All Country Themes List';
                 $data['footer_title'] = Admin::$footer_title;
 
@@ -1019,7 +1031,7 @@ class Admin extends CI_Controller
                     'sdil_lander_theme_country_is_live' => $is_live,
                     'lander_theme_country_created_by' => $created_by
                 );
-                $country_theme_association_count_all = $this->app_user_model->get_associated_country_theme_count_all($theme_id, $country_id,$created_by);
+                $country_theme_association_count_all = $this->app_user_model->get_associated_country_theme_count_all($theme_id, $country_id, $created_by);
                 $country_theme_association_count = $this->app_user_model->get_associated_country_theme_count($country_id, $created_by);
                 if ($country_theme_association_count >= 1) {
                     $this->session->set_flashdata('admin_can_not_associate_country_theme_message', "Sorry! Selected Country is already associated with a Theme.");
@@ -1045,6 +1057,7 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
             $sdil_lander_theme_country_ID_dec = base64_decode($sdil_lander_theme_country_ID);
             $single_theme_country = $this->app_user_model->get_single_theme_country_by_id($sdil_lander_theme_country_ID_dec);
             $data['single_theme_country'] = $single_theme_country;
@@ -1056,7 +1069,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'SDIL Lander Country Theme Update - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['page_title'] = 'Update Country Theme';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['footer_title'] = Admin::$footer_title;
 
 
@@ -1123,6 +1136,83 @@ class Admin extends CI_Controller
     * *************************************************************************************
     */
 
+    /*
+     * *************************************************************************************
+     * Admin user Create, Read (List), Update & Delete Implementation Start
+     * *************************************************************************************
+     */
+
+    public function super_admin_create_user()
+    {
+        $is_super_admin = $this->session->userdata('is_super_admin');
+        if (($this->session->userdata('admin_email') == "") && $is_super_admin) {
+            $this->logout();
+        } else {
+
+            $created_by = $this->session->userdata('admin_id');
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('name', 'Full Name', 'trim|required|min_length[4]');
+            $this->form_validation->set_rules('admin_live_preview_url', 'Admin Live Preview URL', 'required|trim|min_length[4]|callback_unique_live_preview_url');
+            $this->form_validation->set_rules('email', 'This Email', 'trim|required|valid_email|callback_unique_email');
+            $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[4]|max_length[32]');
+            $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required|matches[password]');
+            $this->form_validation->set_rules('cell_number', 'Your Mobile Number', 'trim|min_length[4]|max_length[11]');
+            $this->form_validation->set_rules('is_enabled', 'Is Enabled');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'SDIL Lander Admin User List - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Create Admin User';
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
+                $data['data_list_title'] = 'All Admins List';
+                $data['footer_title'] = Admin::$footer_title;
+
+                $all_admins = $this->app_user_model->get_all_admins(); // Reading and showing the devices list from DB
+                $data['all_admins'] = $all_admins;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_create_user_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $is_enabled = $this->input->post('is_enabled') ? 1 : 0;
+                $data = array(
+                    'full_name' => $this->input->post('name'),
+                    'admin_live_preview_url' => $this->input->post('admin_live_preview_url'),
+                    'cell_number' => $this->input->post('cell_number'),
+                    'enabled' => $is_enabled,
+                    'admin_password' => base64_encode(filter_var($this->input->post('password'))),
+                    'password_expired' => $this->input->post('password_expired'),
+                    'password_reset_validity' => $this->input->post(date("Y-m-d")),
+                    'admin_created_by' => $created_by,
+                    'admin_email' => filter_var($this->input->post('email'), FILTER_SANITIZE_EMAIL)
+
+                );
+                $is_created = $this->app_user_model->create_admin_user($data);
+                if ($is_created) {
+                    $data_create_country = array(
+                        'lander_country_name' => 'Bangladesh',
+                        'lander_country_code' => 'BD',
+                        'is_active' => 1,
+                        'is_country_reserved' => 1,
+                        'created_by' => $created_by
+                    );
+
+                    $this->session->set_flashdata('admin_create_user_message', "Admin User is created successfully.");
+                } else {
+                    $this->session->set_flashdata('admin_create_user_error_message', "Admin User is not created successfully. Please try again.");
+                }
+
+                redirect(base_url() . 'admin/user/create', 'refresh');
+            }
+        }
+    }
+
+    /*
+     * *************************************************************************************
+     * Admin user Create, Read (List), Update & Delete Implementation Finish
+     * *************************************************************************************
+     */
+
     public function admin_show_preview($theme_id)
     {
         if (($this->session->userdata('admin_email') == "")) {
@@ -1141,8 +1231,9 @@ class Admin extends CI_Controller
 
     public function welcome_admin_dashboard()
     {
+        $is_super_admin = $this->session->userdata('is_super_admin');
         $data['title'] = 'Welcome SDIL Lander Admin Panel';
-        $data['navbar_title'] = Admin::$navbar_title;
+        $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
         $data['full_name'] = $this->session->userdata('full_name');
         $data['active'] = 'dashboard';
         $data['footer_title'] = Admin::$footer_title;
@@ -1151,7 +1242,7 @@ class Admin extends CI_Controller
         $this->load->view('admin/admin_dashboard_footer_view', $data);
     }
 
-    public function admin_registration()
+    public function super_admin_registration()
     {
         $this->load->library('Form_validation');
         // field name, error message, validation rules
@@ -1177,6 +1268,7 @@ class Admin extends CI_Controller
     public function update_admin_user()
     {
         $sd_lander_admin_id = $this->session->userdata('admin_id');
+        $is_super_admin = $this->session->userdata('is_super_admin');
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
@@ -1192,7 +1284,7 @@ class Admin extends CI_Controller
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'Update SDIL Lander Admin Profile';
                 $data['page_title'] = 'Update Your Profile';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['full_name'] = $this->session->userdata('full_name');
                 $data['particular_user'] = $particular_user;
                 $data['footer_title'] = Admin::$footer_title;
@@ -1212,6 +1304,7 @@ class Admin extends CI_Controller
     {
         $sd_lander_admin_id = $this->session->userdata('admin_id');
         $sd_lander_admin_email = $this->session->userdata('admin_email');
+        $is_super_admin = $this->session->userdata('is_super_admin');
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
@@ -1226,7 +1319,7 @@ class Admin extends CI_Controller
                 $data['title'] = 'Update SDIL Lander Admin Password';
                 $data['footer_title'] = Admin::$footer_title;
                 $data['page_title'] = 'Update Your Password';
-                $data['navbar_title'] = Admin::$navbar_title;
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['full_name'] = $this->session->userdata('full_name');
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
@@ -1308,6 +1401,17 @@ class Admin extends CI_Controller
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_device_name', "%s {$str} already exist!");
+            return FALSE;
+        }
+    }
+
+    function unique_live_preview_url($str)
+    {
+        $this->load->model('app_user_model');
+        if (!$this->app_user_model->unique_admin_live_preview_url($str)) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('unique_live_preview_url', "%s {$str} already exist!");
             return FALSE;
         }
     }

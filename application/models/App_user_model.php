@@ -31,6 +31,7 @@ class app_user_model extends CI_Model
                     'admin_email' => $rows->admin_email,
                     'full_name' => $rows->full_name,
                     'logged_in' => TRUE,
+                    'is_super_admin' => $rows->is_super_admin
                 );
             }
             $this->session->set_userdata($newdata);
@@ -129,6 +130,17 @@ class app_user_model extends CI_Model
         $this->db->where('lander_device_name', $device_name);
         $this->db->where('lander_device_created_by', $created_by);
         $query = $this->db->get(App_user_model::$table_sdil_lander_device);
+        if ($query->num_rows() > 0) {
+            return TRUE;
+        } else {
+            return FALSE;
+        }
+    }
+
+    public function unique_admin_live_preview_url($live_url)
+    {
+        $this->db->where('admin_live_preview_url', $live_url);
+        $query = $this->db->get(App_user_model::$table_sdil_lander_admin);
         if ($query->num_rows() > 0) {
             return TRUE;
         } else {
@@ -474,6 +486,18 @@ class app_user_model extends CI_Model
         }
     }
 
+    function get_all_admins()
+    {
+        $this->db->select('*');
+        $this->db->where('is_super_admin', 0);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_admin);
+        if ($result->num_rows() > 0) {
+            return $result;
+        } else {
+            return NULL;
+        }
+    }
+
     function get_all_slider_images($created_by)
     {
         $result = $this->db->query("SELECT si.*, admin.full_name, lc.lander_country_name 
@@ -491,6 +515,12 @@ class app_user_model extends CI_Model
     public function create_device($data)
     {
         $is_created = $this->db->insert(App_user_model::$table_sdil_lander_device, $data);
+        return $is_created;
+    }
+
+    public function create_admin_user($data)
+    {
+        $is_created = $this->db->insert(App_user_model::$table_sdil_lander_admin, $data);
         return $is_created;
     }
 
