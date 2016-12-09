@@ -7,6 +7,13 @@
             return false;
         }
     }
+    function checkMeForce() {
+        if (confirm("Are you sure you want to force delete the selected Admin User? Force delete will be cause of deletion of all associated data with the selected Admin User")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
 
     function link_create() {
@@ -33,7 +40,7 @@
             .replace(/-+/g, '-'); // collapse dashes
 
         var url = window.base_url = <?php echo json_encode(base_url()); ?>;
-        return url +  str;
+        return url + 'user/' + str;
     }
 </script>
 <div class="container body">
@@ -133,28 +140,36 @@
                                         <strong><?php echo $this->session->flashdata('admin_create_user_error_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_country_message')) { ?>
+                                if ($this->session->flashdata('admin_update_user_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_country_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_update_user_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_update_country_error_message')) { ?>
+                                if ($this->session->flashdata('admin_update_user_error_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_country_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_update_user_error_message'); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('country_delete_message')) { ?>
+                                if ($this->session->flashdata('admin_user_delete_message')) { ?>
                                     <div class="alert alert-success alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('country_delete_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_user_delete_message'); ?></strong>
+                                    </div>
+                                <?php }
+                                if ($this->session->flashdata('force_admin_user_delete_message')) { ?>
+                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong><?php echo $this->session->flashdata('force_admin_user_delete_message'); ?></strong>
                                     </div>
                                 <?php }
                                 if ($this->session->flashdata('cant_delete_message')) { ?>
@@ -335,6 +350,10 @@
                                                        href="<?php echo base_url(); ?>admin/user/delete/<?php echo base64_encode($row->admin_id); ?>"
                                                        onclick="return checkMe()" title="Delete"
                                                        role="button"><span class="glyphicon glyphicon-trash"></span></a>
+                                                <a class="btn btn-danger"
+                                                       href="<?php echo base_url(); ?>admin/user/force/delete/<?php echo base64_encode($row->admin_id); ?>"
+                                                       onclick="return checkMeForce()" title="Delete"
+                                                       role="button">Force Delete</a>
                                             </td>
                                         </tr>
 

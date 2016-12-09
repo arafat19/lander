@@ -287,7 +287,7 @@
                                             <td><?php echo $row->full_name; ?></td>
                                             <td align="center"><?php if($row->sdil_lander_theme_country_is_live){ ?>
                                                     <a class="btn btn-warning" target="_blank"
-                                                       href="<?php echo base_url(); ?>">Live Preview</span></a>
+                                                       href="<?php echo $row->admin_live_preview_url; ?>">Live Preview</span></a>
                                                    <?php
                                                     } else echo 'No'; ?></td>
                                             <td align="center"><a class="btn btn-success" title="Edit"

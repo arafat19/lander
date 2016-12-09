@@ -24,7 +24,7 @@
             .replace(/-+/g, '-'); // collapse dashes
 
         var url = window.base_url = <?php echo json_encode(base_url()); ?>;
-        return url +  str;
+        return url + 'user/' + str;
     }
 </script>
 <div class="container body">

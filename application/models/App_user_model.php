@@ -30,6 +30,7 @@ class app_user_model extends CI_Model
                     'admin_id' => $rows->admin_id,
                     'admin_email' => $rows->admin_email,
                     'full_name' => $rows->full_name,
+                    'enabled' => $rows->enabled,
                     'logged_in' => TRUE,
                     'is_super_admin' => $rows->is_super_admin
                 );
@@ -254,6 +255,14 @@ class app_user_model extends CI_Model
 
         return $result->row_array();
     }
+    public function get_user_by_live_preview_url($current_user_url)
+    {
+        $this->db->select('admin_id, enabled');
+        $this->db->where('admin_live_preview_url', $current_user_url);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_admin);
+
+        return $result->row_array();
+    }
 
     public function get_user_by_email_pass($email, $password)
     {
@@ -332,7 +341,7 @@ class app_user_model extends CI_Model
         $result_country_wise_slider_image = $this->db->get(App_user_model::$table_sdil_lander_country_wise_slider_image);
 
         $this->db->where('lander_device_created_by', $admin_user_id);
-        $result_admin_user_device = $this->db->get(App_user_model::$table_sdil_lander_country_wise_slider_image);
+        $result_admin_user_device = $this->db->get(App_user_model::$table_sdil_lander_device);
 
         $this->db->where('lander_last_btn_created_by', $admin_user_id);
         $result_lander_last_button_link = $this->db->get(App_user_model::$table_sdil_lander_last_button_link);
@@ -343,7 +352,7 @@ class app_user_model extends CI_Model
         $this->db->where('lander_theme_country_created_by', $admin_user_id);
         $result_lander_theme_country = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
 
-        $row_count = $result_lander_theme_admin_user->num_rows() +$result_admin_user_device->num_rows() + $result_admin_user_country->num_rows() + $result_country_wise_slider_image->num_rows() + $result_lander_last_button_link->num_rows() + $result_lander_theme_country->num_rows();
+        $row_count = $result_lander_theme_admin_user->num_rows() + $result_admin_user_device->num_rows() + $result_admin_user_country->num_rows() + $result_country_wise_slider_image->num_rows() + $result_lander_last_button_link->num_rows() + $result_lander_theme_country->num_rows();
 
         return $row_count;
     }
@@ -469,8 +478,8 @@ class app_user_model extends CI_Model
 
     function get_all_country_themes($created_by)
     {
-        $result = $this->db->query("SELECT sltc.*, admin.full_name, lc.lander_country_name, slt.*
-                                    FROM sdil_lander_theme_country AS sltc 
+        $result = $this->db->query("SELECT sltc.*, admin.full_name, admin.admin_live_preview_url,lc.lander_country_name, slt.*
+                                    FROM sdil_lander_theme_country AS sltc
                                     JOIN sdil_lander_country AS lc ON lc.lander_country_id = sltc.lander_theme_country_id 
                                     JOIN sdil_lander_admin AS admin ON admin.admin_id = sltc.lander_theme_country_created_by 
                                     JOIN sdil_lander_theme AS slt ON slt.lander_theme_id = sltc.lander_theme_country_them_id 
@@ -610,6 +619,50 @@ class app_user_model extends CI_Model
         $this->db->where('created_by', $created_by);
         $this->db->delete(App_user_model::$table_sdil_lander_country);
     }
+
+    public function delete_admin_user($admin_user_id)
+    {
+        $this->db->where('admin_id', $admin_user_id);
+        $is_deleted = $this->db->delete(App_user_model::$table_sdil_lander_admin);
+        return $is_deleted;
+    }
+
+    public function delete_admin_lander_country($admin_user_id)
+    {
+        $this->db->where('created_by', $admin_user_id);
+        $this->db->delete(App_user_model::$table_sdil_lander_country);
+    }
+
+    public function delete_admin_lander_country_wise_slider_image($admin_user_id)
+    {
+        $this->db->where('lander_image_created_by', $admin_user_id);
+        $this->db->delete(App_user_model::$table_sdil_lander_country_wise_slider_image);
+    }
+
+    public function delete_admin_lander_device($admin_user_id)
+    {
+        $this->db->where('lander_device_created_by', $admin_user_id);
+        $this->db->delete(App_user_model::$table_sdil_lander_device);
+    }
+
+    public function delete_admin_lander_last_button_link($admin_user_id)
+    {
+        $this->db->where('lander_last_btn_created_by', $admin_user_id);
+        $this->db->delete(App_user_model::$table_sdil_lander_last_button_link);
+    }
+
+    public function delete_admin_lander_theme($admin_user_id)
+    {
+        $this->db->where('lander_theme_created_by', $admin_user_id);
+        $this->db->delete(App_user_model::$table_sdil_lander_theme);
+    }
+
+    public function delete_admin_lander_theme_country($admin_user_id)
+    {
+        $this->db->where('lander_theme_country_created_by', $admin_user_id);
+        $this->db->delete(App_user_model::$table_sdil_lander_theme_country);
+    }
+
 
     public function delete_device($device_id, $created_by)
     {

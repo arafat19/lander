@@ -83,6 +83,9 @@ $route['admin/country/theme/delete/(:any)'] = "admin/admin_delete_country_theme/
 $route['admin/user/create'] = "admin/super_admin_create_user";
 $route['admin/user/update/(:any)'] = "admin/admin_update_user/$1";
 $route['admin/user/delete/(:any)'] = "admin/admin_delete_user/$1";
+$route['admin/user/force/delete/(:any)'] = "admin/admin_force_delete_user/$1";
+
+$route['user/(:any)'] = "main/admin_user/$1";
 
 $route['admin/show/preview/(:any)'] = "admin/admin_show_preview/$1";
 
@@ -90,3 +93,5 @@ $route['sign-out'] = "admin/logout";
 
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+//01917508252
