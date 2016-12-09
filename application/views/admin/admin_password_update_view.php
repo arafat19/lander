@@ -85,6 +85,13 @@
                                         </button>
                                         <strong><?php echo $this->session->flashdata('admin_password_update_message'); ?></strong>
                                     </div>
+                                <?php }
+                                if ($this->session->flashdata('admin_current_password_wrong_message')) { ?>
+                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+                                        </button>
+                                        <strong><?php echo $this->session->flashdata('admin_current_password_wrong_message'); ?></strong>
+                                    </div>
                                 <?php } ?>
 
                                 <br/>

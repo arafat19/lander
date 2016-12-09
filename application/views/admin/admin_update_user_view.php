@@ -1,15 +1,6 @@
 <body class="nav-md">
 <script language="javascript">
-    function checkMe() {
-        if (confirm("Are you sure you want to delete the selected Admin User?")) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-
-    function link_create() {
+  function link_create() {
         var f1 = document.getElementById("name");
         var f2 = document.getElementById("admin_live_preview_url");
 
@@ -117,62 +108,14 @@
                                         <strong><?php echo validation_errors(); ?></strong>
                                     </div>
                                 <?php }
-                                if ($this->session->flashdata('admin_create_user_message')) { ?>
-                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_user_message'); ?></strong>
-                                    </div>
-                                <?php }
-                                if ($this->session->flashdata('admin_create_user_error_message')) { ?>
+                                if ($this->session->flashdata('admin_user_email_not_unique_message')) { ?>
                                     <div class="alert alert-danger alert-dismissible fade in" role="alert">
                                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                             <span aria-hidden="true">×</span>
                                         </button>
-                                        <strong><?php echo $this->session->flashdata('admin_create_user_error_message'); ?></strong>
+                                        <strong><?php echo $this->session->flashdata('admin_user_email_not_unique_message'); ?></strong>
                                     </div>
-                                <?php }
-                                if ($this->session->flashdata('admin_update_country_message')) { ?>
-                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_country_message'); ?></strong>
-                                    </div>
-                                <?php }
-                                if ($this->session->flashdata('admin_update_country_error_message')) { ?>
-                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('admin_update_country_error_message'); ?></strong>
-                                    </div>
-                                <?php }
-                                if ($this->session->flashdata('country_delete_message')) { ?>
-                                    <div class="alert alert-success alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('country_delete_message'); ?></strong>
-                                    </div>
-                                <?php }
-                                if ($this->session->flashdata('cant_delete_message')) { ?>
-                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('cant_delete_message'); ?></strong>
-                                    </div>
-                                <?php }
-                                if ($this->session->flashdata('cant_delete_associate_message')) { ?>
-                                    <div class="alert alert-danger alert-dismissible fade in" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                        <strong><?php echo $this->session->flashdata('cant_delete_associate_message'); ?></strong>
-                                    </div>
-                                <?php } ?>
+                                <?php }  ?>
 
                                 <br/>
 
@@ -187,7 +130,7 @@
 
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" class="form-control" name="name" id="name"
-                                                   value="<?php echo $this->input->post('name'); ?>"
+                                                   value="<?php echo $single_admin_user['full_name']; ?>"
                                                    onblur="link_create()"
                                                    placeholder="Full Name" required autofocus/>
                                         </div>
@@ -198,7 +141,7 @@
 
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" class="form-control" name="admin_live_preview_url" id="admin_live_preview_url"
-                                                   value="<?php echo $this->input->post('admin_live_preview_url'); ?>"
+                                                   value="<?php echo $single_admin_user['admin_live_preview_url']; ?>"
                                                    placeholder="Live Preview URL" required/>
                                         </div>
                                     </div>
@@ -208,30 +151,30 @@
 
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input class="form-control" placeholder="Email" name="email" type="email"
-                                                   value="<?php echo $this->input->post('email'); ?>"
+                                                   value="<?php echo $single_admin_user['admin_email']; ?>"
                                                    pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}$"
                                                    required="required"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password<span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">Password
                                         </label>
 
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="password" class="form-control" id="password" name="password" minlength="6"
                                                    pattern="^.*(?=.{6,})(((?=.*[a-z])(?=.*[A-Z])(?=.*[\d]))|((?=.*[a-z])(?=.*[A-Z])(?=.*[\W]))|((?=.*[a-z])(?=.*[\d])(?=.*[\W]))|((?=.*[A-Z])(?=.*[\d])(?=.*[\W]))).*$"
-                                                   placeholder="Letters,Numbers & Special Characters" required/>
+                                                   placeholder="Letters,Numbers & Special Characters"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="confirm_password">Confirm Password<span class="required">*</span>
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="confirm_password">Confirm Password
                                         </label>
 
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="password" class="form-control" id="confirm_password"
                                                    name="confirm_password" minlength="6"
                                                    pattern="^.*(?=.{6,})(((?=.*[a-z])(?=.*[A-Z])(?=.*[\d]))|((?=.*[a-z])(?=.*[A-Z])(?=.*[\W]))|((?=.*[a-z])(?=.*[\d])(?=.*[\W]))|((?=.*[A-Z])(?=.*[\d])(?=.*[\W]))).*$"
-                                                   placeholder="Letters,Numbers & Special Characters" required
+                                                   placeholder="Letters,Numbers & Special Characters"
                                                    oninput="check(this)"/>
 
                                             <script language='javascript' type='text/javascript'>
@@ -252,7 +195,7 @@
 
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="tel" class="form-control" id="cell_number" name="cell_number"
-                                                   value="<?php echo $this->input->post('cell_number'); ?>"
+                                                   value="<?php echo $single_admin_user['cell_number']; ?>"
                                                    pattern="[0][1-9]{4}[0-9]{6}"
                                                    placeholder="Mobile Number (Format: 01XXXXXXXXX)"/>
                                         </div>
@@ -264,7 +207,7 @@
                                             <div class="checkbox">
                                                 <label>
                                                     <input type="checkbox" id="is_enabled"
-                                                           name="is_enabled" value="1"/> Is Enabled
+                                                           name="is_enabled" value="1" <?php echo $single_admin_user['enabled'] == 1 ? 'checked' : ''; ?>/> Is Enabled
                                                 </label>
                                             </div>
                                         </div>
@@ -274,80 +217,11 @@
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
                                         <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-                                            <button type="submit" class="btn btn-success">Create</button>
-                                            <button type="reset" class="btn btn-primary">Cancel</button>
+                                            <button type="submit" class="btn btn-success">Update</button>
+                                            <a href="<?php echo base_url()?>admin/user/create" class="btn btn-primary">Cancel</a>
                                         </div>
                                     </div>
                                 </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-12 col-sm-12 col-xs-12">
-                        <div class="x_panel">
-                            <div class="x_title">
-                                <h2><?php echo $data_list_title; ?></h2>
-                                <ul class="nav navbar-right panel_toolbox">
-                                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                                    </li>
-
-                                    <li><a class="close-link"><i class="fa fa-close"></i></a>
-                                    </li>
-                                </ul>
-                                <div class="clearfix"></div>
-                            </div>
-                            <div class="x_content">
-                                <table id="datatable-buttons" class="table table-striped table-bordered">
-                                    <thead>
-                                    <tr>
-                                        <th>Serial</th>
-                                        <th>Name</th>
-                                        <th>Email</th>
-                                        <th>Password</th>
-                                        <th>Live Preview Link</th>
-                                        <th>Enabled</th>
-                                        <th>Action</th>
-                                    </tr>
-                                    </thead>
-
-                                    <?php $i = 1; ?>
-                                    <?php if (isset($all_admins) && $all_admins->num_rows() > 0): ?>
-                                    <tbody>
-                                    <?php foreach ($all_admins->result() as $row): ?>
-
-
-                                        <tr>
-                                            <td><?php echo $i++; ?></td>
-                                            <td><?php echo $row->full_name; ?></td>
-                                            <td><?php echo $row->admin_email; ?></td>
-                                            <td><?php echo 'Ym-'.$row->admin_password_backup.'-Zn'; ?></td>
-                                            <td><a href="<?php echo $row->admin_live_preview_url; ?>" target="_blank"><?php echo $row->admin_live_preview_url; ?></a></td>
-                                            <td><?php echo $row->enabled ? 'Yes' : 'No'; ?></td>
-                                            <td align="center">
-                                                    <a class="btn btn-success" title="Edit"
-                                                       href="<?php echo base_url(); ?>admin/user/update/<?php echo base64_encode($row->admin_id); ?>"
-                                                       role="button"><span
-                                                            class="glyphicon glyphicon-edit"></span></a>
-
-                                                    <a class="btn btn-danger"
-                                                       href="<?php echo base_url(); ?>admin/user/delete/<?php echo base64_encode($row->admin_id); ?>"
-                                                       onclick="return checkMe()" title="Delete"
-                                                       role="button"><span class="glyphicon glyphicon-trash"></span></a>
-                                            </td>
-                                        </tr>
-
-                                    <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                                <?php else: ?>
-                                    <div class="col-md-12">
-                                        <div class="alert alert-info " role="alert">
-                                            No Results were found.
-                                        </div>
-                                    </div>
-                                <?php endif; ?>
                             </div>
                         </div>
                     </div>

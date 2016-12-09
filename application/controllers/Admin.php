@@ -1058,6 +1058,7 @@ class Admin extends CI_Controller
             $this->logout();
         } else {
             $is_super_admin = $this->session->userdata('is_super_admin');
+            $created_by = $this->session->userdata('admin_id');
             $sdil_lander_theme_country_ID_dec = base64_decode($sdil_lander_theme_country_ID);
             $single_theme_country = $this->app_user_model->get_single_theme_country_by_id($sdil_lander_theme_country_ID_dec);
             $data['single_theme_country'] = $single_theme_country;
@@ -1073,10 +1074,10 @@ class Admin extends CI_Controller
                 $data['footer_title'] = Admin::$footer_title;
 
 
-                $all_active_countries = $this->app_user_model->get_all_active_countries(); // Reading and showing the country list from DB
+                $all_active_countries = $this->app_user_model->get_all_active_countries($created_by); // Reading and showing the country list from DB
                 $data['all_active_countries'] = $all_active_countries;
 
-                $all_active_themes = $this->app_user_model->get_all_active_themes(); // Reading and showing the devices list from DB
+                $all_active_themes = $this->app_user_model->get_all_active_themes($created_by); // Reading and showing the devices list from DB
                 $data['all_active_themes'] = $all_active_themes;
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
@@ -1089,7 +1090,8 @@ class Admin extends CI_Controller
                 $data = array(
                     'lander_theme_country_id' => $country_id,
                     'lander_theme_country_them_id' => $theme_id,
-                    'sdil_lander_theme_country_is_live' => $is_live
+                    'sdil_lander_theme_country_is_live' => $is_live,
+                    'lander_theme_country_modified_by' => $created_by
                 );
 
                 $is_created = $this->app_user_model->update_lander_country_theme($sdil_lander_theme_country_ID_dec, $data);
@@ -1145,10 +1147,9 @@ class Admin extends CI_Controller
     public function super_admin_create_user()
     {
         $is_super_admin = $this->session->userdata('is_super_admin');
-        if (($this->session->userdata('admin_email') == "") && $is_super_admin) {
+        if (($this->session->userdata('admin_email') == "") && !$is_super_admin) {
             $this->logout();
         } else {
-
             $created_by = $this->session->userdata('admin_id');
             $this->load->library('Form_validation');
             // field name, error message, validation rules
@@ -1175,27 +1176,56 @@ class Admin extends CI_Controller
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
             } else {
                 $is_enabled = $this->input->post('is_enabled') ? 1 : 0;
+                $email = filter_var($this->input->post('email'), FILTER_SANITIZE_EMAIL);
+                $password = md5(filter_var($this->input->post('password')));
                 $data = array(
                     'full_name' => $this->input->post('name'),
                     'admin_live_preview_url' => $this->input->post('admin_live_preview_url'),
                     'cell_number' => $this->input->post('cell_number'),
                     'enabled' => $is_enabled,
-                    'admin_password' => base64_encode(filter_var($this->input->post('password'))),
+                    'admin_password' => $password,
+                    'admin_password_backup' => filter_var($this->input->post('password')),
                     'password_expired' => $this->input->post('password_expired'),
                     'password_reset_validity' => $this->input->post(date("Y-m-d")),
                     'admin_created_by' => $created_by,
-                    'admin_email' => filter_var($this->input->post('email'), FILTER_SANITIZE_EMAIL)
+                    'admin_email' => $email
 
                 );
                 $is_created = $this->app_user_model->create_admin_user($data);
                 if ($is_created) {
-                    $data_create_country = array(
+                    $get_created_user_id = $this->app_user_model->get_user_by_email_pass($email,$password);
+                    $now_created_admin_id = $get_created_user_id['admin_id'];
+                    $data_create_reserved_country = array(
                         'lander_country_name' => 'Bangladesh',
                         'lander_country_code' => 'BD',
                         'is_active' => 1,
                         'is_country_reserved' => 1,
-                        'created_by' => $created_by
+                        'created_by' => $now_created_admin_id
                     );
+                    $this->app_user_model->create_country($data_create_reserved_country);
+
+                    $device_name = array('Mobile', 'Tab', 'Desktop');
+                    $device_code = array('mobile', 'tab', 'desktop');
+                    for($i = 0; $i< 3; $i++){
+                        $data_sdil_lander_device = array(
+                            'lander_device_name' => $device_name[$i],
+                            'lander_device_code' => $device_code[$i],
+                            'lander_device_is_active' => 1,
+                            'lander_device_is_reserved' => 1,
+                            'lander_device_created_by' => $now_created_admin_id
+                        );
+                        $this->app_user_model->create_device($data_sdil_lander_device);
+                    }
+                    $theme_css = '#sdil-lander-popup-wrapper, body, html {\r\n    width: 100%;\r\n    height: 100%\r\n}\r\n\r\nbody, html {\r\n    margin: 0;\r\n    padding: 0;\r\n    border: 0;\r\n    font-size: 100%\r\n}\r\n\r\nimg {\r\n    border: none\r\n}\r\n\r\n.hidden {\r\n    display: none\r\n}\r\n\r\nbody {\r\n    background: #fff;\r\n    font-family: Helvetica, Arial, sans-serif;\r\n    color: #ff0060;\r\n    background-size: cover\r\n}\r\n\r\n#sdil-lander-popup-wrapper {\r\n    position: fixed;\r\n    top: 0;\r\n    left: 0;\r\n    z-index: 10;\r\n}\r\n\r\n.sdil-lander-popup_alert {\r\n    position: relative;\r\n    width: 380px;\r\n    left: 50%;\r\n    top: 50%;\r\n    margin-left: -210px;\r\n    margin-top: -90px;\r\n    z-index: 100;\r\n    padding: 20px;\r\n    overflow: hidden;\r\n    background: rgba(225,225,225,.8);\r\n    border-radius: 10px;\r\n    box-shadow: 0 0 18px rgba(156, 32, 109, 0.4);\r\n    border: 11px solid #ff0060;\r\n}\r\n\r\n.sdil-lander-popup_alert .copy_area {\r\n    display: block;\r\n    padding-top: 0;\r\n    position: relative;\r\n    left: 8%;\r\n    width: 80%;\r\n    margin-bottom: 17px\r\n}\r\n\r\n.sdil-lander-popup_alert .copy_area h5 {\r\n    font-size: 22px;\r\n    margin: 10px 0 0\r\n}\r\n\r\n.sdil-lander-popup_alert .copy_area p {\r\n    font-size: 17px;\r\n    margin-top: 5px\r\n}\r\n\r\n.sdil-lander-popup_alert .navbtn {\r\n    margin-top: 10px;\r\n    width: 140px;\r\n    height: 70px;\r\n    border-radius: 9px !important;\r\n    border: 4px solid #ff0060;\r\n    background: #fff;\r\n    font-size: 20px;\r\n    cursor: pointer;\r\n    font-weight: 600;\r\n    color: #ff0060;\r\n}\r\n\r\n.radar_scanner {\r\n    display: block;\r\n    margin: 0 auto;\r\n    text-align: center;\r\n    height: 100%;\r\n    width: 100%;\r\n    color: #fff;\r\n    position: fixed;\r\n}\r\n\r\nh3.radar_title {\r\n    font-size: 110%;\r\n    line-height: 100px\r\n}\r\n\r\n.circle1 {\r\n    color: #ff0060;\r\n    background: #fff;\r\n}\r\n\r\n.circle2 {\r\n    color: rgba(255, 255, 255, .8);\r\n    background: #555;\r\n    text-shadow: 0 1px #666\r\n}\r\n\r\n.circle1, .circle2 {\r\n    font-weight: 400;\r\n    margin-left: 0;\r\n    font-size: 23px;\r\n    border-radius: 100px;\r\n    padding: 5px 15px\r\n}\r\n\r\n.box, .marker_show {\r\n    background: rgba(225,225,225,1);\r\n    border-radius: 10px;\r\n    color: #ff0060;\r\n    border: 4px solid #ff0060;\r\n    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);\r\n    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);\r\n    width: 600px;\r\n    position: absolute;\r\n    left: 50%;\r\n    top: 50%;\r\n    margin-top: -185px;\r\n    margin-left: -300px;\r\n    line-height: 28px;\r\n    font-size: 22px;\r\n    text-align: center;\r\n    font-weight: 300;\r\n}\r\n\r\n.box {\r\n    display: none\r\n}\r\n\r\n.box .ok, .buttons {\r\n    background-color: #fff;\r\n    color: #ff0060;\r\n    cursor: pointer;\r\n    font-size: 30px;\r\n    width: 40%;\r\n    min-width: 200px;\r\n    padding: 15px 0;\r\n    margin: 20px auto;\r\n    border-radius: 6px;\r\n    display: block;\r\n    text-align: center;\r\n    text-decoration: none;\r\n    border: 4px solid #ff0060;\r\n}\r\n\r\n.boxheader {\r\n    background: #ff0060;\r\n    width: 100%;\r\n    min-height: 20px;\r\n    color: #fff;\r\n    font-size: 23px;\r\n    padding: 22px 0;\r\n    margin: 0 auto;\r\n    text-align: center\r\n}\r\n\r\n.box_copy {\r\n    padding: 10px 30px 20px;\r\n    text-align: left;\r\n}\r\n\r\n.stepinfo {\r\n    font-size: 18px;\r\n    margin: 10px 0;\r\n    text-align: center\r\n}\r\n\r\n#agree, .next {\r\n    text-align: center;\r\n    font-size: 30px;\r\n    padding: 12px;\r\n    display: inline-block;\r\n    width: 40%;\r\n    background: #ff0060;\r\n    text-decoration: none;\r\n    color: #fff;\r\n    margin-right: -6px;\r\n    border-radius: 4px 0 0 4px;\r\n    margin-bottom: 20px;\r\n    font-weight: 700\r\n}\r\n\r\n.next.step_button_2 {\r\n    background: #56575B;\r\n    color: #fff;\r\n    border-radius: 0 4px 4px 0\r\n}\r\n\r\n.option, .option2, .option3, .option4 {\r\n    width: 60%;\r\n    padding: 5px;\r\n    text-align: left;\r\n    cursor: pointer;\r\n    margin: 0 auto 5px;\r\n    background: url("http://localhost/lander/images/unchecked_checkbox.png") 10px center no-repeat\r\n}\r\n\r\n.selected, .selected2, .selected3, .selected4 {\r\n    background: url("http://localhost/lander/images/checked_checkbox.png") 10px center no-repeat\r\n}\r\n\r\n.option-title {\r\n    color: #eb0060;\r\n    display: block;\r\n    padding: 0;\r\n    margin-left: 50px\r\n}\r\n\r\n@media screen and (max-width: 640px) {\r\n    .box, .marker_show {\r\n        width: 95%;\r\n        left: 0;\r\n        margin: -200px 2.5%\r\n    }\r\n}\r\n\r\n@media screen and (max-width: 480px) {\r\n    .sdil-lander-popup_alert {\r\n        width: 80%;\r\n        left: 0;\r\n        margin: -90px 6%\r\n    }\r\n\r\n    .box, .marker_show {\r\n        font-size: 20px;\r\n        line-height: 25px\r\n    }\r\n\r\n    #radar img, .option, .option2, .option3, .option4 {\r\n        width: 80%\r\n    }\r\n\r\n    h3.radar_title {\r\n        margin-bottom: -20px\r\n    }\r\n\r\n    .box_copy {\r\n        padding: 10px\r\n    }\r\n\r\n    .boxheader {\r\n        font-size: 22px\r\n    }\r\n}';
+                    $data_create_lander_theme = array(
+                        'lander_theme_name' => 'Pink',
+                        'lander_theme_color_code' => '#ff0060',
+                        'lander_theme_css' => $theme_css,
+                        'lander_theme_is_active' => 1,
+                        'is_lander_theme_reserved' => 1,
+                        'lander_theme_created_by' => $now_created_admin_id
+                    );
+                    $this->app_user_model->create_lander_theme($data_create_lander_theme);
 
                     $this->session->set_flashdata('admin_create_user_message', "Admin User is created successfully.");
                 } else {
@@ -1204,6 +1234,116 @@ class Admin extends CI_Controller
 
                 redirect(base_url() . 'admin/user/create', 'refresh');
             }
+        }
+    }
+
+    public function admin_update_user($admin_user_id)
+    {
+        $is_super_admin = $this->session->userdata('is_super_admin');
+        $admin_user_id_dec = base64_decode($admin_user_id);
+        $created_by = $this->session->userdata('admin_id');
+        $single_admin_user = $this->app_user_model->get_user_by_id($admin_user_id_dec);
+        if (($this->session->userdata('admin_email') == "") && !$is_super_admin) {
+            $this->logout();
+        } else {
+            $is_super_admin = $this->session->userdata('is_super_admin');
+            $this->load->library('Form_validation');
+            // field name, error message, validation rules
+            $this->form_validation->set_rules('name', 'Full Name', 'trim|required|min_length[4]');
+            $this->form_validation->set_rules('admin_live_preview_url', 'Admin Live Preview URL', 'required|trim|min_length[4]');
+            $this->form_validation->set_rules('email', 'This Email', 'trim|required|valid_email');
+            $this->form_validation->set_rules('password', 'Password', 'trim|min_length[4]|max_length[32]');
+            $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|matches[password]');
+            $this->form_validation->set_rules('cell_number', 'Your Mobile Number', 'trim|min_length[4]|max_length[11]');
+            $this->form_validation->set_rules('is_enabled', 'Is Enabled');
+            if ($this->form_validation->run() == FALSE) {
+                $data['title'] = 'Update Admin User - SDIL Lander';
+                $data['full_name'] = $this->session->userdata('full_name');
+                $data['page_title'] = 'Update Admin User';
+                $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
+                $data['footer_title'] = Admin::$footer_title;
+
+
+                $data['single_admin_user'] = $single_admin_user;
+
+                $this->load->view('admin/admin_dashboard_header_view', $data);
+                $this->load->view('admin/admin_update_user_view', $data);
+                $this->load->view('admin/admin_dashboard_footer_view', $data);
+            } else {
+                $is_enabled = $this->input->post('is_enabled') ? 1 : 0;
+                $email = filter_var($this->input->post('email'), FILTER_SANITIZE_EMAIL);
+                $password = md5(filter_var($this->input->post('password')));
+                $admin_password_backup = filter_var($this->input->post('password'));
+                if($password == ''){
+                    $password = $single_admin_user['admin_password'];
+                    $admin_password_backup = $single_admin_user['admin_password_backup'];
+                }
+                $data = array(
+                    'full_name' => $this->input->post('name'),
+                    'admin_live_preview_url' => $this->input->post('admin_live_preview_url'),
+                    'cell_number' => $this->input->post('cell_number'),
+                    'enabled' => $is_enabled,
+                    'admin_password' => $password,
+                    'admin_password_backup' => $admin_password_backup,
+                    'password_expired' => $this->input->post('password_expired'),
+                    'password_reset_validity' => $this->input->post(date("Y-m-d")),
+                    'admin_modified_by' => $created_by,
+                    'admin_email' => $email
+
+                );
+                $is_updated = FALSE;
+                $check_admin_email_is_unique = TRUE;
+                if ($email == $single_admin_user['admin_email']) {
+                    $is_updated = $this->app_user_model->update_admin_user($data, $admin_user_id_dec);
+                } else {
+                    // Country name and code unique check during update
+                    if ($email != $single_admin_user['admin_email']) {
+                        $check_admin_email_is_unique = $this->app_user_model->unique_admin_email($email);
+                        if ($check_admin_email_is_unique) {
+                            $this->session->set_flashdata('admin_user_email_not_unique_message', "Sorry! Given Email address is already exist. Please try another one.");
+                        }
+
+                        if ($check_admin_email_is_unique) {
+                            redirect(base_url() . 'admin/user/update/' . $admin_user_id, 'refresh');
+                        }
+                    }
+                    if (!$check_admin_email_is_unique) {
+                        $is_updated = $this->app_user_model->update_admin_user($data, $admin_user_id_dec);
+                    }
+                }
+                if ($is_updated) {
+                    $this->session->set_flashdata('admin_create_user_message', "Selected Admin User is Updated successfully.");
+                } else {
+                    $this->session->set_flashdata('admin_create_user_error_message', "Selected Admin User is not Updated successfully. Please try again.");
+                }
+
+                redirect(base_url() . 'admin/user/create', 'refresh');
+            }
+        }
+    }
+
+    public function admin_delete_user($admin_user_id)
+    {
+        $admin_user_id_dec = base64_decode($admin_user_id);
+        $created_by = $this->session->userdata('admin_id');
+        $single_admin_user = $this->app_user_model->get_user_by_id($admin_user_id_dec);
+        $is_super_admin = $this->session->userdata('is_super_admin');
+        if (($this->session->userdata('admin_email') == "") && !$is_super_admin) {
+            $this->logout();
+        } else {
+            $admin_user_association_count = $this->app_user_model->get_associated_admin_user_count($admin_user_id_dec);
+            if ($admin_user_association_count > 0) {
+                $this->session->set_flashdata('cant_delete_associate_message', 'Selected Admin ' . $single_admin_user['full_name'] . ' can not be deleted. Admin has ' . $admin_user_association_count . ' association(s).');
+            } else {
+                $is_enabled = $single_admin_user["enabled"];
+                if ($is_enabled) {
+                    $this->session->set_flashdata('cant_delete_message', 'Enabled Admin User can not be deleted.');
+                } else {
+                    $this->app_user_model->delete_admin_iser($admin_user_id_dec);
+                    $this->session->set_flashdata('device_delete_message', 'Selected Admin User is successfully deleted');
+                }
+            }
+            redirect(base_url() . 'admin/user/create');
         }
     }
 
@@ -1218,8 +1358,9 @@ class Admin extends CI_Controller
         if (($this->session->userdata('admin_email') == "")) {
             $this->logout();
         } else {
+            $created_by = $this->session->userdata('admin_id');
             $theme_id_dec = base64_decode($theme_id);
-            $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec);
+            $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec, $created_by);
             $data['theme_name'] = $single_theme['lander_theme_name'];
             $data['lander_theme_css'] = $single_theme['lander_theme_css'];
 
@@ -1311,7 +1452,7 @@ class Admin extends CI_Controller
 
             $this->load->library('Form_validation');
             // field name, error message, validation rules
-            $this->form_validation->set_rules('current_password', 'Current Password', 'trim|required|min_length[6]|max_length[32]|callback_exist_password');
+            $this->form_validation->set_rules('current_password', 'Current Password', 'trim|required|min_length[6]|max_length[32]');
             $this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]|max_length[32]');
             $this->form_validation->set_rules('confirm_password', 'Password Confirmation', 'trim|required');
 
@@ -1326,10 +1467,19 @@ class Admin extends CI_Controller
                 $this->load->view('admin/admin_password_update_view', $data);
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
             } else {
-                $is_updated = $this->app_user_model->admin_password_update($sd_lander_admin_id, $sd_lander_admin_email);
-                if ($is_updated) {
-                    $this->session->set_flashdata('admin_password_update_message', "Your Password is updated successfully.");
+                $current_password = md5($this->input->post('current_password'));
+                $get_current_password_db = $this->app_user_model->get_user_current_password($sd_lander_admin_id);
+                print_r($current_password);
+                print_r($get_current_password_db);
+                if($current_password == $get_current_password_db['admin_password']){
+                    $is_updated = $this->app_user_model->admin_password_update($sd_lander_admin_id, $sd_lander_admin_email, $is_super_admin);
+                    if ($is_updated) {
+                        $this->session->set_flashdata('admin_password_update_message', "Your Password is updated successfully.");
+                    }
+                } else {
+                    $this->session->set_flashdata('admin_current_password_wrong_message', "Sorry!   Your Current Password is Wrong.");
                 }
+
                 redirect(base_url() . 'admin/password/update', 'refresh');
             }
         }
@@ -1465,7 +1615,7 @@ class Admin extends CI_Controller
         }
     }
 
-    function exist_password($str)
+   /* function exist_password($str)
     {
         $this->load->model('app_user_model');
         if (!$this->app_user_model->exist_admin_password($str)) {
@@ -1474,7 +1624,7 @@ class Admin extends CI_Controller
             $this->form_validation->set_message('exist_password', "Sorry! Your current Password doesn't match");
             return FALSE;
         }
-    }
+    }*/
 
     public function logout()
     {

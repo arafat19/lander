@@ -183,16 +183,16 @@ class app_user_model extends CI_Model
         }
     }
 
-    public function exist_admin_password($c_password)
-    {
-        $this->db->where('admin_password', md5($c_password));
-        $query = $this->db->get(App_user_model::$table_sdil_lander_admin);
-        if ($query->num_rows() > 0) {
-            return FALSE;
-        } else {
-            return TRUE;
-        }
-    }
+    /* public function exist_admin_password($c_password)
+     {
+         $this->db->where('admin_password', md5($c_password));
+         $query = $this->db->get(App_user_model::$table_sdil_lander_admin);
+         if ($query->num_rows() > 0) {
+             return FALSE;
+         } else {
+             return TRUE;
+         }
+     }*/
 
     public function update_admin_info($admin_id)
     {
@@ -215,10 +215,15 @@ class app_user_model extends CI_Model
         }
     }
 
-    public function admin_password_update($sd_lander_admin_id, $sd_lander_admin_email)
+    public function admin_password_update($sd_lander_admin_id, $sd_lander_admin_email, $is_super_admin)
     {
+        $admin_password_backup = $this->input->post('password');
+        if ($is_super_admin) {
+            $admin_password_backup = NULL;
+        }
         $data = array(
-            'admin_password' => md5($this->input->post('password'))
+            'admin_password' => md5($this->input->post('password')),
+            'admin_password_backup' => $admin_password_backup
         );
         $this->db->where('admin_id', $sd_lander_admin_id);
         $this->db->where('admin_email', $sd_lander_admin_email);
@@ -244,6 +249,25 @@ class app_user_model extends CI_Model
     public function get_user_by_id($admin_id)
     {
         $this->db->select('*');
+        $this->db->where('admin_id', $admin_id);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_admin);
+
+        return $result->row_array();
+    }
+
+    public function get_user_by_email_pass($email, $password)
+    {
+        $this->db->select('admin_id');
+        $this->db->where('admin_email', $email);
+        $this->db->where('admin_password', $password);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_admin);
+
+        return $result->row_array();
+    }
+
+    public function get_user_current_password($admin_id)
+    {
+        $this->db->select('admin_password');
         $this->db->where('admin_id', $admin_id);
         $result = $this->db->get(App_user_model::$table_sdil_lander_admin);
 
@@ -295,6 +319,31 @@ class app_user_model extends CI_Model
         $result_lander_theme_country = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
 
         $row_count = $result_country_wise_slider_image->num_rows() + $result_lander_last_button_link->num_rows() + $result_lander_theme_country->num_rows();
+
+        return $row_count;
+    }
+
+    public function get_associated_admin_user_count($admin_user_id)
+    {
+        $this->db->where('created_by', $admin_user_id);
+        $result_admin_user_country = $this->db->get(App_user_model::$table_sdil_lander_country);
+
+        $this->db->where('lander_image_created_by', $admin_user_id);
+        $result_country_wise_slider_image = $this->db->get(App_user_model::$table_sdil_lander_country_wise_slider_image);
+
+        $this->db->where('lander_device_created_by', $admin_user_id);
+        $result_admin_user_device = $this->db->get(App_user_model::$table_sdil_lander_country_wise_slider_image);
+
+        $this->db->where('lander_last_btn_created_by', $admin_user_id);
+        $result_lander_last_button_link = $this->db->get(App_user_model::$table_sdil_lander_last_button_link);
+
+        $this->db->where('lander_theme_created_by', $admin_user_id);
+        $result_lander_theme_admin_user = $this->db->get(App_user_model::$table_sdil_lander_theme);
+
+        $this->db->where('lander_theme_country_created_by', $admin_user_id);
+        $result_lander_theme_country = $this->db->get(App_user_model::$table_sdil_lander_theme_country);
+
+        $row_count = $result_lander_theme_admin_user->num_rows() +$result_admin_user_device->num_rows() + $result_admin_user_country->num_rows() + $result_country_wise_slider_image->num_rows() + $result_lander_last_button_link->num_rows() + $result_lander_theme_country->num_rows();
 
         return $row_count;
     }
@@ -601,6 +650,13 @@ class app_user_model extends CI_Model
     {
         $this->db->where('lander_theme_id', $theme_id);
         $is_updated = $this->db->update(App_user_model::$table_sdil_lander_theme, $data);
+        return $is_updated;
+    }
+
+    public function update_admin_user($data, $admin_user_id)
+    {
+        $this->db->where('admin_id', $admin_user_id);
+        $is_updated = $this->db->update(App_user_model::$table_sdil_lander_admin, $data);
         return $is_updated;
     }
 
