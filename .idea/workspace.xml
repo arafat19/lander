@@ -2,15 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="262a4ebb-918b-4ced-8e7b-6b73a0dd5394" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/views/admin/admin_update_user_view.php" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/application/views/admin/admin_applicants_list_view.php" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DB/sdil_lander_v9.1.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/config/database.php" afterPath="$PROJECT_DIR$/application/config/database.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Admin.php" afterPath="$PROJECT_DIR$/application/controllers/Admin.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/App_user_model.php" afterPath="$PROJECT_DIR$/application/models/App_user_model.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_create_user_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_create_user_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_login_index_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_login_index_view.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_password_update_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_password_update_view.php" />
     </list>
     <ignored path="lander.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,7 +25,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Admin.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Admin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="415">
@@ -244,6 +238,16 @@
                 <element signature="n#logout#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="e#94662#94805#0#PHP" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sdil_lander_v9.1.sql" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/DB/sdil_lander_v9.1.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -555,10 +559,10 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="D:\xampp\htdocs\lander\DB" />
       <recent name="D:\xampp\htdocs\lander\application\views\admin" />
       <recent name="$PROJECT_DIR$/DB" />
       <recent name="$PROJECT_DIR$/application/views/admin" />
-      <recent name="D:\xampp\htdocs\lander\DB" />
       <recent name="D:\xampp\htdocs\lander\application\views\main" />
     </key>
   </component>
@@ -647,7 +651,7 @@
       <workItem from="1481042070895" duration="16000" />
       <workItem from="1481083566712" duration="1346000" />
       <workItem from="1481140583596" duration="5082000" />
-      <workItem from="1481216270354" duration="17158000" />
+      <workItem from="1481216270354" duration="17255000" />
     </task>
     <task id="LOCAL-00001" summary="Commit from home: 12-11-2016;; 3:50 AM">
       <created>1478900974335</created>
@@ -719,11 +723,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481211922288</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Commit from home: 09-12-2016 :::11:34 AM">
+      <created>1481261713537</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1481261713537</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="120994000" />
+    <option name="totallyTimeSpent" value="121091000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -774,7 +785,8 @@
     <MESSAGE value="Commit from home: 06-12-2016 ::: 11:21 AM" />
     <MESSAGE value="Commit from home: 08-12-2016 ::: 11:21 AM" />
     <MESSAGE value="Commit from office: 08-12-2016 ::: 9:45 PM" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit from office: 08-12-2016 ::: 9:45 PM" />
+    <MESSAGE value="Commit from home: 09-12-2016 :::11:34 AM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit from home: 09-12-2016 :::11:34 AM" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -825,13 +837,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/css/bootstrap-colorpicker.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="12" column="38" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/css/bootstrap.min.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -1398,6 +1403,14 @@
             <element signature="n#logout#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="e#94662#94805#0#PHP" expanded="false" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DB/sdil_lander_v9.1.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
