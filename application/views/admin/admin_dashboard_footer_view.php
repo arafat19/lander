@@ -82,89 +82,9 @@
 <!---->
 <script src="<?= base_url() ?>js/jquery-ui.js"></script>
 
-<script type="text/javascript">
-    $( function() {
-        $( "#course_start_date" ).datepicker({
-            dateFormat: "dd-mm-yy",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1900:2030"
-
-            /*  onSelect: function(date) {
-
-             var dateSplit = date.split("-");
-             var dob = new Date(dateSplit[1] + " " + dateSplit[0] + " " + dateSplit[2]);
-             var today = new Date();
-             if (dob.getFullYear() + 18 > today.getFullYear())
-             {
-             alert("You must be atleast 18 years old.");
-             $(".dob").val("");
-             }
-             }*/
-        });
-        $( "#course_end_date" ).datepicker({
-            dateFormat: "dd-mm-yy",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1900:2030"
-        });
-
-        $( "#from_date" ).datepicker({
-            dateFormat: "yy-m-d",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1900:2030"
-        });
-        $( "#to_date" ).datepicker({
-            dateFormat: "yy-m-d",
-            changeMonth: true,
-            changeYear: true,
-            yearRange: "1900:2030"
-        });
-    });
-</script>
-<script type="text/javascript">
-    $(document).ready(function () {
-
-        $('#district_ids').on("change", function () {
-            var districtId = $(this).find('option:selected').val();
-            $.ajax({
-                url: "<?php echo base_url();?>admin/show/sub/district",
-                type: "POST",
-                data: "districtId=" + districtId,
-                success: function (response) {
-                    console.log(response);
-                    $("#sub_district_ids").html(response);
-                },
-            });
-        });
-
-    });
-
-</script>
-
 <!-- Custom Theme Scripts -->
 <script src="<?php echo base_url(); ?>js/custom.min.js"></script>
 
-<!-- bootstrap-daterangepicker -->
-<!--<script>
-    $(document).ready(function () {
-        $('#course_start_date').daterangepicker({
-            format: "DD-MM-YYYY",
-            singleDatePicker: true,
-            calender_style: "picker_4"
-        }, function (start, end, label) {
-            console.log(start.toISOString(), end.toISOString(), label);
-        });
-
-        $('#course_end_date').daterangepicker({
-            format: "DD-MM-YYYY",
-            singleDatePicker: true,
-            calender_style: "picker_4"
-        });
-    });
-</script>-->
-<!-- /bootstrap-daterangepicker -->
 <!-- Datatables -->
 <script>
     $(document).ready(function () {
@@ -334,24 +254,7 @@
 </script>
 <!-- /Flot -->
 
-<!-- JQVMap -->
-<script>
-    $(document).ready(function () {
-        $('#world-map-gdp').vectorMap({
-            map: 'world_en',
-            backgroundColor: null,
-            color: '#ffffff',
-            hoverOpacity: 0.7,
-            selectedColor: '#666666',
-            enableZoom: true,
-            showTooltip: true,
-            values: sample_data,
-            scaleColors: ['#E6F2F0', '#149B7E'],
-            normalizeFunction: 'polynomial'
-        });
-    });
-</script>
-<!-- /JQVMap -->
+
 
 <!-- Skycons -->
 <script>

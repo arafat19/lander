@@ -18,6 +18,12 @@ class Main extends CI_Controller
 
         $current_user_id = $this->app_user_model->get_user_by_live_preview_url($current_user_url);
         $admin_user_id = $current_user_id['admin_id'];
+        $admin_user_id_enabled = $current_user_id['enabled'];
+        //var_dump($current_user_id);
+        $data['not_enabled'] = '';
+        if(!$admin_user_id_enabled){
+            $data['not_enabled'] = 'This User Is not enabled. Please enable the user from Admin.';
+        }
 
         $geoplugin = new geoPlugin();
         //locate the IP and Country
@@ -93,6 +99,8 @@ class Main extends CI_Controller
         $data['lander_theme_css'] = $lander_theme_css['lander_theme_css'];
         $data['theme_name'] = $lander_theme_css['lander_theme_name'];
         $data['button_link_by_device_country'] = $button_link_by_device_country;
+        $data['title'] = $country_ID['lander_country_site_title'];
+        $data['full_name'] = $current_user_id['full_name'];
 
         $this->load->view('main/header_view', $data);
         $this->load->view('main/body_view', $data);
@@ -106,15 +114,20 @@ class Main extends CI_Controller
         $current_user_id = $this->app_user_model->get_user_by_live_preview_url($current_user_url);
         $admin_user_id = $current_user_id['admin_id'];
         $admin_user_id_enabled = $current_user_id['enabled'];
-        if($admin_user_id_enabled)
+        $data['not_enabled'] = '';
+        if(!$admin_user_id_enabled){
+            $data['not_enabled'] = 'This User Is not enabled. Please enable the user from Admin.';
+        }
 
         $geoplugin = new geoPlugin();
         //locate the IP and Country
-        //$geoplugin->locate();
+        $geoplugin->locate();
 
-        //$country_code = $geoplugin->countryCode;
-        //if($country_code == null)
+        $country_code = $geoplugin->countryCode;
+        if($country_code == null){
             $country_code = 'BD';
+        }
+
         $is_active = 1;
         $is_live = 1;
         $country_ID = $this->main_ui_model->get_country_id_by_country_code_is_active($country_code, $is_active, $admin_user_id);
@@ -182,6 +195,9 @@ class Main extends CI_Controller
         $data['lander_theme_css'] = $lander_theme_css['lander_theme_css'];
         $data['theme_name'] = $lander_theme_css['lander_theme_name'];
         $data['button_link_by_device_country'] = $button_link_by_device_country;
+        $data['title'] = $country_ID['lander_country_site_title'];
+        $data['full_name'] = $current_user_id['full_name'];
+
 
         $this->load->view('main/header_view', $data);
         $this->load->view('main/body_view', $data);

@@ -257,7 +257,7 @@ class app_user_model extends CI_Model
     }
     public function get_user_by_live_preview_url($current_user_url)
     {
-        $this->db->select('admin_id, enabled');
+        $this->db->select('admin_id, enabled, full_name');
         $this->db->where('admin_live_preview_url', $current_user_url);
         $result = $this->db->get(App_user_model::$table_sdil_lander_admin);
 

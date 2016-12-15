@@ -78,6 +78,7 @@ class Admin extends CI_Controller
             // field name, error message, validation rules
             $this->form_validation->set_rules('country_name', 'Country name', 'trim|required|min_length[2]|callback_unique_country_name');
             $this->form_validation->set_rules('country_code', 'Country code', 'trim|required|min_length[2]|callback_unique_country_code');
+            $this->form_validation->set_rules('country_site_title', 'Site Title', 'trim|required|min_length[2]');
             $this->form_validation->set_rules('is_active', 'Is Active');
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'SDIL Lander Country List - SDIL Lander';
@@ -99,6 +100,7 @@ class Admin extends CI_Controller
                 $data = array(
                     'lander_country_name' => $this->input->post('country_name'),
                     'lander_country_code' => $this->input->post('country_code'),
+                    'lander_country_site_title' => $this->input->post('country_site_title'),
                     'is_active' => $is_active,
                     'created_by' => $created_by
                 );
@@ -149,6 +151,7 @@ class Admin extends CI_Controller
                 $data = array(
                     'lander_country_name' => $country_name,
                     'lander_country_code' => $country_code,
+                    'lander_country_site_title' => $this->input->post('country_site_title'),
                     'is_active' => $is_active,
                     'modified_by' => $created_by
                 );
@@ -1199,6 +1202,7 @@ class Admin extends CI_Controller
                     $data_create_reserved_country = array(
                         'lander_country_name' => 'Bangladesh',
                         'lander_country_code' => 'BD',
+                        'lander_country_site_title' => 'Your Site title',
                         'is_active' => 1,
                         'is_country_reserved' => 1,
                         'created_by' => $now_created_admin_id

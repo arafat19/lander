@@ -16,13 +16,22 @@
 </div> -->
 
 <div id="pageBackground">
+    <?php
+    if ($not_enabled) { ?>
+    <div class="alert alert-danger alert-dismissible fade in" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">×</span>
+        </button>
+        <strong><?php echo $not_enabled; ?></strong>
+    </div>
+    <?php } ?>
 
     <div id="sdil-lander-popup-wrapper">
         <div id="popup" class="sdil-lander-popup_alert">
             <div class="top"></div>
             <div class="alert_icon"></div>
             <div class="copy_area">
-                <h5>Cindy 43 wants to share her nude private pictures with you.</h5>
+                <h5><?php echo $full_name; ?> 43 wants to share her nude private pictures with you.</h5>
                 <p>Do you accept?</p>
                 <button class="navbtn popup-close"><span>YES</span>
                 </button>
@@ -37,7 +46,7 @@
 
 <div class="wrapper">
 
-    <div id="popup2" class="box">
+    <!--<div id="popup2" class="box">
         <h3 class="boxheader">This is NOT A Dating Site</h3>
         <div class="box_copy">
             <p>Before we can show you a list and photos of women who live near you and are ready to <u><strong>have sex
@@ -45,9 +54,9 @@
             <button class="ok"><span>OK</span>
             </button>
         </div>
-    </div>
+    </div>-->
 
-    <div class="step1 marker_show hidden">
+    <!--<div class="step1 marker_show hidden">
         <h3 class="boxheader"><span class="step_label"> Question </span> <span class="circle1">1</span> <span
                 class="circle2">2</span> <span class="circle2">3</span> <span class="circle2">4</span></h3>
         <div class="box_copy">
@@ -203,7 +212,7 @@
         </div>
 
         <button class="buttons steps-button-final" href="javascript:void(0)">Next »</button>
-    </div>
+    </div>-->
 
     <div id="final" class="results marker_show hidden">
         <h3 class="boxheader">Thank you.</h3>

@@ -66,7 +66,8 @@
             $("#sdil-lander-popup-wrapper").fadeOut();
             $('.radar_scanner').fadeIn(400, function () {
                 $(this).delay(100).fadeOut(300, function () {
-                    $("#popup2").fadeIn(300);
+                    //$("#popup2").fadeIn(300);
+                    $(".results").fadeIn();
                 });
             });
         });

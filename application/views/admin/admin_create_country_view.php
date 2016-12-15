@@ -176,6 +176,18 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="country_site_title">Site
+                                            Title<span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" name="country_site_title"
+                                                   id="country_site_title"
+                                                   value="<?php echo $this->input->post('country_site_title'); ?>"
+                                                   placeholder="Site Title" required/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                         </div>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -221,6 +233,7 @@
                                     <thead>
                                     <tr>
                                         <th>Serial</th>
+                                        <th>Site Title</th>
                                         <th>Country Name</th>
                                         <th>Country Code</th>
                                         <th>Created By</th>
@@ -237,6 +250,7 @@
 
                                         <tr>
                                             <td><?php echo $i++; ?></td>
+                                            <td><?php echo $row->lander_country_site_title; ?></td>
                                             <td><?php echo $row->lander_country_name; ?></td>
                                             <td><?php echo $row->lander_country_code; ?></td>
                                             <td><?php echo $row->full_name; ?></td>
