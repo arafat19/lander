@@ -1,0 +1,262 @@
+#popup-wrapper, body, html {
+    width: 100%;
+    height: 100%
+}
+
+body, html {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%
+}
+
+img {
+    border: none
+}
+
+.hidden {
+    display: none
+}
+
+body {
+    background: #fff;
+    font-family: Helvetica, Arial, sans-serif;
+    color: #fff;
+    background-size: cover
+}
+
+#popup-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+}
+
+.popup_alert {
+    position: relative;
+    width: 380px;
+    left: 50%;
+    top: 50%;
+    margin-left: -210px;
+    margin-top: -90px;
+    z-index: 100;
+    padding: 20px;
+    overflow: hidden;
+    background-color: #db4c2c;
+    border-radius: 10px;
+    box-shadow: 0 0 18px rgba(0, 0, 0, .4);
+    border: 11px solid #fff
+}
+
+.popup_alert .top {
+    position: absolute;
+    left: -1px;
+    top: -1px;
+    width: 100%;
+    height: 22px;
+    padding: 8px 20px 6px 10px;
+    background: #db4c2c;
+    border: 1px solid #db4c2c
+}
+
+.popup_alert .copy_area {
+    display: block;
+    padding-top: 0;
+    position: relative;
+    left: 8%;
+    width: 80%;
+    margin-bottom: 17px
+}
+
+.popup_alert .copy_area h5 {
+    font-size: 22px;
+    margin: 10px 0 0
+}
+
+.popup_alert .copy_area p {
+    font-size: 17px;
+    margin-top: 5px
+}
+
+.popup_alert .navbtn {
+    margin-top: 10px;
+    width: 140px;
+    height: 70px;
+    border-radius: 4px !important;
+    border: 1px solid #fff;
+    background: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    font-weight: 400
+}
+
+.radar_scanner {
+    display: block;
+    margin: 0 auto;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    position: fixed
+}
+
+h3.radar_title {
+    font-size: 110%;
+    line-height: 100px
+}
+
+.circle1 {
+    color: #000;
+    background: #e7e7e7
+}
+
+.circle2 {
+    color: rgba(255, 255, 255, .8);
+    background: #555;
+    text-shadow: 0 1px #666
+}
+
+.circle1, .circle2 {
+    font-weight: 400;
+    margin-left: 0;
+    font-size: 23px;
+    border-radius: 100px;
+    padding: 5px 15px
+}
+
+.box, .marker_show {
+    background: #fff;
+    color: #000;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    width: 600px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -185px;
+    margin-left: -300px;
+    line-height: 28px;
+    font-size: 22px;
+    text-align: center
+}
+
+.box {
+    display: none
+}
+
+.box .ok, .buttons {
+    background-color: #db4c2c;
+    border: 0;
+    color: #fff;
+    cursor: pointer;
+    font-size: 30px;
+    width: 40%;
+    min-width: 200px;
+    padding: 15px 0;
+    margin: 20px auto;
+    border-radius: 4px;
+    display: block;
+    text-align: center;
+    text-decoration: none
+}
+
+.boxheader {
+    background: #db4c2c;
+    width: 100%;
+    min-height: 20px;
+    color: #fff;
+    font-size: 23px;
+    padding: 22px 0;
+    margin: 0 auto;
+    text-align: center
+}
+
+.box_copy {
+    padding: 10px 30px 20px;
+    text-align: left
+}
+
+.stepinfo {
+    font-size: 18px;
+    margin: 10px 0;
+    text-align: center
+}
+
+#agree, .next {
+    text-align: center;
+    font-size: 30px;
+    padding: 10px;
+    display: inline-block;
+    width: 40%;
+    background: #db4c2c;
+    text-decoration: none;
+    color: #fff;
+    margin-right: -6px;
+    border-radius: 4px 0 0 4px;
+    margin-bottom: 20px;
+    font-weight: 700
+}
+
+.next.step_button_2 {
+    background: #56575B;
+    color: #fff;
+    border-radius: 0 4px 4px 0
+}
+
+.option, .option2, .option3, .option4 {
+    width: 60%;
+    padding: 10px;
+    text-align: left;
+    cursor: pointer;
+    margin: 0 auto 5px;
+    background: url("../images/unchecked_checkbox.png") 10px center no-repeat
+}
+
+.selected, .selected2, .selected3, .selected4 {
+    background: url("../images/checked_checkbox.png") 10px center no-repeat
+}
+
+.option-title {
+    color: #000;
+    display: block;
+    padding: 0;
+    margin-left: 50px
+}
+
+@media screen and (max-width: 640px) {
+    .box, .marker_show {
+        width: 95%;
+        left: 0;
+        margin: -200px 2.5%
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .popup_alert {
+        width: 80%;
+        left: 0;
+        margin: -90px 6%
+    }
+
+    .box, .marker_show {
+        font-size: 20px;
+        line-height: 25px
+    }
+
+    #radar img, .option, .option2, .option3, .option4 {
+        width: 80%
+    }
+
+    h3.radar_title {
+        margin-bottom: -20px
+    }
+
+    .box_copy {
+        padding: 10px
+    }
+
+    .boxheader {
+        font-size: 22px
+    }
+}

@@ -675,7 +675,8 @@ class app_user_model extends CI_Model
     {
         $this->db->where('lander_theme_id', $theme_id);
         $this->db->where('lander_theme_created_by', $created_by);
-        $this->db->delete(App_user_model::$table_sdil_lander_theme);
+        $is_deleted = $this->db->delete(App_user_model::$table_sdil_lander_theme);
+        return $is_deleted;
     }
 
     public function create_image_slider($data)

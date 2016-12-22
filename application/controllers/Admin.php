@@ -822,12 +822,17 @@ class Admin extends CI_Controller
         } else {
             $is_super_admin = $this->session->userdata('is_super_admin');
             $created_by = $this->session->userdata('admin_id');
+            $all_themes = $this->app_user_model->get_all_themes($created_by); // Reading and showing the devices list from DB
+            $data['all_themes'] = $all_themes;
             $this->load->library('Form_validation');
             // field name, error message, validation rules
             $this->form_validation->set_rules('theme_name', 'Theme name', 'trim|required|min_length[2]|callback_unique_theme_name');
             $this->form_validation->set_rules('theme_color_code', 'Theme Color Code', 'trim|required|min_length[2]|callback_unique_theme_color_code');
             $this->form_validation->set_rules('theme_css', 'Theme CSS', 'trim|required');
+            $this->form_validation->set_rules('theme_html', 'Theme HTML', 'trim|required');
+            $this->form_validation->set_rules('theme_js', 'Theme JS', 'trim|required');
             $this->form_validation->set_rules('is_active', 'Is Active');
+            $this->form_validation->set_rules('is_bootstrap_active', 'Is Bootstrap Active');
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'SDIL Lander Theme List - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
@@ -836,25 +841,34 @@ class Admin extends CI_Controller
                 $data['data_list_title'] = 'All Themes List';
                 $data['footer_title'] = Admin::$footer_title;
 
-                $all_themes = $this->app_user_model->get_all_themes($created_by); // Reading and showing the devices list from DB
-                $data['all_themes'] = $all_themes;
+
+                $file_errors = '';
+                $this->session->set_flashdata('file_errors', strip_tags($file_errors));
+
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
                 $this->load->view('admin/admin_create_theme_view', $data);
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
-            } else {
-                $is_active = $this->input->post('is_active') ? 1 : 0;
-                $theme_name = $this->input->post('theme_name');
-                $theme_color_code = $this->input->post('theme_color_code');
-                $theme_css = $this->input->post('theme_css');
-                $data = array(
-                    'lander_theme_name' => $theme_name,
-                    'lander_theme_color_code' => $theme_color_code,
-                    'lander_theme_css' => $theme_css,
-                    'lander_theme_is_active' => $is_active,
-                    'lander_theme_created_by' => $created_by
-                );
-                $is_created = $this->app_user_model->create_lander_theme($data);
+                return false;
+            }
+            $is_active = $this->input->post('is_active') ? 1 : 0;
+            $is_bootstrap_active = $this->input->post('is_bootstrap_active') ? 1 : 0;
+            $theme_name = $this->input->post('theme_name');
+            $theme_color_code = $this->input->post('theme_color_code');
+            $theme_css = $this->input->post('theme_css');
+            $theme_html = $this->input->post('theme_html');
+            $theme_js = $this->input->post('theme_js');
+            if (empty($_FILES['userFile']['tmp_name'])) {
+                $uploadData['lander_theme_name'] = $theme_name;
+                $uploadData['lander_theme_color_code'] = $theme_color_code;
+                $uploadData['lander_theme_css'] = $theme_css;
+                $uploadData['lander_theme_html'] = $theme_html;
+                $uploadData['lander_theme_js'] = $theme_js;
+                $uploadData['lander_theme_is_active'] = $is_active;
+                $uploadData['lander_theme_add_bootstrap'] = $is_bootstrap_active;
+                $uploadData['lander_theme_created_by'] = $created_by;
+
+                $is_created = $this->app_user_model->create_lander_theme($uploadData);
                 if ($is_created) {
                     $this->session->set_flashdata('admin_create_theme_message', "Theme is created successfully.");
                 } else {
@@ -862,7 +876,52 @@ class Admin extends CI_Controller
                 }
 
                 redirect(base_url() . 'admin/theme/create', 'refresh');
+            } else {
+                $uploadPath = './uploaded/lander_theme_images/';
+                $config['upload_path'] = $uploadPath;
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '2000';
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                if ($this->upload->do_upload('userFile')) {
+                    $fileData = $this->upload->data();
+                    $uploadData['lander_theme_image_file_name'] = $fileData['file_name'];
+                    $uploadData['lander_theme_name'] = $theme_name;
+                    $uploadData['lander_theme_color_code'] = $theme_color_code;
+                    $uploadData['lander_theme_css'] = $theme_css;
+                    $uploadData['lander_theme_html'] = $theme_html;
+                    $uploadData['lander_theme_js'] = $theme_js;
+                    $uploadData['lander_theme_is_active'] = $is_active;
+                    $uploadData['lander_theme_add_bootstrap'] = $is_bootstrap_active;
+                    $uploadData['lander_theme_created_by'] = $created_by;
+                } else {
+                    $file_errors = $this->upload->display_errors();
+                    $this->session->set_flashdata('file_errors', strip_tags($file_errors));
+                }
+                if (!empty($uploadData)) {
+                    //Insert file information into the database
+                    $is_created = $this->app_user_model->create_lander_theme($uploadData);
+                    if ($is_created) {
+                        $this->session->set_flashdata('admin_create_theme_message', "Theme is created successfully.");
+                    } else {
+                        $this->session->set_flashdata('admin_create_theme_error_message', " Theme is not created successfully. Please try again.");
+                    }
+
+                    redirect(base_url() . 'admin/theme/create', 'refresh');
+                } else {
+                    $data['title'] = 'SDIL Lander Theme List - SDIL Lander';
+                    $data['full_name'] = $this->session->userdata('full_name');
+                    $data['page_title'] = 'Create Theme';
+                    $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
+                    $data['data_list_title'] = 'All Themes List';
+                    $data['footer_title'] = Admin::$footer_title;
+
+                    $this->load->view('admin/admin_dashboard_header_view', $data);
+                    $this->load->view('admin/admin_create_theme_view', $data);
+                    $this->load->view('admin/admin_dashboard_footer_view', $data);
+                }
             }
+
         }
     }
 
@@ -880,7 +939,10 @@ class Admin extends CI_Controller
             $this->form_validation->set_rules('theme_name', 'Theme name', 'trim|required|min_length[2]');
             $this->form_validation->set_rules('theme_color_code', 'Theme Color Code', 'trim|required|min_length[2]');
             $this->form_validation->set_rules('theme_css', 'Theme CSS', 'trim|required');
+            $this->form_validation->set_rules('theme_html', 'Theme HTML', 'trim|required');
+            $this->form_validation->set_rules('theme_js', 'Theme JS', 'trim|required');
             $this->form_validation->set_rules('is_active', 'Is Active');
+            $this->form_validation->set_rules('is_bootstrap_active', 'Is Bootstrap Active');
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'Update Theme - SDIL Lander';
                 $data['full_name'] = $this->session->userdata('full_name');
@@ -888,29 +950,37 @@ class Admin extends CI_Controller
                 $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
                 $data['footer_title'] = Admin::$footer_title;
 
-
                 $data['single_theme'] = $single_theme;
+                $file_errors = '';
+                $this->session->set_flashdata('file_errors', strip_tags($file_errors));
 
                 $this->load->view('admin/admin_dashboard_header_view', $data);
                 $this->load->view('admin/admin_update_theme_view', $data);
                 $this->load->view('admin/admin_dashboard_footer_view', $data);
-            } else {
-                $is_active = $this->input->post('is_active') ? 1 : 0;
-                $theme_name = $this->input->post('theme_name');
-                $theme_color_code = $this->input->post('theme_color_code');
-                $theme_css = $this->input->post('theme_css');
-                $data = array(
-                    'lander_theme_name' => $theme_name,
-                    'lander_theme_color_code' => $theme_color_code,
-                    'lander_theme_css' => $theme_css,
-                    'lander_theme_is_active' => $is_active,
-                    'lander_theme_modified_by' => $created_by
-                );
+                return false;
+            }
+            $is_active = $this->input->post('is_active') ? 1 : 0;
+            $is_bootstrap_active = $this->input->post('is_bootstrap_active') ? 1 : 0;
+            $theme_name = $this->input->post('theme_name');
+            $theme_color_code = $this->input->post('theme_color_code');
+            $theme_css = $this->input->post('theme_css');
+            $theme_html = $this->input->post('theme_html');
+            $theme_js = $this->input->post('theme_js');
+            if (empty($_FILES['userFile']['tmp_name'])) {
+                $uploadData['lander_theme_name'] = $theme_name;
+                $uploadData['lander_theme_color_code'] = $theme_color_code;
+                $uploadData['lander_theme_css'] = $theme_css;
+                $uploadData['lander_theme_html'] = $theme_html;
+                $uploadData['lander_theme_js'] = $theme_js;
+                $uploadData['lander_theme_is_active'] = $is_active;
+                $uploadData['lander_theme_add_bootstrap'] = $is_bootstrap_active;
+                $uploadData['lander_theme_modified_by'] = $created_by;
+
                 $is_updated = FALSE;
                 $check_theme_name_is_unique = TRUE;
                 $check_theme_color_code_is_unique = TRUE;
                 if ($theme_name == $single_theme['lander_theme_name'] && $theme_color_code == $single_theme['lander_theme_color_code']) {
-                    $is_updated = $this->app_user_model->update_lander_theme($data, $theme_id_dec);
+                    $is_updated = $this->app_user_model->update_lander_theme($uploadData, $theme_id_dec);
                 } else {
                     // Country name and code unique check during update
                     if ($theme_name != $single_theme['lander_theme_name'] && $theme_color_code != $single_theme['lander_theme_color_code']) {
@@ -943,7 +1013,7 @@ class Admin extends CI_Controller
                         }
                     }
                     if (!$check_theme_name_is_unique || !$check_theme_color_code_is_unique) {
-                        $is_updated = $this->app_user_model->update_lander_theme($data, $theme_id_dec);
+                        $is_updated = $this->app_user_model->update_lander_theme($uploadData, $theme_id_dec);
                     }
                 }
 
@@ -955,6 +1025,91 @@ class Admin extends CI_Controller
                 }
 
                 redirect(base_url() . 'admin/theme/create', 'refresh');
+            } else {
+                $uploadPath = './uploaded/lander_theme_images/';
+                $config['upload_path'] = $uploadPath;
+                $config['allowed_types'] = 'gif|jpg|png';
+                $config['max_size'] = '2000';
+                $this->load->library('upload', $config);
+                $this->upload->initialize($config);
+                if ($this->upload->do_upload('userFile')) {
+                    $fileData = $this->upload->data();
+                    $uploadData['lander_theme_image_file_name'] = $fileData['file_name'];
+                    $uploadData['lander_theme_name'] = $theme_name;
+                    $uploadData['lander_theme_color_code'] = $theme_color_code;
+                    $uploadData['lander_theme_css'] = $theme_css;
+                    $uploadData['lander_theme_html'] = $theme_html;
+                    $uploadData['lander_theme_js'] = $theme_js;
+                    $uploadData['lander_theme_is_active'] = $is_active;
+                    $uploadData['lander_theme_add_bootstrap'] = $is_bootstrap_active;
+                    $uploadData['lander_theme_modified_by'] = $created_by;
+                } else {
+                    $file_errors = $this->upload->display_errors();
+                    $this->session->set_flashdata('file_errors', strip_tags($file_errors));
+                }
+                if (!empty($uploadData)) {
+                    $is_updated = FALSE;
+                    $check_theme_name_is_unique = TRUE;
+                    $check_theme_color_code_is_unique = TRUE;
+                    if ($theme_name == $single_theme['lander_theme_name'] && $theme_color_code == $single_theme['lander_theme_color_code']) {
+                        $is_updated = $this->app_user_model->update_lander_theme($uploadData, $theme_id_dec);
+                    } else {
+                        // Country name and code unique check during update
+                        if ($theme_name != $single_theme['lander_theme_name'] && $theme_color_code != $single_theme['lander_theme_color_code']) {
+                            $check_theme_name_is_unique = $this->app_user_model->unique_lander_theme_name($theme_name, $created_by);
+                            if ($check_theme_name_is_unique) {
+                                $this->session->set_flashdata('admin_theme_name_not_unique_message', "Given Theme name is already exist");
+                            }
+                            $check_theme_color_code_is_unique = $this->app_user_model->unique_lander_theme_color_code($theme_color_code, $created_by);
+                            if ($check_theme_color_code_is_unique) {
+                                $this->session->set_flashdata('admin_theme_color_code_not_unique_message', "Given Theme Color code is already exist");
+                            }
+                            if ($check_theme_name_is_unique || $check_theme_color_code_is_unique) {
+                                redirect(base_url() . 'admin/theme/update/' . $theme_id, 'refresh');
+                            }
+                        } else if ($theme_name != $single_theme['lander_theme_name'] && $theme_color_code == $single_theme['lander_theme_color_code']) {
+                            $check_theme_name_is_unique = $this->app_user_model->unique_lander_theme_name($theme_name, $created_by);
+                            if ($check_theme_name_is_unique) {
+                                $this->session->set_flashdata('admin_theme_name_not_unique_message', "Given Theme name is already exist");
+                                $check_theme_name_is_unique = FALSE;
+                                $check_theme_color_code_is_unique = FALSE;
+                                redirect(base_url() . 'admin/theme/update/' . $theme_id, 'refresh');
+                            }
+                        } else if ($theme_name == $single_theme['lander_theme_name'] && $theme_color_code != $single_theme['lander_theme_color_code']) {
+                            $check_theme_color_code_is_unique = $this->app_user_model->unique_lander_theme_color_code($theme_color_code, $created_by);
+                            if ($check_theme_color_code_is_unique) {
+                                $this->session->set_flashdata('admin_theme_color_code_not_unique_message', "Given Theme code is already exist");
+                                $check_theme_name_is_unique = FALSE;
+                                $check_theme_color_code_is_unique = FALSE;
+                                redirect(base_url() . 'admin/theme/update/' . $theme_id, 'refresh');
+                            }
+                        }
+                        if (!$check_theme_name_is_unique || !$check_theme_color_code_is_unique) {
+                            $is_updated = $this->app_user_model->update_lander_theme($uploadData, $theme_id_dec);
+                        }
+                    }
+
+
+                    if ($is_updated) {
+                        $this->session->set_flashdata('admin_update_theme_message', "Selected Theme is Updated successfully.");
+                    } else {
+                        $this->session->set_flashdata('admin_update_theme_error_message', "Selected Theme is not Updated successfully. Please try again.");
+                    }
+
+                    redirect(base_url() . 'admin/theme/create', 'refresh');
+                } else {
+                    $data['title'] = 'Update Theme - SDIL Lander';
+                    $data['full_name'] = $this->session->userdata('full_name');
+                    $data['page_title'] = 'Update Theme';
+                    $data['navbar_title'] = $is_super_admin ? Admin::$navbar_super_title : Admin::$navbar_title;
+                    $data['footer_title'] = Admin::$footer_title;
+
+                    $data['single_theme'] = $single_theme;
+
+                    $this->load->view('admin/admin_dashboard_header_view', $data);
+                    $this->load->view('admin/admin_update_theme_view', $data);
+                    $this->load->view('admin/admin_dashboard_footer_view', $data);
+                }
             }
         }
     }
@@ -972,10 +1127,14 @@ class Admin extends CI_Controller
             if ($is_active) {
                 $this->session->set_flashdata('cant_delete_message', 'Active Theme can not be deleted.');
             } else {
-                $this->app_user_model->delete_lander_theme($theme_id_dec, $created_by);
-                $this->session->set_flashdata('theme_delete_message', 'Selected Theme is successfully deleted');
+                $image_name = $single_theme["lander_theme_image_file_name"];
+                $path = "./uploaded/lander_theme_images/" . $image_name;
+                $is_deleted = $this->app_user_model->delete_lander_theme($theme_id_dec, $created_by);
+                if($is_deleted){
+                    unlink($path);
+                    $this->session->set_flashdata('theme_delete_message', 'Selected Theme is successfully deleted');
+                }
             }
-
             redirect(base_url() . 'admin/theme/create');
         }
     }
@@ -1657,8 +1816,7 @@ class Admin extends CI_Controller
             $created_by = $this->session->userdata('admin_id');
             $theme_id_dec = base64_decode($theme_id);
             $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec, $created_by);
-            $data['theme_name'] = $single_theme['lander_theme_name'];
-            $data['lander_theme_css'] = $single_theme['lander_theme_css'];
+            $data['lander_theme_parameters'] = $single_theme;
 
             $this->load->view('preview/preview_header_view', $data);
             $this->load->view('preview/preview_body_view', $data);

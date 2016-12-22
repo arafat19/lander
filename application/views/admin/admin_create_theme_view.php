@@ -140,7 +140,7 @@
 
                                 <br/>
 
-                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
+                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data"
                                       method="POST">
 
                                     <div class="form-group">
@@ -176,8 +176,40 @@
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <textarea type="text" class="form-control" name="theme_css"
                                                       id="theme_css" rows="15"
-                                                      placeholder="Theme CSS style code"
+                                                      placeholder="Theme CSS code"
                                                       required><?php echo $this->input->post('theme_css'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="theme_html">Theme
+                                            HTML<span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <textarea type="text" class="form-control" name="theme_html"
+                                                      id="theme_html" rows="15" title="Don't Change the code between php tag"
+                                                      placeholder="Theme HTML code"
+                                                      required><?php echo $this->input->post('theme_html'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="theme_js">Theme
+                                            JS<span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <textarea type="text" class="form-control" name="theme_js"
+                                                      id="theme_js" rows="20" title="Don't Change the code between php tag"
+                                                      placeholder="Theme JavaScript code"
+                                                      required><?php echo $this->input->post('theme_js'); ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userfile">Upload
+                                            Image
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input id="uploadBtn" type="file" name="userFile" class="form-control col-md-7 col-xs-12"/>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -192,7 +224,18 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        </div>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="is_active"
+                                                           name="is_bootstrap_active" value="1"/> Is Bootstrap Active
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">

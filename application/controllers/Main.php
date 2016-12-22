@@ -41,7 +41,7 @@ class Main extends CI_Controller
         if($theme_ID['lander_theme_country_them_id'] == null) $theme_ID['lander_theme_country_them_id'] = 1;
 
 
-        $lander_theme_css = $this->main_ui_model->get_theme_css_by_theme_id_is_active($theme_ID['lander_theme_country_them_id'], $is_active, $admin_user_id);
+        $lander_theme_parameters = $this->main_ui_model->get_theme_css_by_theme_id_is_active($theme_ID['lander_theme_country_them_id'], $is_active, $admin_user_id);
 
         // device detection
         $tablet_browser = 0;
@@ -96,8 +96,13 @@ class Main extends CI_Controller
 
 
         $data['single_country_image_slider'] = $single_country_image_slider;
-        $data['lander_theme_css'] = $lander_theme_css['lander_theme_css'];
-        $data['theme_name'] = $lander_theme_css['lander_theme_name'];
+       /* $data['lander_theme_css'] = $lander_theme_css['lander_theme_css'];
+        $data['lander_theme_html'] = $lander_theme_css['lander_theme_html'];
+        $data['lander_theme_js'] = $lander_theme_css['lander_theme_js'];
+        $data['lander_theme_add_bootstrap'] = $lander_theme_css['lander_theme_add_bootstrap'];
+        $data['lander_theme_images'] = $lander_theme_css['lander_theme_image_file_name'];
+        $data['theme_name'] = $lander_theme_css['lander_theme_name'];*/
+        $data['lander_theme_parameters'] = $lander_theme_parameters;
         $data['button_link_by_device_country'] = $button_link_by_device_country;
         $data['title'] = $country_ID['lander_country_site_title'];
         $data['full_name'] = $current_user_id['full_name'];
@@ -138,7 +143,7 @@ class Main extends CI_Controller
         if($theme_ID['lander_theme_country_them_id'] == null) $theme_ID['lander_theme_country_them_id'] = 1;
 
 
-        $lander_theme_css = $this->main_ui_model->get_theme_css_by_theme_id_is_active($theme_ID['lander_theme_country_them_id'], $is_active, $admin_user_id);
+        $lander_theme_parameters = $this->main_ui_model->get_theme_css_by_theme_id_is_active($theme_ID['lander_theme_country_them_id'], $is_active, $admin_user_id);
 
         // device detection
         $tablet_browser = 0;
@@ -192,8 +197,13 @@ class Main extends CI_Controller
         $button_link_by_device_country = $this->main_ui_model->get_last_btn_link_by_device_country_id($country_ID['lander_country_id'], $current_device_id['lander_device_id'], $admin_user_id);
 
         $data['single_country_image_slider'] = $single_country_image_slider;
-        $data['lander_theme_css'] = $lander_theme_css['lander_theme_css'];
-        $data['theme_name'] = $lander_theme_css['lander_theme_name'];
+       /* $data['lander_theme_css'] = $lander_theme_css['lander_theme_css'];
+        $data['lander_theme_html'] = $lander_theme_css['lander_theme_html'];
+        $data['lander_theme_js'] = $lander_theme_css['lander_theme_js'];
+        $data['lander_theme_add_bootstrap'] = $lander_theme_css['lander_theme_add_bootstrap'];
+        $data['lander_theme_images'] = $lander_theme_css['lander_theme_image_file_name'];
+        $data['theme_name'] = $lander_theme_css['lander_theme_name'];*/
+        $data['lander_theme_parameters'] = $lander_theme_parameters;
         $data['button_link_by_device_country'] = $button_link_by_device_country;
         $data['title'] = $country_ID['lander_country_site_title'];
         $data['full_name'] = $current_user_id['full_name'];

@@ -109,7 +109,7 @@
 
                                 <br/>
 
-                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left"
+                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" enctype="multipart/form-data"
                                       method="POST">
 
                                     <div class="form-group">
@@ -150,6 +150,43 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="theme_html">Theme
+                                            HTML<span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <textarea type="text" class="form-control" name="theme_html"
+                                                      id="theme_html" rows="20" title="Don't Change the code between php tag"
+                                                      placeholder="Theme HTML code"
+                                                      required><?php echo $single_theme['lander_theme_html']; ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="theme_js">Theme
+                                            JS<span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <textarea type="text" class="form-control" name="theme_js"
+                                                      id="theme_js" rows="20" title="Don't Change the code between php tag"
+                                                      placeholder="Theme HTML code"
+                                                      required><?php echo $single_theme['lander_theme_js']; ?></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="userfile">Upload
+                                            Image
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input id="uploadBtn" type="file" name="userFile" class="form-control col-md-7 col-xs-12"/>
+                                        </div>
+                                        <div class="col-md-2">
+                                            <img height="100" width="100"
+                                                 src="<?php echo base_url();?>uploaded/lander_theme_images/<?php echo $single_theme['lander_theme_image_file_name']? $single_theme['lander_theme_image_file_name']:'blank_person.png'; ?>"
+                                                 alt="<?php echo $single_theme['lander_theme_image_file_name']; ?>"/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
                                         <div class="col-md-3 col-sm-3 col-xs-12">
                                         </div>
                                         <div class="col-md-9 col-sm-9 col-xs-12">
@@ -161,7 +198,18 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="form-group">
+                                        <div class="col-md-3 col-sm-3 col-xs-12">
+                                        </div>
+                                        <div class="col-md-9 col-sm-9 col-xs-12">
+                                            <div class="checkbox">
+                                                <label>
+                                                    <input type="checkbox" id="is_bootstrap_active"
+                                                           name="is_bootstrap_active" value="1" <?php echo $single_theme['lander_theme_add_bootstrap'] == 1 ? 'checked' : ''; ?>/> Is Bootstrap Active
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
 
                                     <div class="ln_solid"></div>
                                     <div class="form-group">
