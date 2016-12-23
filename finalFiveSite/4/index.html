@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Four Site</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid  container-img">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="client-part  text-center">
+                <h4>You are vabout nto join the flirtiest online community.</h4>
+                <img
+                        src="<?php echo base_url(); ?>uploaded/lander_theme_images/<?php echo $lander_theme_images['lander_theme_image_file_name']; ?>"
+                        alt="top-img" class="img-responsive">
+                <h4>Please answer a few simple questions to meet the most desirable members nearby.<br> Only 3 FREE
+                    registration spots are left.</h4>
+
+                <div id="sdil-lander-popup-wrapper">
+                    <a href="#" class="btn btn-success custom-btn">OK</a>
+                </div>
+                <div id="results" style="display:none;">
+                    <a href="#" class="results btn btn-danger custom-btn">ko</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".popup-close").click(function(){
+            $("#sdil-lander-popup-wrapper").fadeOut();
+            $("#results").fadeIn();
+        });
+    });
+</script>
+</body>
+</html>

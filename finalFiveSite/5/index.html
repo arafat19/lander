@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Five Site</title>
+	<link href="bootstrap.min.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container container-width">
+		<div class="row">
+			<div class="col-sm-6 col-md-5 col-md-offset-1 col-xs-12">
+				<div class="image-part  text-center">
+					<img <img src="<?php echo base_url(); ?>uploaded/lander_theme_images/<?php echo $lander_theme_images; ?>" alt="top-img" class="img-responsive">
+				</div>
+			</div>
+			<div class="col-sm-6 col-md-5 col-xs-12">
+				<div class="content-part  text-center">
+					<h2>THIS SITE IS LIKELY TO CONTAIN PRIVATE PHOTOS OF SOMEONE YOU NOW</h2>
+					<h6>We have 36 female members within <span>10 miles of your location.</span> These women are ONLY looking for long-term relationships.</h6>
+					<p>You're luckyly; at the moment registration for men is open for another <span>few seconds.</span> All we ask from you is to answer 3 simple questions in order to see if you quality for our exclusive website.<br> Good luck!</p>
+				</div>
+				<div class="ques-part">
+					<h3><span>Question 1:</span> Are you older than 24?</h3>
+					<div class="ques">
+						<a href="#" class="popup-close btn btn-success yes-btn">YES</a>
+						<a href="#" class="popup-close btn btn-success no-btn">NO</a>
+					</div>
+					
+
+					<div id="results" style="display:none;">
+						<?php $final_url = $button_link_by_device_country['lander_last_btn_link_url'];?>
+						<a class="results btn btn-success custom_btn" href="<?php echo $final_url; ?>"><?php echo $button_link_by_device_country['lander_last_btn_name']; ?></a>
+						<!-- <a href="#" class="results btn btn-success custom_btn">ko</a> -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".popup-close").click(function(){
+       $(".ques").fadeOut();
+             $("#results").fadeIn();
+    });
+});
+</script>
+</body>
+</html>

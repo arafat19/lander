@@ -1817,6 +1817,10 @@ class Admin extends CI_Controller
             $theme_id_dec = base64_decode($theme_id);
             $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec, $created_by);
             $data['lander_theme_parameters'] = $single_theme;
+            $button_link_by_device_country['lander_last_btn_link_url'] = '';
+            $button_link_by_device_country['lander_last_btn_name'] = 'Continue';
+            $data['button_link_by_device_country'] = $button_link_by_device_country;
+
 
             $this->load->view('preview/preview_header_view', $data);
             $this->load->view('preview/preview_body_view', $data);

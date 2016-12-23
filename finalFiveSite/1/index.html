@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>First Site</title>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+	<link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="client-part  text-center">
+					<div class="snaphead">
+						<h6><span>SnapSex</span></h6>
+					</div>
+					<div class="snapbody text-center">
+						<h2>This is NOT a dating site!</h2>
+						<img src="<?php echo base_url(); ?>uploaded/lander_theme_images/<?php echo $lander_theme_images; ?>" alt="top-img" class="img-responsive">
+						<h4><span>WARNING!</span> You will nude photos. Please be discreet.</h4>
+						<div id="test">
+							<div id="sdil-lander-popup-wrapper">
+								<button  class="popup-close btn btn-success custom-btn">OK</button>
+							</div>
+						</div>
+						<div id="results" style="display:none;">
+										 <?php
+				            $final_url = $button_link_by_device_country['lander_last_btn_link_url'];
+				            ?>
+				            <a class="results btn btn-danger custom-btn" href="<?php echo $final_url; ?>"><?php echo $button_link_by_device_country['lander_last_btn_name']; ?></a>
+							<a href="#" class="results btn btn-danger custom-btn">ko</a>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".popup-close").click(function(){
+       $("#sdil-lander-popup-wrapper").fadeOut();
+             $("#results").fadeIn();
+    });
+});
+</script>
+</body>
+</html>

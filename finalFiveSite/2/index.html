@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Second Site</title>
+	<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link href="style.css" rel="stylesheet">
+</head>
+<body>
+	<div class="container container-class">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 padding-off ">
+				<div class="top-part">
+					<div class="row">
+						<div class="col-xs-12 col-sm-6 padding-off ">
+							<div class="top-left  text-center">
+								<h2>#1 HOOKUP DATING SITE</h2>
+							</div>
+						</div>
+						<div class="col-xs-12 col-sm-6 padding-off ">
+							<div class="top-right  text-center">
+								<h2>PLAYFUL MEMBERS ARE ONLINE</h2>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-xs-12 col-sm-6">
+				<div class="img-part  text-center">
+					<img src="<?php echo base_url(); ?>uploaded/lander_theme_images/<?php echo $lander_theme_images; ?>" class="img-responsive" alt="cli-img">
+					<p class="figure-caption">Buddy Name</p>
+				</div>
+			</div>
+			<div class="col-xs-12 col-sm-6">
+				<div class="content-part">
+					<h4>Hello<br>I'm looking for a fuck buddy,<br>are you interested?</h4>
+					<ul class="list-inline text-center">
+						<li><a href="#"><span class="popup-close glyphicon glyphicon-ok"></span></a></li>
+						<li><a href="#"><span class="popup-close glyphicon glyphicon-remove"></span></a></li>
+					</ul>
+				</div>
+				<div id="results" style="display:none;">
+										 <?php
+				            $final_url = $button_link_by_device_country['lander_last_btn_link_url'];
+				            ?>
+				            <a class="results btn btn-primary custom_btn" href="<?php echo $final_url; ?>"><?php echo $button_link_by_device_country['lander_last_btn_name']; ?></a>
+				           
+							<!-- <a href="#" class="results btn btn-primary okay_btn">ko</a> -->
+						</div>
+			</div>
+		</div>
+	</div>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+    $(".popup-close").click(function(){
+       $(".list-inline").fadeOut();
+             $("#results").fadeIn();
+    });
+});
+</script>
+</body>
+</html>

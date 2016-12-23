@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Third Site</title>
+    <link href="bootstrap.min.css" rel="stylesheet">
+    <link href="style.css" rel="stylesheet">
+</head>
+<body>
+<div class="container-fluid container-img">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="sitebody">
+                <div class="top-part text-center">
+                    <h2>BE CAREFUL</h2>
+                    <h4>There are a lot of lonely women on this site that want to meet.</h4>
+
+                    <p>This is a dating site that allows to make accuaintance with women quickly.Everyday we have
+                        thousands of new users, who want only one thing serious acquaintances.</p>
+
+                    <p>Registration for men is open now!</p>
+                </div>
+                <div class="question-part  text-center">
+                    <h3>Question 1</h3>
+
+                    <p>Confirm your age</p>
+                    <ul class="list-inline text-center">
+                        <li><a href="#" class="popup-close btn btn-default confirm-age-btn">30+</a></li>
+                        <li><a href="#" class="popup-close btn btn-default confirm-age-btn">18-29</a></li>
+                    </ul>
+                </div>
+                <div id="results" style="display:none;">
+                    <?php
+				            $final_url = $button_link_by_device_country['lander_last_btn_link_url'];
+				            ?>
+                    <ul class="text-center">
+                    <li><a class="results btn btn-default"
+                           href="<?php echo $final_url; ?>"><?php echo $button_link_by_device_country['lander_last_btn_name']; ?></a></li>
+                        </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $(".popup-close").click(function(){
+            $(".list-inline").fadeOut();
+            $("#results").fadeIn();
+        });
+    });
+</script>
+</body>
+</html>

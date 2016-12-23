@@ -1,0 +1,63 @@
+body {
+  background: #202020;
+}
+.container-img  {
+  background: url(threebg.jpg) no-repeat;
+  background-size:cover;
+  margin: 0px auto;
+}
+.sitebody {
+  background: #000;
+  margin: 90px auto;
+  opacity: 0.8;
+  width: 43%;
+}
+.top-part {
+
+}
+.top-part h2 {
+  margin: 0;
+  padding-top: 30px;
+  color: #ED01A7;
+}
+.top-part h4{
+  font-size:24px;
+  margin: 0;
+  padding: 15px 30px;
+  color: #fff;
+}
+.top-part p {
+  color: #fff;
+  padding: 0 30px;
+}
+.question-part {
+  padding-bottom: 20px;
+}
+.question-part h3 {
+  color: #fff;
+}
+.question-part p {
+  color: #fff;
+}
+/* Tablet Layout: 1024px. */
+@media only screen and (min-width: 992px) and (max-width: 1024px) {
+  .sitebody {
+    width: 53%;
+  }
+}
+/* Tablet Layout: 768px. */
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .sitebody {
+    width: 60%;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .sitebody {
+    width: 80%;
+  }
+}
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+  .sitebody {
+    width: 100%;
+  }
+}
