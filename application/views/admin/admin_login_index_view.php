@@ -47,7 +47,7 @@
                         <input type="checkbox" value="remember-me">
                         Remember me
                     </label>
-                    <a href="#" class="pull-right need-help">Need help? </a><span class="clearfix"></span>
+                    <a href="#" class="pull-right need-help">Need help? FROM AUTO Deployer </a><span class="clearfix"></span>
                 </form>
             </div>
             <!--<a href="#" class="text-center new-account">Create an account </a>-->
