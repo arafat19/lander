@@ -61,6 +61,7 @@ class app_user_model extends CI_Model
             'admin_password' => md5(filter_var($this->input->post('password'))),
             'password_expired' => $this->input->post('password_expired'),
             'password_reset_validity' => $this->input->post(date("Y-m-d")),
+            'admin_live_preview_url' => base_url(),
             'admin_email' => filter_var($this->input->post('email'), FILTER_SANITIZE_EMAIL)
 
         );
@@ -199,6 +200,7 @@ class app_user_model extends CI_Model
     {
         $data = array(
             'full_name' => $this->input->post('name'),
+            'admin_live_preview_url' => $this->input->post('admin_live_preview_url'),
             'cell_number' => $this->input->post('cell_number')
         );
 

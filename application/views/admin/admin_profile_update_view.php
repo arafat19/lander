@@ -1,4 +1,32 @@
 <body class="nav-md">
+<script language="javascript">
+    function link_create() {
+        var f1 = document.getElementById("name");
+        var f2 = document.getElementById("admin_live_preview_url");
+
+        f2.value = string_to_slug(f1.value);
+    }
+
+
+    function string_to_slug(str) {
+        str = str.replace(/^\s+|\s+$/g, ''); // trim
+        str = str.toLowerCase();
+
+        // remove accents, swap ñ for n, etc
+        var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+        var to = "aaaaeeeeiiiioooouuuunc------";
+        for (var i = 0, l = from.length; i < l; i++) {
+            str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+        }
+
+        str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+            .replace(/\s+/g, '-') // collapse whitespace and replace by -
+            .replace(/-+/g, '-'); // collapse dashes
+
+        var url = window.base_url = <?php echo json_encode(base_url()); ?>;
+        return url + 'profile/' + str;
+    }
+</script>
 <div class="container body">
     <div class="main_container">
         <div class="col-md-3 left_col">
@@ -95,7 +123,20 @@
                                         </label>
                                         <div class="col-md-6 col-sm-6 col-xs-12">
                                             <input type="text" class="form-control" name="name" id="name" value="<?php echo $particular_user['full_name']; ?>"
+                                                   <?php $is_super_admin = $particular_user['is_super_admin'];
+                                                   if(!$is_super_admin) {?>
+                                                   onblur="link_create()" <?php } ?>
                                                    placeholder="Full Name" required autofocus/>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="admin_live_preview_url">Admin Live Preview URL<span class="required">*</span>
+                                        </label>
+
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input type="text" class="form-control" name="admin_live_preview_url" id="admin_live_preview_url"
+                                                   value="<?php echo $particular_user['admin_live_preview_url']; ?>"
+                                                   placeholder="Live Preview URL" required/>
                                         </div>
                                     </div>
                                     <div class="form-group">

@@ -1646,6 +1646,7 @@ class Admin extends CI_Controller
             // field name, error message, validation rules
             $this->form_validation->set_rules('name', 'Full Name', 'trim|required|min_length[4]');
             $this->form_validation->set_rules('cell_number', 'Your Mobile Number', 'trim|min_length[11]');
+            $this->form_validation->set_rules('admin_live_preview_url', 'Admin Live Preview URL', 'required|trim|min_length[4]');
 
             $particular_user = $this->app_user_model->get_user_by_id($sd_lander_admin_id);
 

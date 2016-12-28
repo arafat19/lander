@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="262a4ebb-918b-4ced-8e7b-6b73a0dd5394" name="Default" comment="Commit from office: 27-12-2016 :::3:32 PM">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploaded/lander_slider_images/SG1.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/uploaded/lander_slider_images/SG2.jpg" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/application/controllers/Theme.php" />
+    <list default="true" id="262a4ebb-918b-4ced-8e7b-6b73a0dd5394" name="Default" comment="Commit from office: 28-12-2016 :::6:27 PM">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/DB/sdil_lander_v9.6.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/controllers/Admin.php" afterPath="$PROJECT_DIR$/application/controllers/Admin.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/models/App_user_model.php" afterPath="$PROJECT_DIR$/application/models/App_user_model.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_login_index_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_login_index_view.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/application/views/admin/admin_profile_update_view.php" afterPath="$PROJECT_DIR$/application/views/admin/admin_profile_update_view.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="lander.iws" />
@@ -32,33 +32,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/finalFiveSite/4/index.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="180" max-vertical-offset="705">
-              <caret line="12" column="5" selection-start-line="12" selection-start-column="5" selection-end-line="12" selection-end-column="5" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#0;n#div#0;n#div#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="sdil_lander_v9.5.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/DB/sdil_lander_v9.5.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5625">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Admin.php" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Admin.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.4178526" vertical-offset="4281" max-vertical-offset="6945">
-              <caret line="1588" column="14" selection-start-line="1588" selection-start-column="14" selection-end-line="1588" selection-end-column="14" />
+            <state vertical-scroll-proportion="-6.392157" vertical-offset="6664" max-vertical-offset="7875">
+              <caret line="1648" column="69" selection-start-line="1648" selection-start-column="47" selection-end-line="1648" selection-end-column="69" />
               <folding>
                 <element signature="e#6#87#0#PHP" expanded="true" />
                 <element signature="n#index#0;n#Admin#0;n#!!top" expanded="false" />
@@ -79,11 +57,11 @@
                 <element signature="n#admin_create_country_theme#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#admin_update_country_theme#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#admin_delete_country_theme#0;n#Admin#0;n#!!top" expanded="false" />
-                <element signature="n#admin_update_user#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="n#admin_delete_user#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#admin_force_delete_user#0;n#Admin#0;n#!!top" expanded="false" />
+                <element signature="n#admin_show_preview#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#welcome_admin_dashboard#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#super_admin_registration#0;n#Admin#0;n#!!top" expanded="false" />
-                <element signature="n#update_admin_user#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#update_admin_password#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#not_found_email#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#unique_email#0;n#Admin#0;n#!!top" expanded="false" />
@@ -96,26 +74,76 @@
                 <element signature="n#unique_theme_color_code#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#unique_device_code#0;n#Admin#0;n#!!top" expanded="false" />
                 <element signature="n#exist_email#0;n#Admin#0;n#!!top" expanded="false" />
-                <element signature="e#104266#104624#0#PHP" expanded="false" />
+                <element signature="e#104396#104754#0#PHP" expanded="false" />
                 <element signature="n#logout#0;n#Admin#0;n#!!top" expanded="false" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="App_user_model.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="admin_update_user_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_user_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-15.0" vertical-offset="1620" max-vertical-offset="3540">
+              <caret line="132" column="105" selection-start-line="132" selection-start-column="105" selection-end-line="132" selection-end-column="105" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="admin_profile_update_view.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/views/admin/admin_profile_update_view.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-24.375" vertical-offset="1305" max-vertical-offset="2685">
+              <caret line="126" column="55" selection-start-line="126" selection-start-column="55" selection-end-line="126" selection-end-column="55" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="routes.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-6.125" vertical-offset="693" max-vertical-offset="1530">
+              <caret line="56" column="62" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="62" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="App_user_model.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/application/models/App_user_model.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-13.333333" vertical-offset="10120" max-vertical-offset="11385">
-              <caret line="696" column="49" selection-start-line="696" selection-start-column="20" selection-end-line="696" selection-end-column="49" />
+            <state vertical-scroll-proportion="0.41009057" vertical-offset="2713" max-vertical-offset="11415">
+              <caret line="202" column="82" selection-start-line="202" selection-start-column="82" selection-end-line="202" selection-end-column="82" />
               <folding>
-                <marker date="1482925523000" expanded="true" signature="16583:16883" placeholder="SELECT sdil_..sdil_lander_country..." />
-                <marker date="1482925523000" expanded="true" signature="17144:17462" placeholder="SELECT sdil_..sdil_lander_theme..." />
-                <marker date="1482925523000" expanded="true" signature="17693:18303" placeholder="SELECT sllbl..sdil_lander_last_button_link..." />
-                <marker date="1482925523000" expanded="true" signature="18535:19157" placeholder="SELECT sltc...sdil_lander_theme_country..." />
-                <marker date="1482925523000" expanded="true" signature="20216:20540" placeholder="SELECT sdil_..sdil_lander_device..." />
-                <marker date="1482925523000" expanded="true" signature="21501:21949" placeholder="SELECT si.*,..sdil_lander_country_wise_slider_image..." />
+                <marker date="1482937177000" expanded="true" signature="16721:17021" placeholder="SELECT sdil_..sdil_lander_country..." />
+                <marker date="1482937177000" expanded="true" signature="17282:17600" placeholder="SELECT sdil_..sdil_lander_theme..." />
+                <marker date="1482937177000" expanded="true" signature="17831:18441" placeholder="SELECT sllbl..sdil_lander_last_button_link..." />
+                <marker date="1482937177000" expanded="true" signature="18673:19295" placeholder="SELECT sltc...sdil_lander_theme_country..." />
+                <marker date="1482937177000" expanded="true" signature="20354:20678" placeholder="SELECT sdil_..sdil_lander_device..." />
+                <marker date="1482937177000" expanded="true" signature="21639:22087" placeholder="SELECT si.*,..sdil_lander_country_wise_slider_image..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="config.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/application/config/config.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-24.375" vertical-offset="0" max-vertical-offset="7695">
+              <caret line="39" column="74" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="74" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="sdil_lander_v9.6.sql" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DB/sdil_lander_v9.6.sql">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="5805">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -125,26 +153,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="-6.875" vertical-offset="0" max-vertical-offset="3315">
               <caret line="11" column="8" selection-start-line="11" selection-start-column="8" selection-end-line="11" selection-end-column="44" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preview_body_view_backup.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/preview/preview_body_view_backup.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="4215">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="preview_body_view.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/views/preview/preview_body_view.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="90">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -265,21 +273,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Welcome.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/application/controllers/Welcome.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="465">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="admin_login_index_view.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/application/views/admin/admin_login_index_view.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-21.083334" vertical-offset="289" max-vertical-offset="1125">
-              <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+            <state vertical-scroll-proportion="-30.625" vertical-offset="0" max-vertical-offset="1125">
+              <caret line="49" column="71" selection-start-line="49" selection-start-column="71" selection-end-line="49" selection-end-column="71" />
               <folding />
             </state>
           </provider>
@@ -295,7 +293,6 @@
       <list>
         <option value="$PROJECT_DIR$/application/views/admin/admin_dashboard_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_dashboard_top_nevigation_view.php" />
-        <option value="$PROJECT_DIR$/application/views/admin/admin_profile_update_view.php" />
         <option value="$PROJECT_DIR$/DB/sdil_lander.sql" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_update_lander_slider_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_update_device_view.php" />
@@ -311,7 +308,6 @@
         <option value="$PROJECT_DIR$/DB/sdil_lander_v4.sql" />
         <option value="$PROJECT_DIR$/application/controllers/geoplugin.class.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_update_country_theme_view.php" />
-        <option value="$PROJECT_DIR$/application/config/config.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_create_lander_slider_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_create_device_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_create_last_btn_link_view.php" />
@@ -330,7 +326,6 @@
         <option value="$PROJECT_DIR$/DB/sdil_lander_v9.3.sql" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_dashboard_footer_view.php" />
         <option value="$PROJECT_DIR$/application/views/admin/admin_create_user_view.php" />
-        <option value="$PROJECT_DIR$/application/views/admin/admin_update_user_view.php" />
         <option value="$PROJECT_DIR$/application/views/main/body_view.php" />
         <option value="$PROJECT_DIR$/application/config/routes.php" />
         <option value="$PROJECT_DIR$/application/controllers/Main.php" />
@@ -340,10 +335,13 @@
         <option value="$PROJECT_DIR$/finalFiveSite/4/style.css" />
         <option value="$PROJECT_DIR$/finalFiveSite/1/1 lander.php" />
         <option value="$PROJECT_DIR$/finalFiveSite/4/index.html" />
-        <option value="$PROJECT_DIR$/application/views/admin/admin_login_index_view.php" />
         <option value="$PROJECT_DIR$/application/controllers/Theme.php" />
-        <option value="$PROJECT_DIR$/application/models/App_user_model.php" />
+        <option value="$PROJECT_DIR$/application/config/config.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/admin_login_index_view.php" />
         <option value="$PROJECT_DIR$/application/controllers/Admin.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/admin_update_user_view.php" />
+        <option value="$PROJECT_DIR$/application/views/admin/admin_profile_update_view.php" />
+        <option value="$PROJECT_DIR$/application/models/App_user_model.php" />
       </list>
     </option>
   </component>
@@ -712,7 +710,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../livestock" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="settings.editor.selected.configurable" value="settings.github" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
@@ -722,8 +720,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/uploaded/lander_slider_images" />
       <recent name="$PROJECT_DIR$/DB" />
+      <recent name="$PROJECT_DIR$/uploaded/lander_slider_images" />
       <recent name="$PROJECT_DIR$/images" />
       <recent name="$PROJECT_DIR$/uploaded/lander_theme_images" />
       <recent name="D:\xampp\htdocs\lander\DB" />
@@ -874,7 +872,13 @@
       <option name="project" value="LOCAL" />
       <updated>1482831160143</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="Commit from office: 28-12-2016 :::6:27 PM">
+      <created>1482928046107</created>
+      <option name="number" value="00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1482928046107</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
@@ -884,6 +888,7 @@
     <frame x="0" y="22" width="1920" height="983" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947975" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -899,7 +904,6 @@
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947975" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
@@ -935,29 +939,30 @@
     <MESSAGE value="Commit from home: 09-12-2016 :::11:34 AM" />
     <MESSAGE value="Commit from office: 23-12-2016 :::3:59 PM" />
     <MESSAGE value="Commit from office: 27-12-2016 :::3:32 PM" />
-    <option name="LAST_COMMIT_MESSAGE" value="Commit from office: 27-12-2016 :::3:32 PM" />
+    <MESSAGE value="Commit from office: 28-12-2016 :::6:27 PM" />
+    <option name="LAST_COMMIT_MESSAGE" value="Commit from office: 28-12-2016 :::6:27 PM" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/App_user_model.php</url>
-          <line>568</line>
+          <line>570</line>
           <option name="timeStamp" value="14" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/App_user_model.php</url>
-          <line>567</line>
+          <line>569</line>
           <option name="timeStamp" value="16" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/App_user_model.php</url>
-          <line>528</line>
+          <line>530</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/App_user_model.php</url>
-          <line>529</line>
+          <line>531</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -977,22 +982,22 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/App_user_model.php</url>
-          <line>285</line>
+          <line>287</line>
           <option name="timeStamp" value="33" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/App_user_model.php</url>
-          <line>286</line>
+          <line>288</line>
           <option name="timeStamp" value="35" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/App_user_model.php</url>
-          <line>287</line>
+          <line>289</line>
           <option name="timeStamp" value="36" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/models/App_user_model.php</url>
-          <line>288</line>
+          <line>290</line>
           <option name="timeStamp" value="37" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
@@ -1001,18 +1006,11 @@
           <option name="timeStamp" value="38" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="39" />
+      <option name="time" value="40" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_navbar_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="15" column="71" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="71" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/admin/admin_dashboard_top_nevigation_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
@@ -1174,13 +1172,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_user_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
-          <caret line="26" column="37" selection-start-line="26" selection-start-column="37" selection-end-line="26" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/application/views/main/body_view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="90">
@@ -1192,20 +1183,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <caret line="42" column="29" selection-start-line="42" selection-start-column="29" selection-end-line="42" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1110" max-vertical-offset="1530">
-          <caret line="74" column="58" selection-start-line="74" selection-start-column="58" selection-end-line="74" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/config/config.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="5430" max-vertical-offset="7665">
-          <caret line="362" column="33" selection-start-line="362" selection-start-column="33" selection-end-line="362" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1310,14 +1287,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5625">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_login_index_view.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-21.083334" vertical-offset="289" max-vertical-offset="1125">
-          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
           <folding />
         </state>
       </provider>
@@ -1467,25 +1436,58 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/application/models/App_user_model.php">
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_login_index_view.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.333333" vertical-offset="10120" max-vertical-offset="11385">
-          <caret line="696" column="49" selection-start-line="696" selection-start-column="20" selection-end-line="696" selection-end-column="49" />
-          <folding>
-            <marker date="1482925523000" expanded="true" signature="16583:16883" placeholder="SELECT sdil_..sdil_lander_country..." />
-            <marker date="1482925523000" expanded="true" signature="17144:17462" placeholder="SELECT sdil_..sdil_lander_theme..." />
-            <marker date="1482925523000" expanded="true" signature="17693:18303" placeholder="SELECT sllbl..sdil_lander_last_button_link..." />
-            <marker date="1482925523000" expanded="true" signature="18535:19157" placeholder="SELECT sltc...sdil_lander_theme_country..." />
-            <marker date="1482925523000" expanded="true" signature="20216:20540" placeholder="SELECT sdil_..sdil_lander_device..." />
-            <marker date="1482925523000" expanded="true" signature="21501:21949" placeholder="SELECT si.*,..sdil_lander_country_wise_slider_image..." />
-          </folding>
+        <state vertical-scroll-proportion="-30.625" vertical-offset="0" max-vertical-offset="1125">
+          <caret line="49" column="71" selection-start-line="49" selection-start-column="71" selection-end-line="49" selection-end-column="71" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/config.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.375" vertical-offset="0" max-vertical-offset="7695">
+          <caret line="39" column="74" selection-start-line="39" selection-start-column="74" selection-end-line="39" selection-end-column="74" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DB/sdil_lander_v9.6.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5805">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/config/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.125" vertical-offset="693" max-vertical-offset="1530">
+          <caret line="56" column="62" selection-start-line="56" selection-start-column="41" selection-end-line="56" selection-end-column="62" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_update_user_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-15.0" vertical-offset="1620" max-vertical-offset="3540">
+          <caret line="132" column="105" selection-start-line="132" selection-start-column="105" selection-end-line="132" selection-end-column="105" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/views/admin/admin_profile_update_view.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-24.375" vertical-offset="1305" max-vertical-offset="2685">
+          <caret line="126" column="55" selection-start-line="126" selection-start-column="55" selection-end-line="126" selection-end-column="55" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/application/controllers/Admin.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.4178526" vertical-offset="4281" max-vertical-offset="6945">
-          <caret line="1588" column="14" selection-start-line="1588" selection-start-column="14" selection-end-line="1588" selection-end-column="14" />
+        <state vertical-scroll-proportion="-6.392157" vertical-offset="6664" max-vertical-offset="7875">
+          <caret line="1648" column="69" selection-start-line="1648" selection-start-column="47" selection-end-line="1648" selection-end-column="69" />
           <folding>
             <element signature="e#6#87#0#PHP" expanded="true" />
             <element signature="n#index#0;n#Admin#0;n#!!top" expanded="false" />
@@ -1506,11 +1508,11 @@
             <element signature="n#admin_create_country_theme#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#admin_update_country_theme#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#admin_delete_country_theme#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#admin_update_user#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#admin_delete_user#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#admin_force_delete_user#0;n#Admin#0;n#!!top" expanded="false" />
+            <element signature="n#admin_show_preview#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#welcome_admin_dashboard#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#super_admin_registration#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="n#update_admin_user#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#update_admin_password#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#not_found_email#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#unique_email#0;n#Admin#0;n#!!top" expanded="false" />
@@ -1523,8 +1525,23 @@
             <element signature="n#unique_theme_color_code#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#unique_device_code#0;n#Admin#0;n#!!top" expanded="false" />
             <element signature="n#exist_email#0;n#Admin#0;n#!!top" expanded="false" />
-            <element signature="e#104266#104624#0#PHP" expanded="false" />
+            <element signature="e#104396#104754#0#PHP" expanded="false" />
             <element signature="n#logout#0;n#Admin#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/application/models/App_user_model.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41009057" vertical-offset="2713" max-vertical-offset="11415">
+          <caret line="202" column="82" selection-start-line="202" selection-start-column="82" selection-end-line="202" selection-end-column="82" />
+          <folding>
+            <marker date="1482937177000" expanded="true" signature="16721:17021" placeholder="SELECT sdil_..sdil_lander_country..." />
+            <marker date="1482937177000" expanded="true" signature="17282:17600" placeholder="SELECT sdil_..sdil_lander_theme..." />
+            <marker date="1482937177000" expanded="true" signature="17831:18441" placeholder="SELECT sllbl..sdil_lander_last_button_link..." />
+            <marker date="1482937177000" expanded="true" signature="18673:19295" placeholder="SELECT sltc...sdil_lander_theme_country..." />
+            <marker date="1482937177000" expanded="true" signature="20354:20678" placeholder="SELECT sdil_..sdil_lander_device..." />
+            <marker date="1482937177000" expanded="true" signature="21639:22087" placeholder="SELECT si.*,..sdil_lander_country_wise_slider_image..." />
           </folding>
         </state>
       </provider>
