@@ -293,6 +293,15 @@ class app_user_model extends CI_Model
         return $result->row_array();
     }
 
+    public function get_single_country_by_admin_id($created_by)
+    {
+        $this->db->select('*');
+        $this->db->where('created_by', $created_by);
+        $result = $this->db->get(App_user_model::$table_sdil_lander_country);
+
+        return $result->row_array();
+    }
+
     public function get_single_link_by_id($last_btn_link_id, $created_by)
     {
         $this->db->select('*');
@@ -683,6 +692,11 @@ class app_user_model extends CI_Model
     {
         $is_created = $this->db->insert_batch(App_user_model::$table_sdil_lander_country_wise_slider_image, $data);
         return $is_created ? true : false;
+    }
+
+    public function create_image_slider_for_admin($data)
+    {
+        $this->db->insert(App_user_model::$table_sdil_lander_country_wise_slider_image, $data);
     }
 
     public function update_image_slider($data, $image_id)

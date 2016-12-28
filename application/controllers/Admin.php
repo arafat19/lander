@@ -23,6 +23,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model('app_user_model');
+        $this->load->model('main_ui_model');
     }
 
     function index()
@@ -1130,7 +1131,7 @@ class Admin extends CI_Controller
                 $image_name = $single_theme["lander_theme_image_file_name"];
                 $path = "./uploaded/lander_theme_images/" . $image_name;
                 $is_deleted = $this->app_user_model->delete_lander_theme($theme_id_dec, $created_by);
-                if($is_deleted){
+                if ($is_deleted) {
                     unlink($path);
                     $this->session->set_flashdata('theme_delete_message', 'Selected Theme is successfully deleted');
                 }
@@ -1368,6 +1369,7 @@ class Admin extends CI_Controller
                     );
                     $this->app_user_model->create_country($data_create_reserved_country);
 
+
                     $device_name = array('Mobile', 'Tab', 'Desktop');
                     $device_code = array('mobile', 'tab', 'desktop');
                     for ($i = 0; $i < 3; $i++) {
@@ -1380,277 +1382,38 @@ class Admin extends CI_Controller
                         );
                         $this->app_user_model->create_device($data_sdil_lander_device);
                     }
-                    $theme_css = '#sdil-lander-popup-wrapper, body, html {
-                                            width: 100%;
-                                            height: 100%
-                                        }
+                    require_once('Theme.php');
+                    $array_size = count(theme::$theme_name);
+                    for ($j = 0; $j < $array_size; $j++) {
 
-                                        body, html {
-                                            margin: 0;
-                                            padding: 0;
-                                            border: 0;
-                                            font-size: 100%
-                                        }
+                        $data_create_lander_theme = array(
+                            'lander_theme_name' => theme::$theme_name[$j],
+                            'lander_theme_color_code' => theme::$theme_color[$j],
+                            'lander_theme_html' => theme::$theme_html[$j],
+                            'lander_theme_css' => theme::$theme_css[$j],
+                            'lander_theme_js' => theme::$theme_js[$j],
+                            'lander_theme_is_active' => 1,
+                            'is_lander_theme_reserved' => 0,
+                            'lander_theme_add_bootstrap' => 1,
+                            'lander_theme_created_by' => $now_created_admin_id
+                        );
+                        $this->app_user_model->create_lander_theme($data_create_lander_theme);
+                    }
 
-                                        img {
-                                            border: none
-                                        }
-
-                                        .hidden {
-                                            display: none
-                                        }
-
-                                        body {
-                                            background: #fff;
-                                            font-family: Helvetica, Arial, sans-serif;
-                                            color: #fff;
-                                            background-size: cover
-                                        }
-
-                                        #sdil-lander-popup-wrapper {
-                                            position: fixed;
-                                            top: 0;
-                                            left: 0;
-                                            z-index: 10;
-                                        }
-
-                                        .sdil-lander-popup_alert {
-                                            position: relative;
-                                            width: 380px;
-                                            left: 50%;
-                                            top: 50%;
-                                            margin-left: -210px;
-                                            margin-top: -90px;
-                                            z-index: 100;
-                                            padding: 20px;
-                                            overflow: hidden;
-                                            background-color: #db4c2c;
-                                            border-radius: 10px;
-                                            box-shadow: 0 0 18px rgba(0, 0, 0, .4);
-                                            border: 11px solid #fff
-                                        }
-
-                                        .sdil-lander-popup_alert .top {
-                                            position: absolute;
-                                            left: -1px;
-                                            top: -1px;
-                                            width: 100%;
-                                            height: 22px;
-                                            padding: 8px 20px 6px 10px;
-                                            background: #db4c2c;
-                                            border: 1px solid #db4c2c
-                                        }
-
-                                        .sdil-lander-popup_alert .copy_area {
-                                            display: block;
-                                            padding-top: 0;
-                                            position: relative;
-                                            left: 8%;
-                                            width: 80%;
-                                            margin-bottom: 17px
-                                        }
-
-                                        .sdil-lander-popup_alert .copy_area h5 {
-                                            font-size: 22px;
-                                            margin: 10px 0 0
-                                        }
-
-                                        .sdil-lander-popup_alert .copy_area p {
-                                            font-size: 17px;
-                                            margin-top: 5px
-                                        }
-
-                                        .sdil-lander-popup_alert .navbtn {
-                                            margin-top: 10px;
-                                            width: 140px;
-                                            height: 70px;
-                                            border-radius: 4px !important;
-                                            border: 1px solid #fff;
-                                            background: #fff;
-                                            font-size: 18px;
-                                            cursor: pointer;
-                                            font-weight: 400
-                                        }
-
-                                        .radar_scanner {
-                                            display: block;
-                                            margin: 0 auto;
-                                            text-align: center;
-                                            height: 100%;
-                                            width: 100%;
-                                            color: #fff;
-                                            position: fixed
-                                        }
-
-                                        h3.radar_title {
-                                            font-size: 110%;
-                                            line-height: 100px
-                                        }
-
-                                        .circle1 {
-                                            color: #000;
-                                            background: #e7e7e7
-                                        }
-
-                                        .circle2 {
-                                            color: rgba(255, 255, 255, .8);
-                                            background: #555;
-                                            text-shadow: 0 1px #666
-                                        }
-
-                                        .circle1, .circle2 {
-                                            font-weight: 400;
-                                            margin-left: 0;
-                                            font-size: 23px;
-                                            border-radius: 100px;
-                                            padding: 5px 15px
-                                        }
-
-                                        .box, .marker_show {
-                                            background: #fff;
-                                            color: #000;
-                                            outline: 0;
-                                            -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
-                                            box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
-                                            width: 600px;
-                                            position: absolute;
-                                            left: 50%;
-                                            top: 50%;
-                                            margin-top: -185px;
-                                            margin-left: -300px;
-                                            line-height: 28px;
-                                            font-size: 22px;
-                                            text-align: center
-                                        }
-
-                                        .box {
-                                            display: none
-                                        }
-
-                                        .box .ok, .buttons {
-                                            background-color: #db4c2c;
-                                            border: 0;
-                                            color: #fff;
-                                            cursor: pointer;
-                                            font-size: 30px;
-                                            width: 40%;
-                                            min-width: 200px;
-                                            padding: 15px 0;
-                                            margin: 20px auto;
-                                            border-radius: 4px;
-                                            display: block;
-                                            text-align: center;
-                                            text-decoration: none
-                                        }
-
-                                        .boxheader {
-                                            background: #db4c2c;
-                                            width: 100%;
-                                            min-height: 20px;
-                                            color: #fff;
-                                            font-size: 23px;
-                                            padding: 22px 0;
-                                            margin: 0 auto;
-                                            text-align: center
-                                        }
-
-                                        .box_copy {
-                                            padding: 10px 30px 20px;
-                                            text-align: left
-                                        }
-
-                                        .stepinfo {
-                                            font-size: 18px;
-                                            margin: 10px 0;
-                                            text-align: center
-                                        }
-
-                                        #agree, .next {
-                                            text-align: center;
-                                            font-size: 30px;
-                                            padding: 10px;
-                                            display: inline-block;
-                                            width: 40%;
-                                            background: #db4c2c;
-                                            text-decoration: none;
-                                            color: #fff;
-                                            margin-right: -6px;
-                                            border-radius: 4px 0 0 4px;
-                                            margin-bottom: 20px;
-                                            font-weight: 700
-                                        }
-
-                                        .next.step_button_2 {
-                                            background: #56575B;
-                                            color: #fff;
-                                            border-radius: 0 4px 4px 0
-                                        }
-
-                                        .option, .option2, .option3, .option4 {
-                                            width: 60%;
-                                            padding: 10px;
-                                            text-align: left;
-                                            cursor: pointer;
-                                            margin: 0 auto 5px;
-                                            background: url("<?php echo base_url(); ?>images/unchecked_checkbox.png") 10px center no-repeat
-                                        }
-
-                                        .selected, .selected2, .selected3, .selected4 {
-                                            background: url("<?php echo base_url(); ?>images/checked_checkbox.png") 10px center no-repeat
-                                        }
-
-                                        .option-title {
-                                            color: #000;
-                                            display: block;
-                                            padding: 0;
-                                            margin-left: 50px
-                                        }
-
-                                        @media screen and (max-width: 640px) {
-                                            .box, .marker_show {
-                                                width: 95%;
-                                                left: 0;
-                                                margin: -200px 2.5%
-                                            }
-                                        }
-
-                                        @media screen and (max-width: 480px) {
-                                            .sdil-lander-popup_alert {
-                                                width: 80%;
-                                                left: 0;
-                                                margin: -90px 6%
-                                            }
-
-                                            .box, .marker_show {
-                                                font-size: 20px;
-                                                line-height: 25px
-                                            }
-
-                                            #radar img, .option, .option2, .option3, .option4 {
-                                                width: 80%
-                                            }
-
-                                            h3.radar_title {
-                                                margin-bottom: -20px
-                                            }
-
-                                            .box_copy {
-                                                padding: 10px
-                                            }
-
-                                            .boxheader {
-                                                font-size: 22px
-                                            }
-                                        }';
-                    $data_create_lander_theme = array(
-                        'lander_theme_name' => 'Pink',
-                        'lander_theme_color_code' => '#ff0060',
-                        'lander_theme_css' => $theme_css,
-                        'lander_theme_is_active' => 1,
-                        'is_lander_theme_reserved' => 1,
-                        'lander_theme_created_by' => $now_created_admin_id
-                    );
-                    $this->app_user_model->create_lander_theme($data_create_lander_theme);
+                    $slider_image_name = array('SG1.jpg', 'SG2.jpg');
+                    $array_size_image = count($slider_image_name);
+                    $single_country = $this->app_user_model->get_single_country_by_admin_id($now_created_admin_id);
+                    for ($k = 0; $k < $array_size_image; $k++) {
+                        $data_sdil_lander_country_wise_image = array(
+                            'lander_image_file_name' => $slider_image_name[$k],
+                            'lander_image_file_created' => date("Y-m-d H:i:s"),
+                            'lander_image_file_modified' => date("Y-m-d H:i:s"),
+                            'lander_image_country_id' => $single_country['lander_country_id'],
+                            'lander_image_is_active' => 1,
+                            'lander_image_created_by' => $now_created_admin_id
+                        );
+                        $this->app_user_model->create_image_slider_for_admin($data_sdil_lander_country_wise_image);
+                    }
 
                     $this->session->set_flashdata('admin_create_user_message', "Admin User is created successfully.");
                 } else {
@@ -1814,6 +1577,7 @@ class Admin extends CI_Controller
             $this->logout();
         } else {
             $created_by = $this->session->userdata('admin_id');
+            //var_dump($created_by);
             $theme_id_dec = base64_decode($theme_id);
             $single_theme = $this->app_user_model->get_single_theme_by_id($theme_id_dec, $created_by);
             $data['lander_theme_parameters'] = $single_theme;
@@ -1821,7 +1585,12 @@ class Admin extends CI_Controller
             $button_link_by_device_country['lander_last_btn_name'] = 'Continue';
             $data['button_link_by_device_country'] = $button_link_by_device_country;
 
+            $country_ID = $this->main_ui_model->get_country_id_by_country_code_is_active('BD', 1, $created_by);
+            //var_dump($country_ID);
+            //multiple rows
+            $single_country_image_slider = $this->main_ui_model->get_active_images_of_image_slider_by_country($country_ID['lander_country_id'], 1, $created_by);
 
+            $data['single_country_image_slider'] = $single_country_image_slider;
             $this->load->view('preview/preview_header_view', $data);
             $this->load->view('preview/preview_body_view', $data);
             $this->load->view('preview/preview_footer_view', $data);
