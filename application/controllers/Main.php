@@ -15,8 +15,9 @@ class Main extends CI_Controller
     function index()
     {
         $current_user_url =  current_url();
-
+        //var_dump($current_user_url);
         $current_user_id = $this->app_user_model->get_user_by_live_preview_url($current_user_url);
+        //var_dump($current_user_id);
         $admin_user_id = $current_user_id['admin_id'];
         $admin_user_id_enabled = $current_user_id['enabled'];
         //var_dump($current_user_id);

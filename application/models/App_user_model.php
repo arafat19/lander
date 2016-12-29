@@ -163,9 +163,10 @@ class app_user_model extends CI_Model
         }
     }
 
-    public function unique_lander_url_link_button($btn_link)
+    public function unique_lander_url_link_button($btn_link, $created_by)
     {
         $this->db->where('lander_last_btn_link_url', $btn_link);
+        $this->db->where('lander_last_btn_created_by', $created_by);
         $query = $this->db->get(App_user_model::$table_sdil_lander_last_button_link);
         if ($query->num_rows() > 0) {
             return TRUE;
@@ -489,7 +490,7 @@ class app_user_model extends CI_Model
 
     function get_all_country_themes($created_by)
     {
-        $result = $this->db->query("SELECT sltc.*, admin.full_name, admin.admin_live_preview_url,lc.lander_country_name, slt.*
+        $result = $this->db->query("SELECT sltc.*, admin.full_name, admin.admin_live_preview_url,lc.lander_country_name, lc.is_country_reserved, slt.*
                                     FROM sdil_lander_theme_country AS sltc
                                     JOIN sdil_lander_country AS lc ON lc.lander_country_id = sltc.lander_theme_country_id 
                                     JOIN sdil_lander_admin AS admin ON admin.admin_id = sltc.lander_theme_country_created_by 

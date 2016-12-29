@@ -1750,8 +1750,9 @@ class Admin extends CI_Controller
 
     function unique_url_link_button($str)
     {
+        $created_by = $this->session->userdata('admin_id');
         $this->load->model('app_user_model');
-        if (!$this->app_user_model->unique_lander_url_link_button($str)) {
+        if (!$this->app_user_model->unique_lander_url_link_button($str, $created_by)) {
             return TRUE;
         } else {
             $this->form_validation->set_message('unique_url_link_button', "%s {$str} already exist!");

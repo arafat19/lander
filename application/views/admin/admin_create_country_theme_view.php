@@ -271,12 +271,14 @@
                                     <?php $i = 1; ?>
                                     <?php if (isset($all_country_themes) && $all_country_themes->num_rows() > 0): ?>
                                     <tbody>
-                                    <?php foreach ($all_country_themes->result() as $row): ?>
+                                    <?php foreach ($all_country_themes->result() as $row):
+                                        $is_country_reserved = $row->is_country_reserved;
+                                        ?>
 
 
                                         <tr>
                                             <td><?php echo $i++; ?></td>
-                                            <td><?php echo $row->lander_theme_name; ?></td>
+                                            <td><?php echo $row->lander_theme_name; if($is_country_reserved) echo ' <strong>(Default Theme)</strong>';?></td>
                                             <td>
                                                 <div class="progress">
                                                     <div class="progress-bar"
