@@ -656,7 +656,7 @@ class Admin extends CI_Controller
             $this->form_validation->set_rules('country_id', 'Selected Country', 'trim|required');
             $this->form_validation->set_rules('device_id', 'Selected Device', 'trim|required');
             $this->form_validation->set_rules('button_name', 'Button name', 'trim|required|min_length[2]');
-            $this->form_validation->set_rules('button_link_url', 'Button Link URL', 'trim|required|min_length[2]|callback_unique_url_link_button');
+            $this->form_validation->set_rules('button_link_url', 'Button Link URL', 'trim|required|min_length[2]');
             $this->form_validation->set_rules('is_active', 'Is Active');
             if ($this->form_validation->run() == FALSE) {
                 $data['title'] = 'SDIL Lander Last Button Link List - SDIL Lander';
